@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewBag.Title = "LostCat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="padding: 20px 0;">
+    <div class="col-sm-12">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Cat Eyes Color</label>
+            <select class="form-control" id="Province">
+                <option>Brown</option>
+                <option>Black</option>
+                <option>Blue</option>
+                <option>Grey</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Cat Coat Color</label>
+            <select class="form-control" id="Province">
+                <option>Brown</option>
+                <option>Black</option>
+                <option>Blue</option>
+                <option>Grey</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Cat Coat Pattern</label>
+            <select class="form-control" id="Province">
+                <option>Stripped</option>
+                <option>Dotted</option>
+                <option>Tiger</option>
+                <option>Plain</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Cat Tail</label>
+            <select class="form-control" id="Province">
+                <option>Long</option>
+                <option>Short</option>
+                <option>Fluffy</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label>Cat Breed</label>
+            <select class="form-control" id="Province">
+                <option>Persian</option>
+                <option>Siamese</option>
+                <option>Stray</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+                <li role="presentation"><a href="#province" aria-controls="province" role="tab" data-toggle="tab">Your Province</a></li>
+                <li role="presentation"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Search Result</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="all">
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic9.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic3.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic5.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="province">
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic1.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic6.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic7.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic2.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic3.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic5.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="search">
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic10.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            <div><img height="100" width="100" src="~/Images/pic4.jpg" /></div>
+                            <div>Status: Finding</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div><strong>Name:</strong> Cat</div>
+                            <div><strong>Description</strong> This is a cat</div>
+                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                            <div><a href="/Forum/Detail">Read More</a></div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

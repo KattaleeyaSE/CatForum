@@ -1,0 +1,169 @@
+﻿@using CatForum.Models;
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <img width="200" height="200" />
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="form-group">
+                <label>Province</label>
+                <select class="form-control" id="Province">
+                    lect class="form-control" id="Province" name="Province">
+                    @{
+                        List<Province> provList = ViewBag.Provinces;
+                        foreach (var obj in provList)
+                        {
+                            <option value="@obj.Id">@obj.Name</option>
+                        }
+                    }
+                </select>
+                <select class="form-control" id="Amphur">
+                    lect class="form-control" id="Province" name="Province">
+                    @{
+                        List<Amphur> ampList = ViewBag.Amphurs;
+                        foreach (var obj in ampList)
+                        {
+                            <option value="@obj.Id">@obj.Name</option>
+                        }
+                    }
+                </select>
+                <select class="form-control" id="Tumbon">
+                    lect class="form-control" id="Province" name="Province">
+                    @{
+                        List<Tumbon> tmbnList = ViewBag.Tumbons;
+                        foreach (var obj in tmbnList)
+                        {
+                            <option value="@obj.Id">@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Name</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Age</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label>Cat Life Stage</label>
+                <select class="form-control" id="Province">
+                    @{
+                        List<CatLifeStage> catlife = ViewBag.LifeStages;
+                        foreach (var obj in catlife)
+                        {
+                            <option value="@obj.Id">@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Gender</label>
+                <select class="form-control" id="Province">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Eyes Color</label>
+                <select class="form-control" id="Province">
+                    @{
+                        List<CatLifeStage> แฟะฎ = ViewBag.LifeStages;
+                        foreach (var obj in catlife)
+                        {
+                            <option value="@obj.Id">@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Coat Color</label>
+                <select class="form-control" id="Province">
+                    @{
+                        List<CatLifeStage> catlife = ViewBag.LifeStages;
+                        foreach (var obj in catlife)
+                        {
+                            <option value="@obj.Id">@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Coat Pattern</label>
+                <select class="form-control" id="Province">
+                    <option>Stripped</option>
+                    <option>Dotted</option>
+                    <option>Tiger</option>
+                    <option>Plain</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Tail</label>
+                <select class="form-control" id="Province">
+                    <option>Long</option>
+                    <option>Short</option>
+                    <option>Fluffy</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Breed</label>
+                <select class="form-control" id="Province">
+                    <option>Persian</option>
+                    <option>Siamese</option>
+                    <option>Stray</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Food| Like</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Food| Dislike</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Habit</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Hate</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Vaccine</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="Username">Cat Description</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" id="Province">
+                    <option>Finding</option>
+                    <option>Found</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Username">Descripton</label>
+                <textarea class="form-control" id="Username" placeholder="Username"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Username">Contact</label>
+                <input type="text" class="form-control" id="Username" placeholder="Username">
+            </div>
+            <div class="alert alert-danger" role="alert">...</div>
+            <button type="submit" class="btn btn-default">Save</button><button type="submit" class="btn btn-default">Reset</button>
+        </form>
+    </div>
+</div>
+

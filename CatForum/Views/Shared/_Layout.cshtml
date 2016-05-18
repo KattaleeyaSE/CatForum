@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("CatInTheBox", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("News", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Adoption", "Search", "Forum")</li>
+                    <li>@Html.ActionLink("Find Owner", "Search", "Forum")</li>
+                    <li>@Html.ActionLink("Lost Cat", "Search", "Forum")</li>
+                    <li>@Html.ActionLink("SOS", "Search", "Forum")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    <li>@Html.ActionLink("Register", "Register", "Home")</li>
+                    @*<li>@Html.ActionLink("Logout", "Logout", "Home")</li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-sm-3">@Html.Partial("~/Views/Shared/_Profile.cshtml");</div>
+            <div class="col-sm-7">@RenderBody()</div>
+            <div class="col-sm-2">@Html.Partial("~/Views/Shared/_News.cshtml");</div>
+        </div>
+        
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Cat In The Box!</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap") 
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            var opt = {
+                pager: false,
+                controls: true,
+                auto: true,
+                randomStart: true,
+            };
+            $('.bxslider').bxSlider(opt);
+        });
+    </script> 
+</body>
+</html>
