@@ -1,0 +1,45 @@
+﻿@using CatForum.Models;
+@{
+    ViewBag.Title = "Forums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Forums</h2>
+@{
+    User profile = null;
+    if (Session["User"] != null)
+    {
+        <div>
+            <div><a href="/Forum/Create"><button>Add New Post</button></a></div>
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">All Forum</a></li>
+                    @{
+                        List<PostType> types = ViewBag.PostTypes;
+                        foreach (var type in types)
+                        {
+                            <li role="presentation">
+                                <a href="#type@{ @Html.Raw(type.Id) }" aria-controls="type@{ @Html.Raw(type.Id) }" role="tab" data-toggle="tab">@type.Name</a>
+                            </li>
+    }
+                    }
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">...</div>
+                    @{
+                        foreach (var type in types)
+                        {
+                            <div role="tabpanel" class="tab-pane" id="#type@{ @Html.Raw(type.Id) }">
+                                @type.Name
+                            </div>
+    }
+                    }
+                </div>
+
+            </div>
+        </div>
+    }
+}

@@ -4,38 +4,50 @@
     if (Session["User"] != null)
     {
         profile = (User)Session["User"];
+        <div class="row" style="background-color: lightsalmon;">
+            <div style="padding: 20px;">
+                <p class="text-center">
+                    <img height="200" width="200" src="/images/pic10.jpg" />
+                </p>
+            </div>
+            <div style="padding: 20px;">
+                <ul style="list-style: none;">
+                    <li>
+                        <strong>Display Name:</strong>
+                        @if (profile != null)
+                        {
+                            if (profile.DisplayName != null)
+                            {@Html.Raw(profile.DisplayName)}
+                            else
+                            {@Html.Raw("Pleaes add your display name.")}
+                        }
+                    </li>
+                    <li>
+                        <strong>Gender:</strong> 
+                        @if (profile != null)
+                        {
+                            if (profile.Gender == 1)
+                            {
+                                @Html.Raw("Male")
+                            }
+                            else
+                            {
+                                @Html.Raw("Female")
+                            }
+                        }
+                    </li>
+                    @*<li><strong>Birth:</strong> 12/06/1993</li>*@
+                    <li>
+                        <strong>Address:</strong>
+                        @profile.Address.Province.Name , @profile.Address.Amphur.Name , @profile.Address.Tumbon.Name
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div><a href="/User/Forums"><button class="btn btn-success btn-block">My Forum</button></a></div>
+                <div><a href="/User/Edit"><button class="btn btn-success btn-block">Setting</button></a></div>
+            </div>
+        </div>
     }
 }
-<div class="row" style="background-color: lightsalmon;">
-    <div style="padding: 20px;">
-        <p class="text-center">
-            <img height="200" width="200" src="/images/pic10.jpg" />
-        </p>
-    </div>
-    <div style="padding: 20px;">
-        <ul style="list-style: none;">
-            <li>
-                <strong>Display Name:</strong> @if (profile != null)
-            { if(profile.DisplayName != null)@Html.Raw(profile.DisplayName) else @Html.Raw("Pleaes add your display name.")}
-            </li>
-            <li>
-                <strong>Gender:</strong> @if (profile != null)
-                {
-                    if (profile.Gender == 1)
-                    {
-                        @Html.Raw("Male")
-                    }
-                    else {
-                        @Html.Raw("Female")
-                    }
-                }
-            </li>
-            @*<li><strong>Birth:</strong> 12/06/1993</li>*@
-            @*<li><strong>Address:</strong> Chiang Mai, Muang, Suthep</li>*@
-        </ul>
-    </div>
-    <div>
-        <div><button class="btn btn-success btn-block">My Forum</button> </div>
-        <div><a href="/User/Edit"><button class="btn btn-success btn-block">Setting</button></a></div>
-    </div>
-</div>
+

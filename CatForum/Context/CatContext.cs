@@ -31,6 +31,7 @@ namespace CatForum.Context
         public virtual DbSet<PostType> PostTypes { get; set; }
         public virtual DbSet<PostDetail> PostDetails { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
 

@@ -6,12 +6,28 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <form>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control" id="Title" name="Title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="PostType">Post Type</label>
+                <select class="form-control" id="PostType" name="PostType">
+                    @{
+                        List<PostType> types = ViewBag.Types;
+                        foreach (var obj in types)
+                        {
+                            <option value="@obj.Id">@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
             <div class="form-group">
                 <label for="exampleInputFile">File input</label>
                 <img width="200" height="200" />
-                <input type="file" id="exampleInputFile">
-                <p class="help-block">Example block-level help text here.</p>
+                <input type="File" id="File" name="File">
+                <p class="help-block">Please upload this post image.</p>
             </div>
             <div class="form-group">
                 <label>Province</label>
@@ -25,8 +41,7 @@
                         }
                     }
                 </select>
-                <select class="form-control" id="Amphur">
-                    lect class="form-control" id="Province" name="Province">
+                <select class="form-control" id="Amphur" name="Amphur">
                     @{
                         List<Amphur> ampList = ViewBag.Amphurs;
                         foreach (var obj in ampList)
@@ -35,8 +50,7 @@
                         }
                     }
                 </select>
-                <select class="form-control" id="Tumbon">
-                    lect class="form-control" id="Province" name="Province">
+                <select class="form-control" id="Tumbon" name="Tumbon">
                     @{
                         List<Tumbon> tmbnList = ViewBag.Tumbons;
                         foreach (var obj in tmbnList)
@@ -47,50 +61,113 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="Username">Cat Name</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <label for="Condition">Post Detail</label>
+                <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail"></textarea>
             </div>
             <div class="form-group">
-                <label for="Username">Cat Age</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <label>Post Status</label>
+                <select class="form-control" id="PostStatus" name="PostStatus">
+                    <option>Finding</option>
+                    <option>Found</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Condition">Condition</label>
+                <textarea class="form-control" id="Condition" name="Condition" placeholder="Condition"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Location">Location</label>
+                <input type="text" class="form-control" id="Location" name="Location" placeholder="Location">
+            </div>
+            <div class="form-group">
+                <label for="Contact">Contact</label>
+                <input type="text" class="form-control" id="Contact" name="Contact" placeholder="Contact">
+            </div>
+            <div class="form-group">
+                <label for="Fee">Fee</label>
+                <input type="text" class="form-control" id="Fee" name="Fee" placeholder="Fee">
+            </div>
+            <div class="form-group">
+                <label for="CatName">Cat Name</label>
+                <input type="text" class="form-control" id="CatName" name="CatName" placeholder="Cat's name">
+            </div>
+            <div class="form-group">
+                <label for="CatAge">Cat Age</label>
+                <input type="text" class="form-control" id="CatAge" name="CatAge" placeholder="Cat's Age'">
             </div>
             <div class="form-group">
                 <label>Cat Life Stage</label>
-                <select class="form-control" id="Province">
+                <select class="form-control" id="LifeStage" name="LifeStage">
                     @{
                         List<CatLifeStage> catlife = ViewBag.LifeStages;
                         foreach (var obj in catlife)
                         {
-                            <option value="@obj.Id">@obj.Name</option>
+                            <option value="@obj.Id">@obj.Stage</option>
                         }
                     }
                 </select>
             </div>
             <div class="form-group">
                 <label>Cat Gender</label>
-                <select class="form-control" id="Province">
+                <select class="form-control" id="Gender" name="Gender">
                     <option>Male</option>
                     <option>Female</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Cat Eyes Color</label>
-                <select class="form-control" id="Province">
+                <select class="form-control" id="CatEyes" name="CatEyes">
                     @{
-                        List<CatLifeStage> แฟะฎ = ViewBag.LifeStages;
-                        foreach (var obj in catlife)
+                        List<CatEyes> eyes = ViewBag.Eyes;
+                        foreach (var obj in eyes)
                         {
-                            <option value="@obj.Id">@obj.Name</option>
+                            <option value="@obj.Id">@obj.Color</option>
                         }
                     }
                 </select>
             </div>
             <div class="form-group">
                 <label>Cat Coat Color</label>
-                <select class="form-control" id="Province">
+                <select class="form-control" id="CatCoat" name="CatCoat">
                     @{
-                        List<CatLifeStage> catlife = ViewBag.LifeStages;
-                        foreach (var obj in catlife)
+                        List<CatCoat> coats = ViewBag.Coats;
+                        foreach (var obj in coats)
+                        {
+                            <option value="@obj.Id">@obj.Color</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Coat Pattern</label>
+                <select class="form-control" id="CatPattern" name="CatPattern">
+                    @{
+                        List<CatPattern> patterns = ViewBag.Patterns;
+                        foreach (var obj in patterns)
+                        {
+                            <option value="@obj.Id">@obj.Appearance</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Tail</label>
+                <select class="form-control" id="CatTail" name="CatTail">
+                    @{
+                        List<CatTail> tails = ViewBag.Tails;
+                        foreach (var obj in tails)
+                        {
+                            <option value="@obj.Id">@obj.Appearance</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cat Breed</label>
+                <select class="form-control" id="CatBreed" name="CatBreed">
+                    @{
+                        List<CatBreed> breeds = ViewBag.Breeds;
+                        foreach (var obj in breeds)
                         {
                             <option value="@obj.Id">@obj.Name</option>
                         }
@@ -98,68 +175,35 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Cat Coat Pattern</label>
-                <select class="form-control" id="Province">
-                    <option>Stripped</option>
-                    <option>Dotted</option>
-                    <option>Tiger</option>
-                    <option>Plain</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Cat Tail</label>
-                <select class="form-control" id="Province">
-                    <option>Long</option>
-                    <option>Short</option>
-                    <option>Fluffy</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Cat Breed</label>
-                <select class="form-control" id="Province">
-                    <option>Persian</option>
-                    <option>Siamese</option>
-                    <option>Stray</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label for="Username">Cat Food| Like</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <input type="text" class="form-control" id="FoodLike" name="FoodLike" placeholder="Favorite food">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Food| Dislike</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <input type="text" class="form-control" id="FoodDislike" name="FoodDislike" placeholder="Hated food">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Habit</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <input type="text" class="form-control" id="Habit" name="Habit" placeholder="What it usually do?">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Hate</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <input type="text" class="form-control" id="Hate" name="Hate" placeholder="What is hate most?">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Vaccine</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <input type="text" class="form-control" id="Vaccine" name="Vaccine" placeholder="List of Vaccines">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Description</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
+                <input type="text" class="form-control" id="CatDescription" name="CatDescription" placeholder="Description">
             </div>
             <div class="form-group">
-                <label>Status</label>
-                <select class="form-control" id="Province">
+                <label>Cat Status</label>
+                <select class="form-control" id="CatStatus" name="CatStatus">
                     <option>Finding</option>
                     <option>Found</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="Username">Descripton</label>
-                <textarea class="form-control" id="Username" placeholder="Username"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="Username">Contact</label>
-                <input type="text" class="form-control" id="Username" placeholder="Username">
             </div>
             <div class="alert alert-danger" role="alert">...</div>
             <button type="submit" class="btn btn-default">Save</button><button type="submit" class="btn btn-default">Reset</button>

@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Forms\PostForm.cs" />
     <Compile Include="Forms\RegisterForm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,7 @@
     <Compile Include="Interfaces\ICatPatternRepository.cs" />
     <Compile Include="Interfaces\ICatRepository.cs" />
     <Compile Include="Interfaces\ICatTailRepository.cs" />
+    <Compile Include="Interfaces\IPictureRepository.cs" />
     <Compile Include="Interfaces\IPostDetailRepository.cs" />
     <Compile Include="Interfaces\IPostRepository.cs" />
     <Compile Include="Interfaces\IPostTypeRepository.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Models\CatLifeStage.cs" />
     <Compile Include="Models\CatPattern.cs" />
     <Compile Include="Models\CatTail.cs" />
+    <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostType.cs" />
     <Compile Include="Models\Province.cs" />
@@ -246,6 +249,7 @@
     <Compile Include="Repositories\CatPatternRepository.cs" />
     <Compile Include="Repositories\CatRepository.cs" />
     <Compile Include="Repositories\CatTailRepository.cs" />
+    <Compile Include="Repositories\PictureRepository.cs" />
     <Compile Include="Repositories\PostDetailRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\PostTypeRepository.cs" />
@@ -306,6 +310,7 @@
     <Content Include="Views\Forum\Create.cshtml" />
     <Content Include="Views\Forum\Search.cshtml" />
     <Content Include="Views\Forum\Detail.cshtml" />
+    <Content Include="Views\User\Forums.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

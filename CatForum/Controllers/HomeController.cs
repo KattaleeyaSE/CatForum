@@ -58,12 +58,16 @@ namespace CatForum.Controllers
             {
                 if (form.Password.Equals(form.RePassword) && form.Email.Equals(form.ReEmail))
                 {
-                    Address address = new Address();
-                    address.ProvinceId = form.Province;
-                    address.AmphurId = form.Amphur;
-                    address.TumbonId = form.Tumbon;
-                    addressRepository.Add(address);
-                    addressRepository.Save();
+                    Address address = addressRepository.IsAddressExist(form.Province, form.Amphur, form.Tumbon);
+                    if (address == null)
+                    {
+                        address = new Address();
+                        address.ProvinceId = form.Province;
+                        address.AmphurId = form.Amphur;
+                        address.TumbonId = form.Tumbon;
+                        addressRepository.Add(address);
+                        addressRepository.Save();
+                    }
 
                     User user = new Models.User();
                     user.Username = form.Username;

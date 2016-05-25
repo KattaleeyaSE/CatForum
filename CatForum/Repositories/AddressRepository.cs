@@ -12,7 +12,8 @@ namespace CatForum.Repositories
     public class AddressRepository : IAddressRepository
     {
         private CatContext db { get; set; }
-        public AddressRepository() {
+        public AddressRepository()
+        {
             db = new CatContext();
         }
         public AddressRepository(CatContext db)
@@ -62,5 +63,10 @@ namespace CatForum.Repositories
             db.SaveChanges();
         }
 
+        public Address IsAddressExist(int province, int amphur, int tumbon)
+        {
+            Address address = db.Addresses.FirstOrDefault(a => a.ProvinceId == province && a.AmphurId == amphur && a.TumbonId == tumbon);
+            return address;
+        }
     }
 }
