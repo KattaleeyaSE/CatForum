@@ -12,11 +12,15 @@ namespace CatForum.Controllers
         public UserRepository repository { get; set; }
         public AddressRepository addressRepository { get; set; }
         public PostTypeRepository typeRepository { get; set; }
+        public PostRepository postRepository { get; set; }
+        public PostDetailRepository detailRepository { get; set; }
         public UserController()
         {
             this.repository = new UserRepository();
             this.addressRepository = new AddressRepository();
             this.typeRepository = new PostTypeRepository();
+            this.postRepository = new PostRepository();
+            this.detailRepository = new PostDetailRepository();
         }
         // GET: User
         public ActionResult Edit()
@@ -26,6 +30,8 @@ namespace CatForum.Controllers
         public ActionResult Forums()
         {
             ViewBag.PostTypes = typeRepository.SelectAll();
+            ViewBag.All = postRepository.SelectAll();
+            ViewBag.Details = detailRepository;
             return View();
         }
     }

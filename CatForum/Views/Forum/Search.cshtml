@@ -1,4 +1,5 @@
-﻿
+﻿@using CatForum.Models;
+@using CatForum.Repositories;
 @{
     ViewBag.Title = "LostCat";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -83,6 +84,41 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="all">
+                    @*@{
+                                    var details = ViewBag.All;
+                                    foreach (var type in details)
+                                    {
+                            <div role="tabpanel" class="tab-pane" id="type@{ @Html.Raw(type.Id) }">
+                                @{
+                                    PostDetailRepository details = (PostDetailRepository)ViewBag.Details;
+                                var posts = details.SelectByOwnerOnType(profile.Id, type.Id);
+                                    foreach (var post in posts)
+                                    {
+                                        var image = post.Post.Pictures.FirstOrDefault();
+                                        <div class="row" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
+                                            <div class="col-xs-4">
+                                                @if (image != null)
+                                {
+                                                    <img src="/File?Id=@image.Id" width="150" />
+                                                }
+                                            </div>
+                                            <div class="col-xs-4">
+                                                @post.Post.Name
+                                            </div>
+                                            <div class="col-xs-4 text-right">
+                                                <a href="/Forum/Edit?Id=@post.Id">
+                                                    <buttun class="btn btn-info">Edit</buttun>
+                                                </a>
+                                                <a href="/Forum/Delete?Id=@post.Id" onclick="return confirm('Are you sure to delete \' @post.Post.Name \' ');">
+                                                    <buttun class="btn btn-info">Delete</buttun>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                        }
+                            </div>
+                                    }
+                    }*@
                     <div class="row">
                         <div class="col-sm-3 text-center">
                             <div><img height="100" width="100" src="~/Images/pic9.jpg" /></div>

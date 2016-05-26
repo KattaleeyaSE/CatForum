@@ -19,7 +19,7 @@ namespace CatForum.Models
         public int Status { get; set; }
         public string Condition { get; set; }
         public string Contact { get; set; }
-        public double Fee { get; set; }
+        public Nullable<double> Fee { get; set; }
         public string Location { get; set; }
 
         [ForeignKey("PostId")]

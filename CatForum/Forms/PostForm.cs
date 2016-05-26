@@ -40,19 +40,19 @@ namespace CatForum.Forms
 
         public PostForm()
         {
-            this.PostTitle = null;
+            this.PostTitle = "";
             this.PostType = 0;
             this.File = null;
             this.Province = 0;
             this.Amphur = 0;
             this.Tumbon = 0;
-            this.PostDetail = null;
+            this.PostDetail = "";
             this.PostStatus = 0;
-            this.Condition = null;
-            this.Location = null;
-            this.Contact = null;
+            this.Condition = "";
+            this.Location = "";
+            this.Contact = "";
             this.Fee = 0;
-            this.CatName = null;
+            this.CatName = "";
             this.CatAge = 0;
             this.LifeStage = 0;
             this.Gender = 0;
@@ -61,12 +61,12 @@ namespace CatForum.Forms
             this.CatPattern = 0;
             this.CatTail = 0;
             this.CatBreed = 0;
-            this.FoodLike = null;
-            this.FoodDislike = null;
-            this.Habit = null;
-            this.Hate = null;
-            this.Vaccine = null;
-            this.CatDescription = null;
+            this.FoodLike = "";
+            this.FoodDislike = "";
+            this.Habit = "";
+            this.Hate = "";
+            this.Vaccine = "";
+            this.CatDescription = "";
             this.CatStatus = 0;
         }
     }

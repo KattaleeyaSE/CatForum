@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    PostDetail post = ViewBag.post;
+    Cat cat = post.Cat;
 }
 
 <div class="row">
@@ -9,7 +11,7 @@
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="Title">Title</label>
-                <input type="text" class="form-control" id="PostTitle" name="PostTitle" placeholder="Title">
+                <input type="text" class="form-control" id="PostTitle" name="PostTitle" placeholder="Title" value="@post.Post.Name">
             </div>
             <div class="form-group">
                 <label for="PostType">Post Type</label>
@@ -18,7 +20,7 @@
                         List<PostType> types = ViewBag.Types;
                         foreach (var obj in types)
                         {
-                            <option value="@obj.Id">@obj.Name</option>
+                            <option value="@obj.Id" @if(obj.Id == post.TypeId){ @Html.Raw("selected") }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -37,7 +39,7 @@
                         List<Province> provList = ViewBag.Provinces;
                         foreach (var obj in provList)
                         {
-                            <option value="@obj.Id">@obj.Name</option>
+                            <option value="@obj.Id" @if(obj.Id == post.Address.ProvinceId){ @Html.Raw("selected") }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -46,7 +48,7 @@
                         List<Amphur> ampList = ViewBag.Amphurs;
                         foreach (var obj in ampList)
                         {
-                            <option value="@obj.Id">@obj.Name</option>
+                            <option value="@obj.Id" @if(obj.Id == post.Address.AmphurId){ @Html.Raw("selected") }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -55,45 +57,45 @@
                         List<Tumbon> tmbnList = ViewBag.Tumbons;
                         foreach (var obj in tmbnList)
                         {
-                            <option value="@obj.Id">@obj.Name</option>
+                            <option value="@obj.Id" @if(obj.Id == post.Address.TumbonId){ @Html.Raw("selected") }>@obj.Name</option>
                         }
                     }
                 </select>
             </div>
             <div class="form-group">
                 <label for="Condition">Post Detail</label>
-                <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail"></textarea>
+                <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail">@post.Post.Content</textarea>
             </div>
             <div class="form-group">
                 <label>Post Status</label>
                 <select class="form-control" id="PostStatus" name="PostStatus">
-                    <option>Finding</option>
-                    <option>Found</option>
+                    <option value="1" @if(post.Status == 1){ @Html.Raw("selected") }>Active</option>
+                    <option value="2" @if(post.Status == 2){ @Html.Raw("selected") }>Delete</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="Condition">Condition</label>
-                <textarea class="form-control" id="Condition" name="Condition" placeholder="Condition"></textarea>
+                <textarea class="form-control" id="Condition" name="Condition" placeholder="Condition">@post.Condition</textarea>
             </div>
             <div class="form-group">
                 <label for="Location">Location</label>
-                <input type="text" class="form-control" id="Location" name="Location" placeholder="Location">
+                <input type="text" class="form-control" id="Location" name="Location" placeholder="Location" value="@post.Location">
             </div>
             <div class="form-group">
                 <label for="Contact">Contact</label>
-                <input type="text" class="form-control" id="Contact" name="Contact" placeholder="Contact">
+                <input type="text" class="form-control" id="Contact" name="Contact" placeholder="Contact" value="@post.Contact">
             </div>
             <div class="form-group">
                 <label for="Fee">Fee</label>
-                <input type="text" class="form-control" id="Fee" name="Fee" placeholder="Fee">
+                <input type="text" class="form-control" id="Fee" name="Fee" placeholder="Fee" value="@post.Fee">
             </div>
             <div class="form-group">
                 <label for="CatName">Cat Name</label>
-                <input type="text" class="form-control" id="CatName" name="CatName" placeholder="Cat's name">
+                <input type="text" class="form-control" id="CatName" name="CatName" placeholder="Cat's name" value="@cat.Name">
             </div>
             <div class="form-group">
                 <label for="CatAge">Cat Age</label>
-                <input type="text" class="form-control" id="CatAge" name="CatAge" placeholder="Cat's Age'">
+                <input type="text" class="form-control" id="CatAge" name="CatAge" placeholder="Cat's Age'" value="@cat.Age">
             </div>
             <div class="form-group">
                 <label>Cat Life Stage</label>
@@ -102,7 +104,7 @@
                         List<CatLifeStage> catlife = ViewBag.LifeStages;
                         foreach (var obj in catlife)
                         {
-                            <option value="@obj.Id">@obj.Stage</option>
+                            <option value="@obj.Id" @if(obj.Id == cat.LifeStageId){ @Html.Raw("selected") }>@obj.Stage</option>
                         }
                     }
                 </select>
@@ -110,8 +112,8 @@
             <div class="form-group">
                 <label>Cat Gender</label>
                 <select class="form-control" id="Gender" name="Gender">
-                    <option>Male</option>
-                    <option>Female</option>
+                    <option value="1" @if(cat.Gender == 1){ @Html.Raw("selected") }>Male</option>
+                    <option value="2" @if(cat.Gender == 2){ @Html.Raw("selected") }>Female</option>
                 </select>
             </div>
             <div class="form-group">
@@ -121,7 +123,7 @@
                         List<CatEyes> eyes = ViewBag.Eyes;
                         foreach (var obj in eyes)
                         {
-                            <option value="@obj.Id">@obj.Color</option>
+                            <option value="@obj.Id" @if(obj.Id == cat.EyesId){ @Html.Raw("selected") }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -133,7 +135,7 @@
                         List<CatCoat> coats = ViewBag.Coats;
                         foreach (var obj in coats)
                         {
-                            <option value="@obj.Id">@obj.Color</option>
+                            <option value="@obj.Id" @if(obj.Id == cat.CoatId){ @Html.Raw("selected") }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -145,7 +147,7 @@
                         List<CatPattern> patterns = ViewBag.Patterns;
                         foreach (var obj in patterns)
                         {
-                            <option value="@obj.Id">@obj.Appearance</option>
+                            <option value="@obj.Id" @if(obj.Id == cat.PatternId){ @Html.Raw("selected") }>@obj.Appearance</option>
                         }
                     }
                 </select>
@@ -157,7 +159,7 @@
                         List<CatTail> tails = ViewBag.Tails;
                         foreach (var obj in tails)
                         {
-                            <option value="@obj.Id">@obj.Appearance</option>
+                            <option value="@obj.Id" @if(obj.Id == cat.TailId){ @Html.Raw("selected") }>@obj.Appearance</option>
                         }
                     }
                 </select>
@@ -169,40 +171,43 @@
                         List<CatBreed> breeds = ViewBag.Breeds;
                         foreach (var obj in breeds)
                         {
-                            <option value="@obj.Id">@obj.Name</option>
+                            <option value="@obj.Id" @if(obj.Id == cat.BreedId){ @Html.Raw("selected") }>@obj.Name</option>
                         }
                     }
                 </select>
             </div>
             <div class="form-group">
                 <label for="Username">Cat Food| Like</label>
-                <input type="text" class="form-control" id="FoodLike" name="FoodLike" placeholder="Favorite food">
+                <input type="text" class="form-control" id="FoodLike" name="FoodLike" placeholder="Favorite food" value="@cat.FoodLike">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Food| Dislike</label>
-                <input type="text" class="form-control" id="FoodDislike" name="FoodDislike" placeholder="Hated food">
+                <input type="text" class="form-control" id="FoodDislike" name="FoodDislike" placeholder="Hated food" value="@cat.FoodDislike">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Habit</label>
-                <input type="text" class="form-control" id="Habit" name="Habit" placeholder="What it usually do?">
+                <input type="text" class="form-control" id="Habit" name="Habit" placeholder="What it usually do?" value="@cat.Habit">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Hate</label>
-                <input type="text" class="form-control" id="Hate" name="Hate" placeholder="What is hate most?">
+                <input type="text" class="form-control" id="Hate" name="Hate" placeholder="What is hate most?" value="@cat.Hate">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Vaccine</label>
-                <input type="text" class="form-control" id="Vaccine" name="Vaccine" placeholder="List of Vaccines">
+                <input type="text" class="form-control" id="Vaccine" name="Vaccine" placeholder="List of Vaccines" value="@cat.Habit">
             </div>
             <div class="form-group">
                 <label for="Username">Cat Description</label>
-                <input type="text" class="form-control" id="CatDescription" name="CatDescription" placeholder="Description">
+                <textarea type="text" class="form-control" id="CatDescription" name="CatDescription" placeholder="Description">@cat.Description</textarea>
             </div>
             <div class="form-group">
                 <label>Cat Status</label>
                 <select class="form-control" id="CatStatus" name="CatStatus">
-                    <option>Finding</option>
-                    <option>Found</option>
+                    <option value="1" @if(cat.Status == 1){ @Html.Raw("selected") }>Finding</option>
+                    <option value="2" @if(cat.Status == 2){ @Html.Raw("selected") }>Found</option>
+                    <option value="3" @if(cat.Status == 3){ @Html.Raw("selected") }>Search for Adoption</option>
+                    <option value="4" @if(cat.Status == 4){ @Html.Raw("selected") }>Adopted</option>
+                    <option value="5" @if(cat.Status == 5){ @Html.Raw("selected") }>Want to Adopt</option>
                 </select>
             </div>
             <div class="alert alert-danger" role="alert">...</div>

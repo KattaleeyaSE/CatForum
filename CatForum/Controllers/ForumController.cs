@@ -56,12 +56,38 @@ namespace CatForum.Controllers
         {
             return View();
         }
-        public ActionResult Search()
+        public ActionResult Search(int Type, int Eyes, int Coat, int Pattern, int Tail, int Breed, int Province, int Amphur, int Tumbon)
         {
+            ViewBag.Provinces = prov.SelectAll();
+            ViewBag.Amphurs = amp.SelectAll();
+            ViewBag.Tumbons = tmbn.SelectAll();
+
+            ViewBag.Breeds = breeds.SelectAll();
+            ViewBag.Coats = coats.SelectAll();
+            ViewBag.Eyes = eyes.SelectAll();
+            ViewBag.LifeStages = lifStages.SelectAll();
+            ViewBag.Patterns = patterns.SelectAll();
+            ViewBag.Tails = tails.SelectAll();
+
+            ViewBag.Types = types.SelectAll();
+
+            ViewBag.All = details.SelectDescDate();
+
+            ViewBag.ByProvince = null;
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                ViewBag.ByProvince = details.SelectByProvince(user.Address.ProvinceId);
+            }
+           
             return View();
         }
         public ActionResult Create()
         {
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             ViewBag.Provinces = prov.SelectAll();
             ViewBag.Amphurs = amp.SelectAll();
             ViewBag.Tumbons = tmbn.SelectAll();
@@ -78,9 +104,13 @@ namespace CatForum.Controllers
         }
         [HttpPost]
         public ActionResult Create(PostForm form) {
+            if (Session["User"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             try
             {
-                if (ModelState.IsValid && Session["User"] != null)
+                if (/*ModelState.IsValid && */Session["User"] != null)
                 {
                     User user = (User)Session["User"];
                     Post post = new Post();
@@ -114,8 +144,11 @@ namespace CatForum.Controllers
                     address.TumbonId = form.Tumbon;
 
                     posts.Add(post);
+                    posts.Save();
                     cats.Add(cat);
+                    cats.Save();
                     addresses.Add(address);
+                    addresses.Save();
 
                     PostDetail detail = new PostDetail();
                     detail.PostId = post.Id;
@@ -141,9 +174,11 @@ namespace CatForum.Controllers
                         }
                         picture.PostId = post.Id;
                         pictures.Add(picture);
+                        pictures.Save();
                     }
                     details.Add(detail);
-                    return RedirectToAction("Forums","Home");
+                    details.Save();
+                    return RedirectToAction("Forums","User");
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -151,7 +186,117 @@ namespace CatForum.Controllers
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
+            return RedirectToAction("Create", "Forum");
+        }
+        public ActionResult Edit(int Id)
+        {
+            if (Session["user"] == null) {
+                return RedirectToAction("Login", "Home");
+            }
+            PostDetail post = this.details.SelectById(Id);
+            ViewBag.Post = post;
+
+            ViewBag.Provinces = prov.SelectAll();
+            ViewBag.Amphurs = amp.SelectAll();
+            ViewBag.Tumbons = tmbn.SelectAll();
+
+            ViewBag.Breeds = breeds.SelectAll();
+            ViewBag.Coats = coats.SelectAll();
+            ViewBag.Eyes = eyes.SelectAll();
+            ViewBag.LifeStages = lifStages.SelectAll();
+            ViewBag.Patterns = patterns.SelectAll();
+            ViewBag.Tails = tails.SelectAll();
+
+            ViewBag.Types = types.SelectAll();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Edit(PostForm form, int Id)
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            try
+            {
+                if (/*ModelState.IsValid && */Session["User"] != null)
+                {
+                    PostDetail detail = details.SelectById(Id);
+                    Post post = detail.Post;
+                    post.Name = form.PostTitle;
+                    post.Content = form.PostDetail;
+                    post.Updated = DateTime.Now;
+
+                    Cat cat = detail.Cat;
+                    cat.Name = form.CatName;
+                    cat.Age = form.CatAge;
+                    cat.Gender = form.Gender;
+                    cat.LifeStageId = form.LifeStage;
+                    cat.EyesId = form.CatEyes;
+                    cat.CoatId = form.CatCoat;
+                    cat.PatternId = form.CatPattern;
+                    cat.TailId = form.CatTail;
+                    cat.BreedId = form.CatBreed;
+                    cat.FoodLike = form.FoodLike;
+                    cat.FoodDislike = form.FoodDislike;
+                    cat.Habit = form.Habit;
+                    cat.Hate = form.Hate;
+                    cat.Vaccine = form.Vaccine;
+                    cat.Description = form.CatDescription;
+                    cat.Status = form.CatStatus;
+
+                    Address address = detail.Address;
+                    address.ProvinceId = form.Province;
+                    address.AmphurId = form.Amphur;
+                    address.TumbonId = form.Tumbon;
+
+                    posts.Save();
+                    cats.Save();
+                    addresses.Save();
+
+                    detail.TypeId = form.PostType;
+                    detail.Status = form.PostStatus;
+                    detail.Condition = form.Condition;
+                    detail.Contact = form.Contact;
+                    detail.Fee = form.Fee;
+                    detail.Location = form.Location;
+
+                    if (form.File != null && form.File.ContentLength > 0)
+                    {
+                        var picture = new Picture
+                        {
+                            Filename = System.IO.Path.GetFileName(form.File.FileName),
+                            ContentType = form.File.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(form.File.InputStream))
+                        {
+                            picture.Content = reader.ReadBytes(form.File.ContentLength);
+                        }
+                        picture.PostId = post.Id;
+                        pictures.Add(picture);
+                        pictures.Save();
+                    }
+                    details.Save();
+                    return RedirectToAction("Forums", "User");
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return RedirectToAction("Forums", "User");
+        }
+        public ActionResult Delete(int Id)
+        {
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            PostDetail post = this.details.SelectById(Id);
+            post.Status = 2;
+            posts.Save();
+            return RedirectToAction("Forums", "User");
         }
     }
 }

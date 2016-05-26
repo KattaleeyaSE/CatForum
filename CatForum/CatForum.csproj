@@ -197,6 +197,7 @@
     <Compile Include="Components\AuthorizeFilter.cs" />
     <Compile Include="Components\DateTimeExtensions.cs" />
     <Compile Include="Context\CatContext.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -311,9 +312,11 @@
     <Content Include="Views\Forum\Search.cshtml" />
     <Content Include="Views\Forum\Detail.cshtml" />
     <Content Include="Views\User\Forums.cshtml" />
+    <Content Include="Views\Forum\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

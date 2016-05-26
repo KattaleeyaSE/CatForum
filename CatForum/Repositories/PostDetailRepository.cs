@@ -24,7 +24,16 @@ namespace CatForum.Repositories
         {
             return db.PostDetails.ToList();
         }
-
+        public IEnumerable<PostDetail> SelectByProvince(int id) {
+            return db.PostDetails.Where(p => p.Address.ProvinceId == id).ToList();
+        }
+        public IEnumerable<PostDetail> SelectByOwnerOnType(int ownerid, int typeId) {
+            return db.PostDetails.Where(p => p.TypeId == typeId && p.Post.UserId == ownerid).ToList();
+        }
+        public IEnumerable<PostDetail> SelectDescDate()
+        {
+            return db.PostDetails.OrderBy(p => p.Post.Updated).ToList();
+        }
         public PostDetail SelectById(int id)
         {
             return db.PostDetails.Find(id);

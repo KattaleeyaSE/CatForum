@@ -1,4 +1,5 @@
 ﻿@using CatForum.Models;
+@using CatForum.Repositories;
 @{
     ViewBag.Title = "Forums";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,6 +10,7 @@
     User profile = null;
     if (Session["User"] != null)
     {
+        profile = (User)Session["User"];
         <div>
             <div><a href="/Forum/Create"><button>Add New Post</button></a></div>
             <div>
@@ -32,14 +34,40 @@
                     @{
                         foreach (var type in types)
                         {
-                            <div role="tabpanel" class="tab-pane" id="#type@{ @Html.Raw(type.Id) }">
-                                @type.Name
+                            <div role="tabpanel" class="tab-pane" id="type@{ @Html.Raw(type.Id) }">
+                                @{
+                                    PostDetailRepository details = (PostDetailRepository)ViewBag.Details;
+                                    var posts = details.SelectByOwnerOnType(profile.Id, type.Id);
+                                    foreach (var post in posts)
+                                    {
+                                        var image = post.Post.Pictures.FirstOrDefault();
+                                        <div class="row" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
+                                            <div class="col-xs-4">
+                                                @if (image != null)
+                                                {
+                                                    <img src="/File?Id=@image.Id" width="150" />
+                                                }
+                                            </div>
+                                            <div class="col-xs-4">
+                                                @post.Post.Name
+                                            </div>
+                                            <div class="col-xs-4 text-right">
+                                                <a href="/Forum/Edit?Id=@post.Id">
+                                                    <buttun class="btn btn-info">Edit</buttun>
+                                                </a>
+                                                <a href="/Forum/Delete?Id=@post.Id" onclick="return confirm('Are you sure to delete \' @post.Post.Name \' ');">
+                                                    <buttun class="btn btn-info">Delete</buttun>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                }
                             </div>
-    }
+                                    }
                     }
                 </div>
 
             </div>
         </div>
-    }
+                                    }
 }
