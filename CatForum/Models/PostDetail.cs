@@ -33,5 +33,11 @@ namespace CatForum.Models
 
         [ForeignKey("TypeId")]
         public virtual PostType Type { get; set; }
+
+        [InverseProperty("Post")]
+        public virtual ICollection<PostAdopt> Adopts { get; set; }
+
+        [InverseProperty("Post")]
+        public virtual ICollection<Follow> Follow { get; set; }
     }
 }

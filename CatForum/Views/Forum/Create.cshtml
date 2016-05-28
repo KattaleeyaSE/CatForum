@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
+<div class="row" style="padding: 20px 0;">
     <div class="col-sm-12">
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-group">
@@ -31,8 +31,7 @@
             </div>
             <div class="form-group">
                 <label>Province</label>
-                <select class="form-control" id="Province">
-                    lect class="form-control" id="Province" name="Province">
+                <select class="form-control" id="Province" name="Province" required>
                     @{
                         List<Province> provList = ViewBag.Provinces;
                         foreach (var obj in provList)
@@ -41,7 +40,7 @@
                         }
                     }
                 </select>
-                <select class="form-control" id="Amphur" name="Amphur">
+                <select class="form-control" id="Amphur" name="Amphur" required>
                     @{
                         List<Amphur> ampList = ViewBag.Amphurs;
                         foreach (var obj in ampList)
@@ -50,7 +49,7 @@
                         }
                     }
                 </select>
-                <select class="form-control" id="Tumbon" name="Tumbon">
+                <select class="form-control" id="Tumbon" name="Tumbon" required>
                     @{
                         List<Tumbon> tmbnList = ViewBag.Tumbons;
                         foreach (var obj in tmbnList)
@@ -61,14 +60,14 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="Condition">Post Detail</label>
+                <label for="PostDetail">Post Detail</label>
                 <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail"></textarea>
             </div>
             <div class="form-group">
                 <label>Post Status</label>
                 <select class="form-control" id="PostStatus" name="PostStatus">
-                    <option>Finding</option>
-                    <option>Found</option>
+                    <option value="1">Active</option>
+                    <option value="2">Delete</option>
                 </select>
             </div>
             <div class="form-group">
@@ -110,8 +109,8 @@
             <div class="form-group">
                 <label>Cat Gender</label>
                 <select class="form-control" id="Gender" name="Gender">
-                    <option>Male</option>
-                    <option>Female</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
                 </select>
             </div>
             <div class="form-group">
@@ -201,8 +200,11 @@
             <div class="form-group">
                 <label>Cat Status</label>
                 <select class="form-control" id="CatStatus" name="CatStatus">
-                    <option>Finding</option>
-                    <option>Found</option>
+                    <option value="1">Finding</option>
+                    <option value="2">Found</option>
+                    <option value="3">Search for Adoption</option>
+                    <option value="4">Adopted</option>
+                    <option value="5">Want to Adopt</option>
                 </select>
             </div>
             <div class="alert alert-danger" role="alert">...</div>

@@ -28,6 +28,7 @@ namespace CatForum.Controllers
         UserRepository users { get; set; }
         AddressRepository addresses { get; set; }
         CatRepository cats { get; set; }
+        FollowRepository follows { get; set; }
         public ForumController()
         {
             this.prov = new ProvinceRepository();
@@ -46,22 +47,63 @@ namespace CatForum.Controllers
             this.users = new UserRepository();
             this.addresses = new AddressRepository();
             this.cats = new CatRepository();
+            this.follows = new FollowRepository();
         }
         // GET: Forum
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Detail()
+        [Route("/Forum/Detail/{id?}")]
+        public ActionResult Detail(int id)
         {
+            PostDetail post = this.details.SelectById(id);
+            ViewBag.Post = post;
             return View();
         }
-        public ActionResult Search(int Type, int Eyes, int Coat, int Pattern, int Tail, int Breed, int Province, int Amphur, int Tumbon)
+
+        [Route("/Forum/Follow/{id?}")]
+        public ActionResult Follow(int id)
         {
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                if (follows.SearchByUserAndPost(user.Id, id) == null) {
+                    Follow follow = new Follow();
+                    follow.UserId = user.Id;
+                    follow.PostId = id;
+                    follows.Add(follow);
+                    follows.Save();
+                }
+            }
+                
+            return RedirectToAction("Detail", "Forum", new { id = id });
+        }
+
+        [Route("/Forum/Unfollow/{id?}")]
+        public ActionResult UnFollow(int id)
+        {
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                Follow isExist = follows.SearchByUserAndPost(user.Id, id);
+                if (isExist != null)
+                {
+                    follows.Delete(isExist.Id);
+                    follows.Save();
+                }
+            }
+
+            return RedirectToAction("Detail", "Forum", new { id = id });
+        }
+        public ActionResult Search(Nullable<int> Type, Nullable<int> Offset, Nullable<int> Eyes, Nullable<int> Coat, Nullable<int> Pattern, Nullable<int> Tail, Nullable<int> Breed, Nullable<int> Province, Nullable<int> Amphur, Nullable<int> Tumbon)
+        {
+            /*Address*/
             ViewBag.Provinces = prov.SelectAll();
             ViewBag.Amphurs = amp.SelectAll();
             ViewBag.Tumbons = tmbn.SelectAll();
 
+            /*Cat*/
             ViewBag.Breeds = breeds.SelectAll();
             ViewBag.Coats = coats.SelectAll();
             ViewBag.Eyes = eyes.SelectAll();
@@ -69,17 +111,28 @@ namespace CatForum.Controllers
             ViewBag.Patterns = patterns.SelectAll();
             ViewBag.Tails = tails.SelectAll();
 
+            /*Query String*/
+            ViewBag.Province = Province;
+            ViewBag.Amphur = Amphur;
+            ViewBag.Tumbon = Tumbon;
+            ViewBag.Breed = Breed;
+            ViewBag.Coat = Coat;
+            ViewBag.Eye = Eyes;
+            ViewBag.Pattern = Pattern;
+            ViewBag.Tail = Tail;
+            ViewBag.Type = Type;
+            ViewBag.Offset = Offset;
+
+            /*Result*/
             ViewBag.Types = types.SelectAll();
-
-            ViewBag.All = details.SelectDescDate();
-
+            ViewBag.All = details.SelectDescDate(Type, Offset);
             ViewBag.ByProvince = null;
             if (Session["User"] != null)
             {
                 User user = (User)Session["User"];
                 ViewBag.ByProvince = details.SelectByProvince(user.Address.ProvinceId);
             }
-           
+            ViewBag.SearchResult = details.Search(Type, Offset, Eyes, Coat, Pattern, Tail, Breed, Province, Amphur, Tumbon);
             return View();
         }
         public ActionResult Create()
@@ -103,7 +156,8 @@ namespace CatForum.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(PostForm form) {
+        public ActionResult Create(PostForm form)
+        {
             if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Home");
@@ -178,7 +232,7 @@ namespace CatForum.Controllers
                     }
                     details.Add(detail);
                     details.Save();
-                    return RedirectToAction("Forums","User");
+                    return RedirectToAction("Forums", "User");
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -190,7 +244,8 @@ namespace CatForum.Controllers
         }
         public ActionResult Edit(int Id)
         {
-            if (Session["user"] == null) {
+            if (Session["user"] == null)
+            {
                 return RedirectToAction("Login", "Home");
             }
             PostDetail post = this.details.SelectById(Id);
@@ -250,8 +305,11 @@ namespace CatForum.Controllers
                     address.AmphurId = form.Amphur;
                     address.TumbonId = form.Tumbon;
 
+                    posts.Update(post);
                     posts.Save();
+                    cats.Update(cat);
                     cats.Save();
+                    addresses.Update(address);
                     addresses.Save();
 
                     detail.TypeId = form.PostType;
@@ -276,6 +334,7 @@ namespace CatForum.Controllers
                         pictures.Add(picture);
                         pictures.Save();
                     }
+                    details.Update(detail);
                     details.Save();
                     return RedirectToAction("Forums", "User");
                 }
@@ -295,7 +354,8 @@ namespace CatForum.Controllers
             }
             PostDetail post = this.details.SelectById(Id);
             post.Status = 2;
-            posts.Save();
+            details.Update(post);
+            details.Save();
             return RedirectToAction("Forums", "User");
         }
     }

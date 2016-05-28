@@ -13,14 +13,17 @@ namespace CatForum.Controllers
     {
         public UserRepository repository { get; set; }
         public AddressRepository addressRepository { get; set; }
+        public PostDetailRepository detailRepository { get; set; }
         public HomeController()
         {
             this.repository = new UserRepository();
             this.addressRepository = new AddressRepository();
+            this.detailRepository = new PostDetailRepository();
         }
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.PostRepo = detailRepository;
             return View();
         }
         public ActionResult Login()
@@ -81,6 +84,11 @@ namespace CatForum.Controllers
                 }
             }
             return View();
+        }
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Index", "Home");
         }
     }
 }

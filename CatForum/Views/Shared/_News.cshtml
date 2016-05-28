@@ -1,13 +1,40 @@
-﻿<div class="row">
+﻿@using CatForum.Repositories
+@using CatForum.Models
+<div class="row">
     <div>
         <h3>News</h3>
         <ul class="bxslider">
-            <li><img src="/images/pic1.jpg" width="150" /></li>
-            <li><img src="/images/pic8.jpg" width="150" /></li>
-            <li><img src="/images/pic6.jpg" width="150" /></li>
-            <li><img src="/images/pic2.jpg" width="150" /></li>
-            <li><img src="/images/pic3.jpg" width="150" /></li>
-            <li><img src="/images/pic4.jpg" width="150" /></li>
+            @{
+                PostDetailRepository postsRep = new PostDetailRepository();
+                var posts = postsRep.SelectByType(2);
+                if (posts != null && posts.Count() > 0)
+                {
+                    foreach (var post in posts)
+                    {
+                        var image = post.Post.Pictures.FirstOrDefault();
+                        <li>
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <div class="text-center">
+                                        @if (image != null)
+                                        {
+                                            <img src="/File?Id=@image.Id" width="150" style="margin: 0 auto;" />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div><strong>Name:</strong> @post.Post.Name</div>
+                                    <div><strong>Description:</strong> @post.Post.Content</div>
+                                    <div><strong>Date:</strong> @post.Post.Updated.ToShortDateString()</div>
+                                    <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                </div>
+                                <hr />
+                            </div>
+                        </li>
+                    }
+                }
+            }
+            @*<li><img src="/images/pic1.jpg" width="150" /></li>*@
         </ul>
     </div>
 </div>

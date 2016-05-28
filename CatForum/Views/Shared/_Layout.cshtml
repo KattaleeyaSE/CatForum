@@ -22,15 +22,21 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("News", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Adoption", "Search", "Forum")</li>
-                    <li>@Html.ActionLink("Find Owner", "Search", "Forum")</li>
-                    <li>@Html.ActionLink("Lost Cat", "Search", "Forum")</li>
-                    <li>@Html.ActionLink("SOS", "Search", "Forum")</li>
+                    <li>@Html.ActionLink("Adoption", "Search", "Forum", new { Type = "5" }, null)</li>
+                    <li>@Html.ActionLink("Find Owner", "Search", "Forum", new { Type = "3" }, null)</li>
+                    <li>@Html.ActionLink("Lost Cat", "Search", "Forum", new { Type = "4" }, null)</li>
+                    <li>@Html.ActionLink("SOS", "Search", "Forum", new { Type = "6" }, null)</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Login", "Login", "Home")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Home")</li>
-                    @*<li>@Html.ActionLink("Logout", "Logout", "Home")</li>*@
+                    @if (Session["User"] == null)
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                        <li>@Html.ActionLink("Register", "Register", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -41,7 +47,7 @@
             <div class="col-sm-7">@RenderBody()</div>
             <div class="col-sm-2">@Html.Partial("~/Views/Shared/_News.cshtml");</div>
         </div>
-        
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Cat In The Box!</p>
@@ -49,8 +55,8 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    @Scripts.Render("~/bundles/bootstrap") 
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>*@
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
@@ -62,6 +68,6 @@
             };
             $('.bxslider').bxSlider(opt);
         });
-    </script> 
+    </script>
 </body>
 </html>

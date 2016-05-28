@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Components\AuthorizeFilter.cs" />
     <Compile Include="Components\DateTimeExtensions.cs" />
+    <Compile Include="Components\StatusHelper.cs" />
     <Compile Include="Context\CatContext.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Interfaces\IPostRepository.cs" />
     <Compile Include="Interfaces\IPostTypeRepository.cs" />
     <Compile Include="Interfaces\IProvinceRepository.cs" />
+    <Compile Include="Interfaces\IFollowRepository.cs" />
     <Compile Include="Interfaces\IReportRepository.cs" />
     <Compile Include="Interfaces\ITumbonRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
@@ -232,8 +234,10 @@
     <Compile Include="Models\CatLifeStage.cs" />
     <Compile Include="Models\CatPattern.cs" />
     <Compile Include="Models\CatTail.cs" />
+    <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostAdopt.cs" />
     <Compile Include="Models\PostType.cs" />
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\Report.cs" />
@@ -250,6 +254,7 @@
     <Compile Include="Repositories\CatPatternRepository.cs" />
     <Compile Include="Repositories\CatRepository.cs" />
     <Compile Include="Repositories\CatTailRepository.cs" />
+    <Compile Include="Repositories\FollowRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />
     <Compile Include="Repositories\PostDetailRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />

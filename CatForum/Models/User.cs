@@ -26,5 +26,8 @@ namespace CatForum.Models
         [InverseProperty("Owner")]
         public virtual ICollection<Post> Posts { get; set; }
 
+        [InverseProperty("User")]
+        public virtual ICollection<Follow> Follows { get; set; }
+
     }
 }

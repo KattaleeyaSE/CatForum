@@ -1,8 +1,11 @@
 ﻿@using CatForum.Models;
 @using CatForum.Repositories;
+@using CatForum.Components;
 @{
     ViewBag.Title = "LostCat";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    StatusHelper statusHelper = new StatusHelper();
+    int id = 0;
 }
 
 <div class="row" style="padding: 20px 0;">
@@ -15,61 +18,168 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label>Cat Eyes Color</label>
-            <select class="form-control" id="Province">
-                <option>Brown</option>
-                <option>Black</option>
-                <option>Blue</option>
-                <option>Grey</option>
-            </select>
+<form>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Province</label>
+                <select class="form-control" id="Province" name="Province">
+                    <option value=""></option>
+                    @{
+                        List<Province> provList = ViewBag.Provinces;
+                        if (ViewBag.Province != null)
+                        {
+                            id = ViewBag.Province;
+                        }
+                        foreach (var obj in provList)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")       }>@obj.Name</option>
+                        }
+                    }
+                </select>
+                <select class="form-control" id="Amphur" name="Amphur">
+                    <option value=""></option>
+                    @{
+                        List<Amphur> ampList = ViewBag.Amphurs;
+                        id = 0;
+                        if (ViewBag.Amphur != null)
+                        {
+                            id = ViewBag.Amphur;
+                        }
+                        foreach (var obj in ampList)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")        }>@obj.Name</option>
+                        }
+                    }
+                </select>
+                <select class="form-control" id="Tumbon" name="Tumbon">
+                    <option value=""></option>
+                    @{
+                        List<Tumbon> tmbnList = ViewBag.Tumbons;
+                        id = 0;
+                        if (ViewBag.Tumbon != null)
+                        {
+                            id = ViewBag.Tumbon;
+                        }
+                        foreach (var obj in tmbnList)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")        }>@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label>Cat Coat Color</label>
-            <select class="form-control" id="Province">
-                <option>Brown</option>
-                <option>Black</option>
-                <option>Blue</option>
-                <option>Grey</option>
-            </select>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Cat Eyes Color</label>
+                <select class="form-control" id="Eyes" name="Eyes">
+                    <option value=""></option>
+                    @{
+                        List<CatEyes> eyes = ViewBag.Eyes;
+                        id = 0;
+                        if (ViewBag.Eye != null)
+                        {
+                            id = ViewBag.Eye;
+                        }
+                        foreach (var obj in eyes)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")       }>@obj.Color</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Cat Coat Color</label>
+                <select class="form-control" id="Coat" name="Coat">
+                    <option value=""></option>
+                    @{
+                        List<CatCoat> coats = ViewBag.Coats;
+                        id = 0;
+                        if (ViewBag.Coat != null)
+                        {
+                            id = ViewBag.Coat;
+                        }
+                        foreach (var obj in coats)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")       }>@obj.Color</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Cat Coat Pattern</label>
+                <select class="form-control" id="Pattern" name="Pattern">
+                    <option value=""></option>
+                    @{
+                        List<CatPattern> patterns = ViewBag.Patterns;
+                        id = 0;
+                        if (ViewBag.Pattern != null)
+                        {
+                            id = ViewBag.Pattern;
+                        }
+                        foreach (var obj in patterns)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")       }>@obj.Appearance</option>
+                        }
+                    }
+                </select>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Cat Tail</label>
+                <select class="form-control" id="Tail" name="Tail">
+                    <option value=""></option>
+                    @{
+                        List<CatTail> tails = ViewBag.Tails;
+                        id = 0;
+                        if (ViewBag.Tail != null)
+                        {
+                            id = ViewBag.Tail;
+                        }
+                        foreach (var obj in tails)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")       }>@obj.Appearance</option>
+                        }
+                    }
+                </select>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Cat Breed</label>
+                <select class="form-control" id="Breed" name="Breed">
+                    <option value=""></option>
+                    @{
+                        List<CatBreed> breeds = ViewBag.Breeds;
+                        id = 0;
+                        if (ViewBag.Breed != null)
+                        {
+                            id = ViewBag.Breed;
+                        }
+                        foreach (var obj in breeds)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")       }>@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success btn-block">Search</button>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label>Cat Coat Pattern</label>
-            <select class="form-control" id="Province">
-                <option>Stripped</option>
-                <option>Dotted</option>
-                <option>Tiger</option>
-                <option>Plain</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label>Cat Tail</label>
-            <select class="form-control" id="Province">
-                <option>Long</option>
-                <option>Short</option>
-                <option>Fluffy</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label>Cat Breed</label>
-            <select class="form-control" id="Province">
-                <option>Persian</option>
-                <option>Siamese</option>
-                <option>Stray</option>
-            </select>
-        </div>
-    </div>
-</div>
+    <input type="hidden" name="Type" value="@ViewBag.Type" />
+    <input type="hidden" name="Offset" value="@ViewBag.Offset" />
+</form>
 <div class="row">
     <div class="col-sm-12">
         <div>
@@ -84,192 +194,230 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="all">
-                    @*@{
-                                    var details = ViewBag.All;
-                                    foreach (var type in details)
-                                    {
-                            <div role="tabpanel" class="tab-pane" id="type@{ @Html.Raw(type.Id) }">
-                                @{
-                                    PostDetailRepository details = (PostDetailRepository)ViewBag.Details;
-                                var posts = details.SelectByOwnerOnType(profile.Id, type.Id);
-                                    foreach (var post in posts)
-                                    {
-                                        var image = post.Post.Pictures.FirstOrDefault();
-                                        <div class="row" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
-                                            <div class="col-xs-4">
-                                                @if (image != null)
-                                {
-                                                    <img src="/File?Id=@image.Id" width="150" />
-                                                }
-                                            </div>
-                                            <div class="col-xs-4">
-                                                @post.Post.Name
-                                            </div>
-                                            <div class="col-xs-4 text-right">
-                                                <a href="/Forum/Edit?Id=@post.Id">
-                                                    <buttun class="btn btn-info">Edit</buttun>
-                                                </a>
-                                                <a href="/Forum/Delete?Id=@post.Id" onclick="return confirm('Are you sure to delete \' @post.Post.Name \' ');">
-                                                    <buttun class="btn btn-info">Delete</buttun>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    }
+                    @{
+                        List<PostDetail> all = ViewBag.all;
+                        if (all.Count <= 0)
+                        {
+                            <h3 class="text-center">No result.</h3>
                         }
+                        else
+                        {
+                            foreach (var post in all)
+                            {
+                                var image = post.Post.Pictures.FirstOrDefault();
+                                <div class="row">
+                                    <div class="col-sm-3 text-center">
+                                        <div>
+                                            @if (image != null)
+                                            {
+                                                <img src="/File?Id=@image.Id" width="150" />
+                                            }
+                                        </div>
+                                        <div>Status: @statusHelper.getCatStatus(post.Cat.Status)</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div><strong>Name:</strong> @post.Cat.Name</div>
+                                        <div><strong>Description</strong> @post.Cat.Description</div>
+                                        <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
+                                        <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                    </div>
+                                    <hr />
+                                </div>
+                            }
+                        }
+                    }
+
+                    @*<div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic3.jpg" /></div>
+                                <div>Status: Finding</div>
                             </div>
-                                    }
-                    }*@
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic9.jpg" /></div>
-                            <div>Status: Finding</div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
                         </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic3.jpg" /></div>
-                            <div>Status: Finding</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic5.jpg" /></div>
-                            <div>Status: Finding</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic5.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
+                        </div>*@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="province">
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic1.jpg" /></div>
-                            <div>Status: Finding</div>
+                    @if (Session["User"] == null)
+                    {
+                        <h3 class="text-center">Please Login to see this section.</h3>
+                    }
+                    @{
+                        List<PostDetail> byProvince = ViewBag.ByProvince;
+                        if (byProvince == null || byProvince.Count <= 0)
+                        {
+                            <h3 class="text-center">No result.</h3>
+                        }
+                        else
+                        {
+                            foreach (var post in byProvince)
+                            {
+                                var image = post.Post.Pictures.FirstOrDefault();
+                                <div class="row">
+                                    <div class="col-sm-3 text-center">
+                                        <div>
+                                            @if (image != null)
+                                            {
+                                                <img src="/File?Id=@image.Id" width="150" />
+                                            }
+                                        </div>
+                                        <div>Status: @statusHelper.getCatStatus(post.Cat.Status)</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div><strong>Name:</strong> @post.Cat.Name</div>
+                                        <div><strong>Description</strong> @post.Cat.Description</div>
+                                        <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
+                                        <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                    </div>
+                                    <hr />
+                                </div>
+                            }
+                        }
+                    }
+                    @*<div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic6.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
                         </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic7.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
                         </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic6.jpg" /></div>
-                            <div>Status: Finding</div>
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic2.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
                         </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic3.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
                         </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic7.jpg" /></div>
-                            <div>Status: Finding</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic2.jpg" /></div>
-                            <div>Status: Finding</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic3.jpg" /></div>
-                            <div>Status: Finding</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic5.jpg" /></div>
-                            <div>Status: Finding</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic5.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
+                        </div>*@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="search">
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic10.jpg" /></div>
-                            <div>Status: Finding</div>
+                    @{
+                        List<PostDetail> search = ViewBag.SearchResult;
+                        if (search.Count <= 0)
+                        {
+                            <h3 class="text-center">No result.</h3>
+                        }
+                        else
+                        {
+                            foreach (var post in search)
+                            {
+                                var image = post.Post.Pictures.FirstOrDefault();
+                                <div class="row">
+                                    <div class="col-sm-3 text-center">
+                                        <div>
+                                            @if (image != null)
+                                            {
+                                                <img src="/File?Id=@image.Id" width="150" />
+                                            }
+                                        </div>
+                                        <div>Status: @statusHelper.getCatStatus(post.Cat.Status)</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div><strong>Name:</strong> @post.Cat.Name</div>
+                                        <div><strong>Description</strong> @post.Cat.Description</div>
+                                        <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
+                                        <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                    </div>
+                                    <hr />
+                                </div>
+                            }
+                        }
+                    }
+                    @*<div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic10.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
                         </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 text-center">
-                            <div><img height="100" width="100" src="~/Images/pic4.jpg" /></div>
-                            <div>Status: Finding</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div><strong>Name:</strong> Cat</div>
-                            <div><strong>Description</strong> This is a cat</div>
-                            <div><strong>Posted By</strong> Cat | 16/5/2016</div>
-                            <div><a href="/Forum/Detail">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <div><img height="100" width="100" src="~/Images/pic4.jpg" /></div>
+                                <div>Status: Finding</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div><strong>Name:</strong> Cat</div>
+                                <div><strong>Description</strong> This is a cat</div>
+                                <div><strong>Posted By</strong> Cat | 16/5/2016</div>
+                                <div><a href="/Forum/Detail">Read More</a></div>
+                            </div>
+                            <hr />
+                        </div>*@
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-

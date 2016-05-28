@@ -1,32 +1,67 @@
-﻿
+﻿@using CatForum.Models
+@using CatForum.Repositories
+@using CatForum.Components
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    PostDetail post = ViewBag.Post;
+    StatusHelper statusHelper = new StatusHelper();
 }
 
 <div class="row">
     <div class="col-sm-12">
-        <h1>Title</h1>
+        <h3>@post.Type.Name</h3>
+        <h1>@post.Post.Name</h1>
+        @if (Session["User"] != null)
+        {
+            User user = (User)Session["User"];
+            FollowRepository isFollow = new FollowRepository();
+            if (isFollow.SearchByUserAndPost(user.Id, post.Id) == null)
+            {
+                <div><a href="/Forum/Follow/@post.Id"><button class="btn btn-success">Follow</button></a></div>
+            }
+            else
+            {
+                <div><a href="/Forum/Unfollow/@post.Id"><button class="btn btn-success">Un-Follow</button></a></div>
+            }
+
+        }
+
     </div>
     <div class="col-sm-12">
-        <div class="text-center"><img width="500" src="~/Images/pic7.jpg"/></div>
+        @{
+            var image = post.Post.Pictures.FirstOrDefault();
+        }
+
+        <div class="text-center">
+            @if (image != null)
+            {
+                <img src="/File?Id=@image.Id" width="500" style="margin: 0 auto;" />
+            }
+        </div>
         <div>
-            <div><strong>Address: Chiang Mai, Muang, Suthep</strong> </div>
-            <div><p class="help-block">Please adopt this cat!</p></div>
-            <div><strong>Contact: 081-111-1111</strong> </div>
+            <div><strong>Address:</strong>  @post.Address.Province.Name , @post.Address.Amphur.Name , @post.Address.Tumbon.Name</div>
             <div>
+                <p class="help-block">@post.Post.Content</p>
+                <p class="help-block">@post.Cat.Description</p>
+                <p class="help-block">@post.Condition</p>
+                <p><strong>@post.Location</strong></p>
+            </div>
+            <div><strong>Contact: @post.Contact</strong> </div>
+            <div>
+                <strong>@statusHelper.getCatStatus(post.Cat.Status)</strong>
                 <ul>
-                    <li><strong>Breed:</strong> Siamese</li>
-                    <li><strong>Eyes Color:</strong> Brown</li>
-                    <li><strong>Coat Color:</strong> Brown</li>
-                    <li><strong>Coat Pattern:</strong> Stripped</li>
-                    <li><strong>Tail:</strong> Long</li>
+                    <li><strong>Breed:</strong> @post.Cat.Breed.Name</li>
+                    <li><strong>Eyes Color:</strong> @post.Cat.Eyes.Color</li>
+                    <li><strong>Coat Color:</strong> @post.Cat.Coat.Color</li>
+                    <li><strong>Coat Pattern:</strong> @post.Cat.Pattern.Appearance</li>
+                    <li><strong>Tail:</strong> @post.Cat.Tail.Appearance</li>
                 </ul>
             </div>
         </div>
     </div>
     <div>
-        <button class="btn btn-block btn-success" data-toggle="modal" data-target="#toggleAdoption" >Request for Adoption</button>
+        <button class="btn btn-block btn-success" data-toggle="modal" data-target="#toggleAdoption">Request for Adoption</button>
     </div>
 </div>
 

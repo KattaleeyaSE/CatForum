@@ -1,19 +1,36 @@
-﻿@{
+﻿@using CatForum.Repositories
+@{
     ViewBag.Title = "Home Page";
+    PostDetailRepository posts = ViewBag.PostRepo;
+    var count = 1;
 }
 <div class="row">
     <div class="col-sm-12">
         <h3>SOS in your area.</h3>
         <div>
-            <ul>
-                <li><a href="">Please help!</a></li>
-                <li><a href="#">Please help!</a></li>
-                <li><a href="#">Please help!</a></li>
-                <li><a href="#">Please help!</a></li>
-                <li><a href="#">Please help!</a></li>
+            @{
+                var soses = posts.SelectDescDate(6, 0);
+            }
+            <ul class="bxslider">
+                @{
+                    foreach (var sos in soses)
+                    {
+                        var image = sos.Post.Pictures.FirstOrDefault();
+                        <li>
+                            @if (image != null)
+                            {
+                                <img src="/File?Id=@image.Id" width="150" style="display: inline-block;" />
+                            }
+                            <a href="/Forum/Detail/@sos.Id">
+                                @sos.Post.Name : @sos.Condition
+                            </a>
+                        </li>
+                    }
+                }
+
             </ul>
             <div class="text-right">
-                <a>More!</a>
+                <a href="/Forum/Search?Type=6">More!</a>
             </div>
         </div>
     </div>
@@ -33,70 +50,130 @@
                 <div role="tabpanel" class="tab-pane active" id="update">
                     <div>
                         <h3>Lost Cat</h3>
+                        @{
+                            var losts = posts.SelectDescDate(4, 0);
+                        }
                         <ul class="bxslider">
-                            <li>
-                                <img height="150" width="150" src="/images/pic1.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic2.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic3.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic4.jpg" style="display: inline-block" />
-                            </li>
-                            <li>
-                                <img height="150" width="150" src="/images/pic5.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic6.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic7.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic8.jpg" style="display: inline-block" />
-                            </li>
+                            @{
+                                count = 1;
+                                foreach (var obj in losts)
+                                {
+                                    var image = obj.Post.Pictures.FirstOrDefault();
+                                    if (count == 1)
+                                    { @Html.Raw("<li>")                             }
+                                    if (image != null)
+                                    {
+                                        <a href="/Forum/Detail/@obj.Id">
+                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                        </a>
+                                    }
+                                    if (count == 4 || losts.Last().Equals(obj))
+                                    {
+                                        @Html.Raw("</li>")
+                                        count = 1;
+                                    }
+                                    else
+                                    {
+                                        count++;
+                                    }
+                                }
+                            }
                         </ul>
                     </div>
                     <div>
                         <h3>Find Owner</h3>
+                        @{
+                            var finds = posts.SelectDescDate(3, 0);
+                        }
                         <ul class="bxslider">
-                            <li>
-                                <img height="150" width="150" src="/images/pic1.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic2.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic3.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic4.jpg" style="display: inline-block" />
-                            </li>
-                            <li>
-                                <img height="150" width="150" src="/images/pic5.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic6.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic7.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic8.jpg" style="display: inline-block" />
-                            </li>
+                            @{
+                                count = 1;
+                                foreach (var obj in finds)
+                                {
+                                    var image = obj.Post.Pictures.FirstOrDefault();
+                                    if (count == 1)
+                                    { @Html.Raw("<li>") }
+                                    if (image != null)
+                                    {
+                                        <a href="/Forum/Detail/@obj.Id">
+                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                        </a>
+                                    }
+                                    if (count == 4 || finds.Last().Equals(obj))
+                                    {
+                                        @Html.Raw("</li>")
+                                        count = 1;
+                                    }
+                                    else
+                                    {
+                                        count++;
+                                    }
+                                }
+                            }
                         </ul>
                     </div>
                     <div>
                         <h3>SOS</h3>
+                        @*@{
+                                var sos = posts.SelectDescDate(4, 0);
+                            }*@
                         <ul class="bxslider">
-                            <li>
-                                <img height="150" width="150" src="/images/pic1.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic2.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic3.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic4.jpg" style="display: inline-block" />
-                            </li>
-                            <li>
-                                <img height="150" width="150" src="/images/pic5.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic6.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic7.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic8.jpg" style="display: inline-block" />
-                            </li>
+                            @{
+                                count = 1;
+                                foreach (var obj in soses)
+                                {
+                                    var image = obj.Post.Pictures.FirstOrDefault();
+                                    if (count == 1)
+                                    { @Html.Raw("<li>") }
+                                    if (image != null)
+                                    {
+                                        <a href="/Forum/Detail/@obj.Id">
+                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                        </a>
+                                    }
+                                    if (count == 4 || losts.Last().Equals(obj))
+                                    {
+                                        @Html.Raw("</li>")
+                                        count = 1;
+                                    }
+                                    else
+                                    {
+                                        count++;
+                                    }
+                                }
+                            }
                         </ul>
                     </div>
                     <div>
                         <h3>Adoption</h3>
+                        @{
+                            var adopts = posts.SelectDescDate(5, 0);
+                        }
                         <ul class="bxslider">
-                            <li>
-                                <img height="150" width="150" src="/images/pic1.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic2.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic3.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic4.jpg" style="display: inline-block" />
-                            </li>
-                            <li>
-                                <img height="150" width="150" src="/images/pic5.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic6.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic7.jpg" style="display: inline-block" />
-                                <img height="150" width="150" src="/images/pic8.jpg" style="display: inline-block" />
-                            </li>
+                            @{
+                                count = 1;
+                                foreach (var obj in adopts)
+                                {
+                                    var image = obj.Post.Pictures.FirstOrDefault();
+                                    if (count == 1)
+                                    { @Html.Raw("<li>") }
+                                    if (image != null)
+                                    {
+                                        <a href="/Forum/Detail/@obj.Id">
+                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                        </a>
+                                    }
+                                    if (count == 4 || losts.Last().Equals(obj))
+                                    {
+                                        @Html.Raw("</li>")
+                                        count = 1;
+                                    }
+                                    else
+                                    {
+                                        count++;
+                                    }
+                                }
+                            }
                         </ul>
                     </div>
                 </div>

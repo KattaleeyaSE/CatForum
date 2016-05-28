@@ -24,15 +24,66 @@ namespace CatForum.Repositories
         {
             return db.PostDetails.ToList();
         }
-        public IEnumerable<PostDetail> SelectByProvince(int id) {
-            return db.PostDetails.Where(p => p.Address.ProvinceId == id).ToList();
-        }
-        public IEnumerable<PostDetail> SelectByOwnerOnType(int ownerid, int typeId) {
-            return db.PostDetails.Where(p => p.TypeId == typeId && p.Post.UserId == ownerid).ToList();
-        }
-        public IEnumerable<PostDetail> SelectDescDate()
+        public IEnumerable<PostDetail> SelectByProvince(int id)
         {
-            return db.PostDetails.OrderBy(p => p.Post.Updated).ToList();
+            return db.PostDetails.Where(p => p.Address.ProvinceId == id && p.Status != 2).ToList();
+        }
+        public IEnumerable<PostDetail> SelectByType(int id)
+        {
+            return db.PostDetails.Where(p => p.TypeId == id && p.Status != 2).ToList();
+        }
+        public IEnumerable<PostDetail> SelectByOwnerOnType(int ownerid, int typeId)
+        {
+            return db.PostDetails.Where(p => p.TypeId == typeId && p.Post.UserId == ownerid && p.Status != 2).ToList();
+        }
+        public IEnumerable<PostDetail> SelectDescDate(int? type, int? offset)
+        {
+            if (offset == null || offset == 0)
+                offset = 0;
+            else
+                offset = ((offset - 1) * 10) + 1;
+            if (type != null)
+                return db.PostDetails.Where(p => p.TypeId == type && p.Status != 2).OrderBy(p => p.Post.Updated).Skip((int)offset).Take(10).ToList();
+            else
+                return db.PostDetails.Where(p => p.Status != 2).OrderBy(p => p.Post.Updated).Skip((int)offset).Take(10).ToList();
+        }
+        public IEnumerable<PostDetail> Search(Nullable<int> Type, Nullable<int> Offset, Nullable<int> Eyes, Nullable<int> Coat, Nullable<int> Pattern, Nullable<int> Tail, Nullable<int> Breed, Nullable<int> Province, Nullable<int> Amphur, Nullable<int> Tumbon)
+        {
+            var posts = db.PostDetails.Where(p => p.TypeId == Type && p.Status != 2);
+            if (Eyes != null)
+            {
+                posts = posts.Where(p => p.Cat.EyesId == Eyes);
+            }
+            if (Coat != null)
+            {
+                posts = posts.Where(p => p.Cat.CoatId == Coat);
+            }
+            if (Pattern != null)
+            {
+                posts = posts.Where(p => p.Cat.PatternId == Pattern);
+            }
+            if (Tail != null)
+            {
+                posts = posts.Where(p => p.Cat.TailId == Tail);
+            }
+            if (Province != null)
+            {
+                posts = posts.Where(p => p.Address.ProvinceId == Province);
+            }
+            if (Amphur != null)
+            {
+                posts = posts.Where(p => p.Address.AmphurId == Amphur);
+            }
+            if (Tumbon != null)
+            {
+                posts = posts.Where(p => p.Address.TumbonId == Tumbon);
+            }
+            if (Offset != null)
+            {
+                Offset = ((Offset - 1) * 10) + 1;
+                posts = posts.Skip((int)Offset);
+            }
+            return posts.OrderBy(p => p.Post.Updated).Take(10).ToList();
         }
         public PostDetail SelectById(int id)
         {
