@@ -12,7 +12,7 @@
                 var soses = posts.SelectDescDate(6, 0);
             }
             <ul class="bxslider">
-                @{
+                @if(soses != null){
                     foreach (var sos in soses)
                     {
                         var image = sos.Post.Pictures.FirstOrDefault();
@@ -54,7 +54,8 @@
                             var losts = posts.SelectDescDate(4, 0);
                         }
                         <ul class="bxslider">
-                            @{
+                            @if (losts != null)
+                            {
                                 count = 1;
                                 foreach (var obj in losts)
                                 {
@@ -86,7 +87,7 @@
                             var finds = posts.SelectDescDate(3, 0);
                         }
                         <ul class="bxslider">
-                            @{
+                            @if(finds != null){
                                 count = 1;
                                 foreach (var obj in finds)
                                 {
@@ -118,7 +119,7 @@
                                 var sos = posts.SelectDescDate(4, 0);
                             }*@
                         <ul class="bxslider">
-                            @{
+                            @if(soses != null){
                                 count = 1;
                                 foreach (var obj in soses)
                                 {
@@ -150,7 +151,7 @@
                             var adopts = posts.SelectDescDate(5, 0);
                         }
                         <ul class="bxslider">
-                            @{
+                            @if(adopts != null){
                                 count = 1;
                                 foreach (var obj in adopts)
                                 {
