@@ -24,7 +24,8 @@ namespace CatForum.Repositories
         {
             return db.PostAdopts.ToList();
         }
-        public IEnumerable<PostAdopt> SearchByUser(int userId) {
+        public IEnumerable<PostAdopt> SearchByUser(int userId)
+        {
             return db.PostAdopts.Where(p => p.Post.Post.UserId == userId && p.Post.TypeId == 5 && p.Post.Cat.Status == 3).ToList();
         }
         public PostAdopt SelectById(int id)
