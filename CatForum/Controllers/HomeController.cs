@@ -14,16 +14,23 @@ namespace CatForum.Controllers
         public UserRepository repository { get; set; }
         public AddressRepository addressRepository { get; set; }
         public PostDetailRepository detailRepository { get; set; }
+        public PostAdoptRepository adopts { get; set; }
         public HomeController()
         {
             this.repository = new UserRepository();
             this.addressRepository = new AddressRepository();
             this.detailRepository = new PostDetailRepository();
+            this.adopts = new PostAdoptRepository();
         }
         // GET: Home
         public ActionResult Index()
         {
             ViewBag.PostRepo = detailRepository;
+            ViewBag.Adopts = null;
+            if (Session["User"] != null) {
+                User user = (User)Session["User"];
+                ViewBag.Adopts = adopts.SearchByUser(user.Id);
+            }
             return View();
         }
         public ActionResult Login()
