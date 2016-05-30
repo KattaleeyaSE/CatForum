@@ -1,4 +1,5 @@
 ﻿@using CatForum.Repositories
+@using CatForum.Models
 @{
     ViewBag.Title = "Home Page";
     PostDetailRepository posts = ViewBag.PostRepo;
@@ -12,7 +13,8 @@
                 var soses = posts.SelectDescDate(6, 0);
             }
             <ul class="bxslider">
-                @if(soses != null){
+                @if (soses != null)
+                {
                     foreach (var sos in soses)
                     {
                         var image = sos.Post.Pictures.FirstOrDefault();
@@ -87,7 +89,8 @@
                             var finds = posts.SelectDescDate(3, 0);
                         }
                         <ul class="bxslider">
-                            @if(finds != null){
+                            @if (finds != null)
+                            {
                                 count = 1;
                                 foreach (var obj in finds)
                                 {
@@ -119,7 +122,8 @@
                                 var sos = posts.SelectDescDate(4, 0);
                             }*@
                         <ul class="bxslider">
-                            @if(soses != null){
+                            @if (soses != null)
+                            {
                                 count = 1;
                                 foreach (var obj in soses)
                                 {
@@ -151,7 +155,8 @@
                             var adopts = posts.SelectDescDate(5, 0);
                         }
                         <ul class="bxslider">
-                            @if(adopts != null){
+                            @if (adopts != null)
+                            {
                                 count = 1;
                                 foreach (var obj in adopts)
                                 {
@@ -179,34 +184,64 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="followed">
-                    <div class="row">
-                        <div class="col-sm-3"><img height="150" width="150" /></div>
-                        <div class="col-sm-9">
-                            <div>Post: </div>
-                            <div>Have been updated: </div>
-                            <div><a href="#">Check</a></div>
-                        </div>
-                    </div>
+                    @if (Session["User"] != null)
+                    {
+                        User user = (User)Session["User"];
+                        var follow = user.Follows.Take(10).ToList();
+                        foreach (var obj in follow)
+                        {
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    @{
+                                        var image = obj.Post.Post.Pictures.FirstOrDefault();
+                                        if (image != null)
+                                        {
+                                            <a href="/Forum/Detail/@obj.PostId">
+                                                <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                            </a>
+                                        }
+                                    }
+                                </div>
+                                <div class="col-sm-9">
+                                    <div>Post: @obj.Post.Post.Name</div>
+                                    <div>Have been updated on: @obj.Post.Post.Updated</div>
+                                    <div><a href="/Forum/Detail/@obj.PostId">Check</a></div>
+                                </div>
+                            </div>
+                                            }
+                                        }
                 </div>
                 <div role="tabpanel" class="tab-pane" id="adoption">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="col-sm-4"><img width="100" height="100" /></div>
-                            <div class="col-sm-8">
-                                <div>Name: </div>
-                                <div>Contact: </div>
-                                <div><a href="#">Accecpt</a> | <a href="#">Reject</a></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="col-sm-4"><img width="100" height="100" /></div>
-                            <div class="col-sm-8">
-                                <div>Name: </div>
-                                <div>Contact: </div>
-                                <div>Message: </div>
-                            </div>
-                        </div>
-                    </div>
+                    @if (Session["User"] != null)
+                    {
+                        User user = (User)Session["User"];
+                        var adoptsReq = (List<PostAdopt>)ViewBag.Adopts;
+                        if (adoptsReq != null)
+                        {
+                            foreach (var obj in adoptsReq)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        @{
+                                            var image = obj.Post.Post.Pictures.FirstOrDefault();
+                                            if (image != null)
+                                            {
+                                                <a href="/Forum/Detail/@obj.PostId">
+                                                    <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                                </a>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div>Cat Name: @obj.Post.Cat.Name</div>
+                                        <div>Message: @obj.Detail</div>
+                                        <div>Contact: @obj.Contact</div>
+                                        <div><a href="/Forum/Adopt/Accept/@obj.Id">Accecpt</a> | <a href="/Forum/Adopt/Reject/@obj.Id">Reject</a></div>
+                                    </div>
+                                </div>
+                                                    }
+                                                }
+                                            }
                 </div>
                 <div role="tabpanel" class="tab-pane" id="lostAndFound">
                     <div class="row">
@@ -219,7 +254,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

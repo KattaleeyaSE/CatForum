@@ -13,6 +13,7 @@ namespace CatForum.Models
         [Key]
         public int Id { get; set; }
         public int PostId { get; set; }
+        public int Status { get; set; }
         public string Detail { get; set; }
         public string Contact { get; set; }
 

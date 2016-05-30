@@ -217,6 +217,7 @@
     <Compile Include="Interfaces\ICatRepository.cs" />
     <Compile Include="Interfaces\ICatTailRepository.cs" />
     <Compile Include="Interfaces\IPictureRepository.cs" />
+    <Compile Include="Interfaces\IPostAdoptRepository.cs" />
     <Compile Include="Interfaces\IPostDetailRepository.cs" />
     <Compile Include="Interfaces\IPostRepository.cs" />
     <Compile Include="Interfaces\IPostTypeRepository.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Repositories\CatTailRepository.cs" />
     <Compile Include="Repositories\FollowRepository.cs" />
     <Compile Include="Repositories\PictureRepository.cs" />
+    <Compile Include="Repositories\PostAdoptRepository.cs" />
     <Compile Include="Repositories\PostDetailRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\PostTypeRepository.cs" />
