@@ -1,0 +1,22 @@
+﻿@using CatForum.Models
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reports</h2>
+<div>
+    @{
+        List<Report> all = ViewBag.Reports;
+        foreach (var post in all)
+        {
+           <div>
+               <div><strong>Post: </strong> @post.Post.Post.Name</div>
+               <div><strong>Detail: </strong> @post.Text</div>
+               <div><strong>Reported Date: </strong> @post.Created.ToShortDateString()</div>
+               <div><a href="/Forum/Edit?Id=@post.Id">Edit</a> | <a href="/Forum/Delete?Id=@post.Id">Delete</a></div>
+           </div>
+        }
+    }
+</div>
+

@@ -24,11 +24,13 @@ namespace CatForum.Controllers
         PostTypeRepository types { get; set; }
         PostRepository posts { get; set; }
         PostDetailRepository details { get; set; }
+        PostAdoptRepository adopts { get; set; }
         PictureRepository pictures { get; set; }
         UserRepository users { get; set; }
         AddressRepository addresses { get; set; }
         CatRepository cats { get; set; }
         FollowRepository follows { get; set; }
+        ReportRepository reports { get; set; }
         public ForumController()
         {
             this.prov = new ProvinceRepository();
@@ -43,11 +45,13 @@ namespace CatForum.Controllers
             this.types = new PostTypeRepository();
             this.posts = new PostRepository();
             this.details = new PostDetailRepository();
+            this.adopts = new PostAdoptRepository();
             this.pictures = new PictureRepository();
             this.users = new UserRepository();
             this.addresses = new AddressRepository();
             this.cats = new CatRepository();
             this.follows = new FollowRepository();
+            this.reports = new ReportRepository();
         }
         // GET: Forum
         public ActionResult Index()
@@ -68,7 +72,8 @@ namespace CatForum.Controllers
             if (Session["User"] != null)
             {
                 User user = (User)Session["User"];
-                if (follows.SearchByUserAndPost(user.Id, id) == null) {
+                if (follows.SearchByUserAndPost(user.Id, id) == null)
+                {
                     Follow follow = new Follow();
                     follow.UserId = user.Id;
                     follow.PostId = id;
@@ -76,10 +81,8 @@ namespace CatForum.Controllers
                     follows.Save();
                 }
             }
-                
             return RedirectToAction("Detail", "Forum", new { id = id });
         }
-
         [Route("/Forum/Unfollow/{id?}")]
         public ActionResult UnFollow(int id)
         {
@@ -94,6 +97,77 @@ namespace CatForum.Controllers
                 }
             }
 
+            return RedirectToAction("Detail", "Forum", new { id = id });
+        }
+        [Route("/Forum/Adopt/{id?}")]
+        [HttpPost]
+        public ActionResult RequestAdopt(PostAdopt adopt, int id)
+        {
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                PostAdopt isExist = adopts.IsExist(user.Id, id);
+                if (isExist == null)
+                {
+                    isExist = new PostAdopt();
+                    isExist.UserId = user.Id;
+                    isExist.PostId = id;
+                    isExist.Detail = adopt.Detail;
+                    isExist.Contact = adopt.Contact;
+                    isExist.Status = 1;
+                    adopts.Add(isExist);
+                    adopts.Save();
+                }
+            }
+            return RedirectToAction("Detail", "Forum", new { id = id });
+        }
+        [Route("/Forum/Adopt/Accept/{id?}")]
+        public ActionResult AcceptAdopt(int id)
+        {
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                PostAdopt isExist = adopts.SelectById(id);
+                if (isExist != null)
+                {
+                    isExist.Status = 2;
+                    adopts.Update(isExist);
+                }
+            }
+
+            return RedirectToAction("Detail", "Forum", new { id = id });
+        }
+        [Route("/Forum/Adopt/Reject/{id?}")]
+        public ActionResult RejectAdopt(int id)
+        {
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                PostAdopt isExist = adopts.SelectById(id);
+                if (isExist != null)
+                {
+                    isExist.Status = 3;
+                    adopts.Update(isExist);
+                }
+            }
+
+            return RedirectToAction("Detail", "Forum", new { id = id });
+        }
+        [Route("/Forum/Report/{id?}")]
+        [HttpPost]
+        public ActionResult Report(Report form, int id)
+        {
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                Report report = new Report();
+                report.Created = DateTime.Now;
+                report.PostId = id;
+                report.UserId = user.Id;
+                report.Text = form.Text;
+                reports.Add(report);
+                reports.Save();
+            }
             return RedirectToAction("Detail", "Forum", new { id = id });
         }
         public ActionResult Search(Nullable<int> Type, Nullable<int> Offset, Nullable<int> Eyes, Nullable<int> Coat, Nullable<int> Pattern, Nullable<int> Tail, Nullable<int> Breed, Nullable<int> Province, Nullable<int> Amphur, Nullable<int> Tumbon)

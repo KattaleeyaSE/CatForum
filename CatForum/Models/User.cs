@@ -18,7 +18,7 @@ namespace CatForum.Models
         public string DisplayName { get; set; }
         public int Gender { get; set; }
         public DateTime BirthDate { get; set; }
-        public string Image { get; set; }
+        public Nullable<int> ImageId { get; set; }
 
         [ForeignKey("AddressId")]
         public virtual Address Address { get; set; }
@@ -28,6 +28,15 @@ namespace CatForum.Models
 
         [InverseProperty("User")]
         public virtual ICollection<Follow> Follows { get; set; }
+
+        [InverseProperty("User")]
+        public virtual ICollection<PostAdopt> Adopts { get; set; }
+
+        [InverseProperty("User")]
+        public virtual ICollection<Report> Reports { get; set; }
+
+        [ForeignKey("ImageId")]
+        public virtual Picture Image { get; set; }
 
     }
 }

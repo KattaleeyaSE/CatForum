@@ -36,7 +36,9 @@ namespace CatForum.Repositories
 
         public void Update(Post obj)
         {
-            db.Entry(obj).State = EntityState.Modified;
+            Post newObj = db.Posts.Find(obj.Id);
+            newObj = obj;
+            db.SaveChanges();
         }
 
         public void Delete(int? id)

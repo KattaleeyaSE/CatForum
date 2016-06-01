@@ -25,8 +25,5 @@ namespace CatForum.Models
 
         [InverseProperty("Post")]
         public virtual ICollection<Picture> Pictures { get; set; }
-
-        [InverseProperty("Post")]
-        public virtual ICollection<Report> Reports { get; set; }
     }
 }

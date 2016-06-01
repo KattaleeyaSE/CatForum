@@ -1,0 +1,20 @@
+﻿@using CatForum.Models
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Members</h2>
+<div>
+    @{
+        List<User> all = ViewBag.Members;
+        foreach (var user in all)
+        {
+            <div>
+                <div><strong>User: </strong> @user.Username - @user.Email</div>
+                <div><a href="/User/Delete?Id=@user.Id">Delete</a></div>
+            </div>
+        }
+    }
+</div>
+

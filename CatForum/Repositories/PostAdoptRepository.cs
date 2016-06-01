@@ -28,6 +28,9 @@ namespace CatForum.Repositories
         {
             return db.PostAdopts.Where(p => p.Post.Post.UserId == userId && p.Post.TypeId == 5 && p.Post.Cat.Status == 3).ToList();
         }
+        public PostAdopt IsExist(int userId, int postId) {
+            return db.PostAdopts.Where(p => p.UserId == userId && p.PostId == postId).FirstOrDefault();
+        }
         public PostAdopt SelectById(int id)
         {
             return db.PostAdopts.Find(id);

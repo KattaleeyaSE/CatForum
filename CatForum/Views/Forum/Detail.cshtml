@@ -24,9 +24,7 @@
             {
                 <div><a href="/Forum/Unfollow/@post.Id"><button class="btn btn-success">Un-Follow</button></a></div>
             }
-
         }
-
     </div>
     <div class="col-sm-12">
         @{
@@ -61,11 +59,17 @@
         </div>
     </div>
     <div>
-        <button class="btn btn-block btn-success" data-toggle="modal" data-target="#toggleAdoption">Request for Adoption</button>
+        @if (post.TypeId == 5)
+        {
+            <button class="btn btn-block btn-success" data-toggle="modal" data-target="#toggleAdoption">Request for Adoption</button>
+        }
+    </div>
+    <div class="text-right">
+        <button class="btn btn-success" data-toggle="modal" data-target="#toggleReport">Report</button>
     </div>
 </div>
 
-@* Model *@
+@* Adoption *@
 <div class="modal fade" id="toggleAdoption" tabindex="-1" role="dialog" aria-labelledby="toggleAdoption">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -73,20 +77,46 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Submit For Adoption!</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="DisplayName">Detail:</label>
-                    <textarea class="form-control"></textarea>
+            <form method="post" action="/Forum/Adopt/@post.Id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="DisplayName">Detail:</label>
+                        <textarea class="form-control" name="Detail"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="DisplayName">Contact:</label>
+                        <input class="form-control" name="Contact" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="DisplayName">Contact:</label>
-                    <input class="form-control" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@* Report *@
+<div class="modal fade" id="toggleReport" tabindex="-1" role="dialog" aria-labelledby="toggleReport">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Report</h4>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send</button>
-            </div>
+            <form method="post" action="/Forum/Report/@post.Id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="DisplayName">Detail:</label>
+                        <textarea class="form-control" name="Text"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

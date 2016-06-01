@@ -7,7 +7,20 @@
         <div class="row" style="background-color: lightsalmon;">
             <div style="padding: 20px;">
                 <p class="text-center">
-                    <img height="200" width="200" src="/images/pic10.jpg" />
+                    @{
+                        var image = profile.Image;
+                    }
+
+                    <div class="text-center">
+                        @if (image != null)
+                        {
+                            <img src="/File?Id=@image.Id" width="500" style="margin: 0 auto;" />
+                        }
+                        else
+                        {
+                            <img height="200" width="200" src="/images/pic10.jpg" />
+                        }
+                    </div>
                 </p>
             </div>
             <div style="padding: 20px;">

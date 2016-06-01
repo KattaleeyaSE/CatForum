@@ -59,7 +59,10 @@ namespace CatForum.Repositories
 
         public void Update(User obj)
         {
-            db.Entry(obj).State = EntityState.Modified;
+            //db.Entry(obj).State = EntityState.Modified;
+            User newObj = db.Users.Find(obj.Id);
+            newObj = obj;
+            db.SaveChanges();
         }
 
         public void Delete(int? id)

@@ -39,5 +39,8 @@ namespace CatForum.Models
 
         [InverseProperty("Post")]
         public virtual ICollection<Follow> Follow { get; set; }
+
+        [InverseProperty("Post")]
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }

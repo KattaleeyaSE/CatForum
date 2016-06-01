@@ -13,6 +13,7 @@ namespace CatForum.Context
         public CatContext() : base("CatContext")
         {
         }
+        public virtual DbSet<Admin> Admins { get; set; }
 
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }

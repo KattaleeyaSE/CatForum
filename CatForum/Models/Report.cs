@@ -12,11 +12,15 @@ namespace CatForum.Models
         [Key]
         public int Id { get; set; }
         public int PostId { get; set; }
+        public int UserId { get; set; }
         public string Text { get; set; }
         public DateTime Created { get; set; }
 
         [ForeignKey("PostId")]
-        public virtual Post Post { get; set; }
+        public virtual PostDetail Post { get; set; }
+
+        [ForeignKey("PostId")]
+        public virtual User User { get; set; }
 
     }
 }

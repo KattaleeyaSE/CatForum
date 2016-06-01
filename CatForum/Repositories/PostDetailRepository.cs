@@ -87,10 +87,10 @@ namespace CatForum.Repositories
         }
         public IEnumerable<PostDetail> SearchMatch(int userId) {
             var losts = this.SelectByOwnerOnType(userId,4);
-            List<PostDetail> result = null;
+            List<PostDetail> result = new List<PostDetail>();
             foreach (var lost in losts) {
                 if (lost.Cat.Status == 2) {
-                    var match = db.PostDetails.Where(p => (p.Address.ProvinceId == lost.Address.ProvinceId
+                    var match = db.PostDetails.Where(p => (p.Post.UserId != userId && p.Address.ProvinceId == lost.Address.ProvinceId
                     && p.Address.AmphurId == lost.Address.AmphurId)
                     || p.Address.TumbonId == lost.Address.TumbonId);
                     result.AddRange(match.Where(p => p.Cat.EyesId == lost.Cat.EyesId
@@ -113,7 +113,9 @@ namespace CatForum.Repositories
 
         public void Update(PostDetail obj)
         {
-            db.Entry(obj).State = EntityState.Modified;
+            PostDetail newObj = db.PostDetails.Find(obj.Id);
+            newObj = obj;
+            db.SaveChanges();
         }
 
         public void Delete(int? id)

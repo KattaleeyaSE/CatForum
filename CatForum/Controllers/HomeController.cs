@@ -27,9 +27,11 @@ namespace CatForum.Controllers
         {
             ViewBag.PostRepo = detailRepository;
             ViewBag.Adopts = null;
+            ViewBag.Match = null;
             if (Session["User"] != null) {
                 User user = (User)Session["User"];
-                ViewBag.Adopts = adopts.SearchByUser(user.Id);
+                ViewBag.Adopts = adopts.SearchByUser(user.Id).Take(10).ToList();
+                ViewBag.Matchs = detailRepository.SearchMatch(user.Id).Take(10).ToList();
             }
             return View();
         }

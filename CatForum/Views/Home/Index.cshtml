@@ -244,14 +244,33 @@
                                             }
                 </div>
                 <div role="tabpanel" class="tab-pane" id="lostAndFound">
-                    <div class="row">
-                        <div class="col-sm-3"><img height="150" width="150" /></div>
-                        <div class="col-sm-9">
-                            <div>Description: </div>
-                            <div>Address: </div>
-                            <div>Contact: </div>
-                        </div>
-                    </div>
+                    @if (Session["User"] != null)
+                    {
+                        List<PostDetail> matchs = ViewBag.Match;
+                        foreach (var obj in matchs)
+                        {
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    @{
+                                        var image = obj.Post.Pictures.FirstOrDefault();
+                                        if (image != null)
+                                        {
+                                            <a href="/Forum/Detail/@obj.PostId">
+                                                <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                            </a>
+                                        }
+                                    }
+                                </div>
+                                <div class="col-sm-9">
+                                    <div>Description: @obj.Post.Details</div>
+                                    <div>Address: @obj.Address.Province.Name , @obj.Address.Amphur.Name , @obj.Address.Tumbon.Name</div>
+                                    <div>Contact: @obj.Contact</div>
+                                    <div><a href="/Forum/Detail/@obj.PostId">Check</a></div>
+                                </div>
+                            </div>
+                                            }
+                                        }
+
                 </div>
             </div>
         </div>
