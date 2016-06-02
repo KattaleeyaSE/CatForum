@@ -50,7 +50,8 @@ namespace CatForum.Controllers
                     User temp = (User)Session["User"];
                     User old = repository.SelectById(temp.Id);
                     old.Username = form.Username;
-                    if (form.Password != null && form.RePassword != null && form.Password.Equals(form.RePassword)) {
+                    if (form.Password != null && form.RePassword != null && form.Password.Equals(form.RePassword))
+                    {
                         old.Password = form.Password;
                     }
                     old.Email = form.Email;
@@ -88,10 +89,16 @@ namespace CatForum.Controllers
         }
         public ActionResult Forums()
         {
-            ViewBag.PostTypes = typeRepository.SelectAll();
-            ViewBag.All = postRepository.SelectAll();
-            ViewBag.Details = detailRepository;
-            return View();
+            if (Session["User"] != null)
+            {
+                User user = (User)Session["User"];
+                ViewBag.PostTypes = typeRepository.SelectAll();
+                ViewBag.All = postRepository.SelectAll().Where(p => p.UserId == user.Id).ToList();
+                ViewBag.Details = detailRepository;
+                return View();
+            }
+            return RedirectToAction("Login", "Home");
+
         }
     }
 }

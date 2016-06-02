@@ -169,7 +169,7 @@
                                             <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
                                         </a>
                                     }
-                                    if (count == 4 || losts.Last().Equals(obj))
+                                    if (count == 4 || adopts.Last().Equals(obj))
                                     {
                                         @Html.Raw("</li>")
                                         count = 1;
@@ -236,7 +236,7 @@
                                         <div>Cat Name: @obj.Post.Cat.Name</div>
                                         <div>Message: @obj.Detail</div>
                                         <div>Contact: @obj.Contact</div>
-                                        <div><a href="/Forum/Adopt/Accept/@obj.Id">Accecpt</a> | <a href="/Forum/Adopt/Reject/@obj.Id">Reject</a></div>
+                                        <div><a href="/Forum/Accept/@obj.Id">Accecpt</a> | <a href="/Forum/Reject/@obj.Id">Reject</a></div>
                                     </div>
                                 </div>
                                                     }
@@ -246,30 +246,33 @@
                 <div role="tabpanel" class="tab-pane" id="lostAndFound">
                     @if (Session["User"] != null)
                     {
-                        List<PostDetail> matchs = ViewBag.Match;
-                        foreach (var obj in matchs)
+                        List<PostDetail> matchs = ViewBag.Matchs;
+                        if (matchs != null)
                         {
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    @{
-                                        var image = obj.Post.Pictures.FirstOrDefault();
-                                        if (image != null)
-                                        {
-                                            <a href="/Forum/Detail/@obj.PostId">
-                                                <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
-                                            </a>
-                                        }
-                                    }
-                                </div>
-                                <div class="col-sm-9">
-                                    <div>Description: @obj.Post.Details</div>
-                                    <div>Address: @obj.Address.Province.Name , @obj.Address.Amphur.Name , @obj.Address.Tumbon.Name</div>
-                                    <div>Contact: @obj.Contact</div>
-                                    <div><a href="/Forum/Detail/@obj.PostId">Check</a></div>
-                                </div>
-                            </div>
+                            foreach (var obj in matchs)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        @{
+                                            var image = obj.Post.Pictures.FirstOrDefault();
+                                            if (image != null)
+                                            {
+                                                <a href="/Forum/Detail/@obj.PostId">
+                                                    <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                                </a>
                                             }
                                         }
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div>Description: @obj.Post.Name</div>
+                                        <div>Address: @obj.Address.Province.Name , @obj.Address.Amphur.Name , @obj.Address.Tumbon.Name</div>
+                                        <div>Contact: @obj.Contact</div>
+                                        <div><a href="/Forum/Detail/@obj.PostId">Check</a></div>
+                                    </div>
+                                </div>
+                                                    }
+                                                }
+                                            }
 
                 </div>
             </div>

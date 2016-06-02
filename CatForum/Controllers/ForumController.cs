@@ -58,7 +58,7 @@ namespace CatForum.Controllers
         {
             return View();
         }
-        [Route("/Forum/Detail/{id?}")]
+        [Route("Detail/{id?}")]
         public ActionResult Detail(int id)
         {
             PostDetail post = this.details.SelectById(id);
@@ -66,7 +66,6 @@ namespace CatForum.Controllers
             return View();
         }
 
-        [Route("/Forum/Follow/{id?}")]
         public ActionResult Follow(int id)
         {
             if (Session["User"] != null)
@@ -83,7 +82,6 @@ namespace CatForum.Controllers
             }
             return RedirectToAction("Detail", "Forum", new { id = id });
         }
-        [Route("/Forum/Unfollow/{id?}")]
         public ActionResult UnFollow(int id)
         {
             if (Session["User"] != null)
@@ -99,19 +97,18 @@ namespace CatForum.Controllers
 
             return RedirectToAction("Detail", "Forum", new { id = id });
         }
-        [Route("/Forum/Adopt/{id?}")]
         [HttpPost]
-        public ActionResult RequestAdopt(PostAdopt adopt, int id)
+        public ActionResult Adopt(PostAdopt adopt)
         {
             if (Session["User"] != null)
             {
                 User user = (User)Session["User"];
-                PostAdopt isExist = adopts.IsExist(user.Id, id);
+                PostAdopt isExist = adopts.IsExist(user.Id, adopt.Id);
                 if (isExist == null)
                 {
                     isExist = new PostAdopt();
                     isExist.UserId = user.Id;
-                    isExist.PostId = id;
+                    isExist.PostId = adopt.Id;
                     isExist.Detail = adopt.Detail;
                     isExist.Contact = adopt.Contact;
                     isExist.Status = 1;
@@ -119,10 +116,10 @@ namespace CatForum.Controllers
                     adopts.Save();
                 }
             }
-            return RedirectToAction("Detail", "Forum", new { id = id });
+            return RedirectToAction("Detail", "Forum", new { id = adopt.Id });
         }
-        [Route("/Forum/Adopt/Accept/{id?}")]
-        public ActionResult AcceptAdopt(int id)
+        [Route("/Forum/Accept/{id?}")]
+        public ActionResult Accept(int id)
         {
             if (Session["User"] != null)
             {
@@ -137,8 +134,8 @@ namespace CatForum.Controllers
 
             return RedirectToAction("Detail", "Forum", new { id = id });
         }
-        [Route("/Forum/Adopt/Reject/{id?}")]
-        public ActionResult RejectAdopt(int id)
+        [Route("/Forum/Reject/{id?}")]
+        public ActionResult Reject(int id)
         {
             if (Session["User"] != null)
             {
@@ -153,8 +150,7 @@ namespace CatForum.Controllers
 
             return RedirectToAction("Detail", "Forum", new { id = id });
         }
-        [Route("/Forum/Report/{id?}")]
-        [HttpPost]
+        [Route("/Forum/Report/{id?}"), HttpPost]
         public ActionResult Report(Report form, int id)
         {
             if (Session["User"] != null)

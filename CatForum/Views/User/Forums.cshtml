@@ -33,7 +33,7 @@
                     <div role="tabpanel" class="tab-pane active" id="home">
                         @{
                             PostDetailRepository details = (PostDetailRepository)ViewBag.Details;
-                            var all = details.SelectAll().Take(10);
+                            var all = details.SelectAll().Where(p => p.Post.UserId == profile.Id).Take(10);
                             foreach (var post in all)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();

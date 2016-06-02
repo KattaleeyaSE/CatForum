@@ -49,7 +49,9 @@ namespace CatForum.Repositories
 
         public void Update(Address obj)
         {
-            db.Entry(obj).State = EntityState.Modified;
+            Address objA = db.Addresses.Find(obj.Id);
+            objA = obj;
+            //db.Entry(obj).State = EntityState.Modified;
         }
 
         public void Delete(int? id)

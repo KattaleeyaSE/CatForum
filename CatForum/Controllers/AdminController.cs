@@ -14,7 +14,8 @@ namespace CatForum.Controllers
         AdminRepository admins { get; set; }
         ReportRepository reports { get; set; }
         UserRepository users { get; set; }
-        public AdminController() {
+        public AdminController()
+        {
             this.admins = new AdminRepository();
             this.reports = new ReportRepository();
             this.users = new UserRepository();
@@ -45,7 +46,13 @@ namespace CatForum.Controllers
                     return RedirectToAction("Reports", "Admin");
                 }
             }
-            return View();
+            return RedirectToAction("Index", "Admin");
+        }
+        [HttpPost]
+        public ActionResult Logout(Admin admin)
+        {
+            Session["Admin"] = null;
+            return RedirectToAction("Login", "Home");
         }
     }
 }
