@@ -37,4 +37,33 @@
             @*<li><img src="/images/pic1.jpg" width="150" /></li>*@
         </ul>
     </div>
+    @{
+        User user = null;
+        if (Session["User"] != null)
+        {
+            user = (User)Session["User"];
+            <div>
+                <h3>Update</h3>
+                <div>
+                    @{
+                        var adopts = user.Adopts.Where(a => a.Status != 1).OrderBy(a => a.Id).Take(10);
+                        if (adopts != null && adopts.Count() > 0)
+                        {
+                            foreach (var adopt in adopts)
+                            {
+                                <div>
+                                    @adopt.Post.Post.Name : Your adoption proposal has been @if (adopt.Status == 2)
+                                    { <strong style="color: green;">@Html.Raw("accepted")</strong> }
+                                    else
+                                    { <strong style="color: red;">@Html.Raw("rejected")</strong>}
+                                    <hr />
+                                </div>
+                            }
+                        }
+                    }
+                    @*<li><img src="/images/pic1.jpg" width="150" /></li>*@
+                </div>
+            </div>
+                        }
+    }
 </div>
