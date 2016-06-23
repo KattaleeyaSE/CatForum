@@ -5,54 +5,56 @@
     {
         profile = (User)Session["User"];
         <div class="row" style="background-color: lightsalmon;">
-            <div style="padding: 20px;">
-                <p class="text-center">
-                    @{
-                        var image = profile.Image;
-                    }
+            <div style="">
+                @{
+                    var image = profile.Image;
+                }
 
-                    <div class="text-center">
-                        @if (image != null)
-                        {
-                            <img src="/File?Id=@image.Id" width="500" style="margin: 0 auto;" />
-                        }
-                        else
-                        {
-                            <img height="200" width="200" src="/images/pic10.jpg" />
-                        }
-                    </div>
-                </p>
+                <div class="text-center profile-image">
+                    @if (image != null)
+                    {
+                        <img src="/File?Id=@image.Id" style="margin: 0 auto;" />
+                    }
+                    else
+                    {
+                        <img src="/images/pic10.jpg" />
+                    }
+                </div>
             </div>
-            <div style="padding: 20px;">
+            <div style="padding: 20px;" class="profile-detail">
                 <ul style="list-style: none;">
-                    <li>
-                        <strong>Display Name:</strong>
-                        @if (profile != null)
-                        {
-                            if (profile.DisplayName != null)
-                            {@Html.Raw(profile.DisplayName)}
-                            else
-                            {@Html.Raw("Pleaes add your display name.")}
-                        }
-                    </li>
-                    <li>
-                        <strong>Gender:</strong> 
-                        @if (profile != null)
-                        {
-                            if (profile.Gender == 1)
+                    <li class="profile-detail_title">
+                        <strong>
+                            @*<strong>Display Name:</strong>*@
+                            @if (profile != null)
                             {
-                                @Html.Raw("Male")
+                                if (profile.DisplayName != null)
+                                {@Html.Raw(profile.DisplayName)}
+                                else
+                                {@Html.Raw("Pleaes add your display name.")}
                             }
-                            else
-                            {
-                                @Html.Raw("Female")
-                            }
-                        }
+                        </strong>
                     </li>
+                    @*<li>
+                            <strong>Gender:</strong>
+                            @if (profile != null)
+                            {
+                                if (profile.Gender == 1)
+                                {
+                                    @Html.Raw("Male")
+                                }
+                                else
+                                {
+                                    @Html.Raw("Female")
+                                }
+                            }
+                        </li>*@
                     @*<li><strong>Birth:</strong> 12/06/1993</li>*@
-                    <li>
-                        <strong>Address:</strong>
-                        @profile.Address.Province.Name , @profile.Address.Amphur.Name , @profile.Address.Tumbon.Name
+                    <li class="profile-detail_address">
+                        From
+                        <strong>
+                            @profile.Address.Province.Name , @profile.Address.Amphur.Name , @profile.Address.Tumbon.Name
+                        </strong>
                     </li>
                 </ul>
             </div>
@@ -61,6 +63,5 @@
                 <div><a href="/User/Edit"><button class="btn btn-success btn-block">Setting</button></a></div>
             </div>
         </div>
-    }
+                    }
 }
-

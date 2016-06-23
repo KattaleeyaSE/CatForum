@@ -5,6 +5,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    margin-top: 60px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -21,4 +22,63 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.profile-image img {
+    width: 100%;
+    min-height: 200px;
+}
+
+.profile-detail ul {
+    padding: 0;
+    margin: 0;
+}
+
+.profile-detail_title {
+    color: #076553;
+    font-size: 1.25rem;
+}
+
+.new-detail {
+    overflow: hidden;
+}
+
+.news-detail_title {
+    color: #076553;
+    font-size: 1.25rem;
+}
+.news-detail_description {
+    margin: 10px 0;
+}
+.news-detail_date {
+    float: left;
+    font-size: 0.75rem;
+    color: gray;
+}
+.news-detail_read {
+    float: right;
+    padding: 5px;
+    background-color: #5486D0;
+    border-radius: 2px;
+}
+
+    .news-detail_read a {
+        color: white;
+    }
+.dimmer-cards .card {
+    width: 150px;
+    display: inline-block;
+}
+    .dimmer-cards .card .header {
+        font-size: 1.25rem;
+    }
+.sos-read {
+    position: absolute;
+    bottom: 60px;
+    right: 15px;
+}
+@media screen and (max-width: 767px) {
+    .sos-read {
+        bottom: 0px;
+    }
 }

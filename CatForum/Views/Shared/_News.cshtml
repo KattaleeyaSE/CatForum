@@ -13,20 +13,20 @@
                     {
                         var image = post.Post.Pictures.FirstOrDefault();
                         <li>
-                            <div class="row">
+                            <div class="row news-wrapper">
                                 <div class="col-sm-12 text-center">
-                                    <div class="text-center">
+                                    <div class="text-center news-images">
                                         @if (image != null)
                                         {
                                             <img src="/File?Id=@image.Id" width="150" style="margin: 0 auto;" />
                                         }
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
-                                    <div><strong>Name:</strong> @post.Post.Name</div>
-                                    <div><strong>Description:</strong> @post.Post.Content</div>
-                                    <div><strong>Date:</strong> @post.Post.Updated.ToShortDateString()</div>
-                                    <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                <div class="col-sm-12 news-detail">
+                                    <div class="news-detail_title">@post.Post.Name</div>
+                                    <div class="news-detail_description">@post.Post.Content</div>
+                                    <div class="news-detail_date">@post.Post.Updated.ToShortDateString()</div>
+                                    <div class="news-detail_read"><a href="/Forum/Detail/@post.Id">Read More</a></div>
                                 </div>
                                 <hr />
                             </div>

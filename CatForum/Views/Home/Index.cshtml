@@ -6,33 +6,78 @@
     var count = 1;
 }
 <div class="row">
-    <div class="col-sm-12">
-        <h3>SOS in your area.</h3>
+    <div class="col-sm-12" style="padding-top: 20px;">
+        @{
+            var soses = posts.SelectDescDate(6, 0);
+        }
+        <h3>
+            SOS in your area!
+            <div class="ui labeled button" tabindex="0" style="float: right;">
+                <div class="ui button">
+                    Total SOS 
+                </div>
+                <a class="ui basic label">
+                    @if (soses != null) {
+                        @soses.Count();
+                    }
+                </a>
+            </div>
+        </h3>
         <div>
-            @{
-                var soses = posts.SelectDescDate(6, 0);
-            }
             <ul class="bxslider">
                 @if (soses != null)
                 {
-                    foreach (var sos in soses)
+                    count = 1;
+                    foreach (var obj in soses)
                     {
-                        var image = sos.Post.Pictures.FirstOrDefault();
-                        <li>
-                            @if (image != null)
-                            {
-                                <img src="/File?Id=@image.Id" width="150" style="display: inline-block;" />
-                            }
-                            <a href="/Forum/Detail/@sos.Id">
-                                @sos.Post.Name : @sos.Condition
+                        var image = obj.Post.Pictures.FirstOrDefault();
+                        if (count == 1)
+                        { @Html.Raw("<li class='dimmer-cards'>")                             }
+                        if (image != null)
+                        {
+                            <a href="/Forum/Detail/@obj.Id">
+                                <div class="card">
+                                    <div class="blurring dimmable image">
+                                        <div class="ui dimmer">
+                                            <div class="content">
+                                                <div class="center">
+                                                    <div class="header">@obj.Post.Name</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                    </div>
+                                </div>
                             </a>
-                        </li>
+                        }
+                        if (count == 4 || soses.Last().Equals(obj))
+                        {
+                            @Html.Raw("</li>")
+                            count = 1;
+                        }
+                        else
+                        {
+                            count++;
+                        }
                     }
+                    @*foreach (var sos in soses)
+                        {
+                            var image = sos.Post.Pictures.FirstOrDefault();
+                            <li>
+                                @if (image != null)
+                                {
+                                    <img src="/File?Id=@image.Id" width="150" style="display: inline-block;" />
+                                }
+                                <a href="/Forum/Detail/@sos.Id">
+                                    @sos.Post.Name : @sos.Condition
+                                </a>
+                            </li>
+                        }*@
                 }
 
             </ul>
-            <div class="text-right">
-                <a href="/Forum/Search?Type=6">More!</a>
+            <div class="text-right sos-read">
+                <a href="/Forum/Search?Type=6"><button class="ui inverted orange button">More</button></a>
             </div>
         </div>
     </div>
@@ -40,16 +85,25 @@
         <div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#update" aria-controls="update" role="tab" data-toggle="tab">Update</a></li>
-                <li role="presentation"><a href="#followed" aria-controls="followed" role="tab" data-toggle="tab">Forum Followed</a></li>
-                <li role="presentation"><a href="#adoption" aria-controls="adoption" role="tab" data-toggle="tab">My Adoption</a></li>
-                <li role="presentation"><a href="#lostAndFound" aria-controls="lostAndFound" role="tab" data-toggle="tab">Lost & Found</a></li>
-            </ul>
+            @*<ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#update" aria-controls="update" role="tab" data-toggle="tab">Update</a></li>
+                    <li role="presentation"><a href="#followed" aria-controls="followed" role="tab" data-toggle="tab">Forum Followed</a></li>
+                    <li role="presentation"><a href="#adoption" aria-controls="adoption" role="tab" data-toggle="tab">My Adoption</a></li>
+                    <li role="presentation"><a href="#lostAndFound" aria-controls="lostAndFound" role="tab" data-toggle="tab">Lost & Found</a></li>
+                </ul>*@
+            <div class="ui top attached tabular menu" style="margin-bottom: 10px;">
+                <a class="item active" data-tab="update">Update</a>
+                @if (Session["User"] != null)
+                {
+                    <a class="item" data-tab="followed">Forum Followed</a>
+                    <a class="item" data-tab="adoption">My Adoption</a>
+                    <a class="item" data-tab="lostAndFound">Lost & Found</a>
+                }
+            </div>
 
             <!-- Tab panes -->
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="update">
+                <div role="tabpanel" class="ui bottom attached tab active" data-tab="update" id="update">
                     <div>
                         <h3>Lost Cat</h3>
                         @{
@@ -63,11 +117,22 @@
                                 {
                                     var image = obj.Post.Pictures.FirstOrDefault();
                                     if (count == 1)
-                                    { @Html.Raw("<li>")                             }
+                                    { @Html.Raw("<li class='dimmer-cards'>")                             }
                                     if (image != null)
                                     {
                                         <a href="/Forum/Detail/@obj.Id">
-                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                            <div class="card">
+                                                <div class="blurring dimmable image">
+                                                    <div class="ui dimmer">
+                                                        <div class="content">
+                                                            <div class="center">
+                                                                <div class="header">@obj.Post.Name</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                                </div>
+                                            </div>
                                         </a>
                                     }
                                     if (count == 4 || losts.Last().Equals(obj))
@@ -96,11 +161,22 @@
                                 {
                                     var image = obj.Post.Pictures.FirstOrDefault();
                                     if (count == 1)
-                                    { @Html.Raw("<li>") }
+                                    { @Html.Raw("<li class='dimmer-cards'>") }
                                     if (image != null)
                                     {
                                         <a href="/Forum/Detail/@obj.Id">
-                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                            <div class="card">
+                                                <div class="blurring dimmable image">
+                                                    <div class="ui dimmer">
+                                                        <div class="content">
+                                                            <div class="center">
+                                                                <div class="header">@obj.Post.Name</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                                </div>
+                                            </div>
                                         </a>
                                     }
                                     if (count == 4 || finds.Last().Equals(obj))
@@ -129,11 +205,22 @@
                                 {
                                     var image = obj.Post.Pictures.FirstOrDefault();
                                     if (count == 1)
-                                    { @Html.Raw("<li>") }
+                                    { @Html.Raw("<li class='dimmer-cards'>") }
                                     if (image != null)
                                     {
                                         <a href="/Forum/Detail/@obj.Id">
-                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                            <div class="card">
+                                                <div class="blurring dimmable image">
+                                                    <div class="ui dimmer">
+                                                        <div class="content">
+                                                            <div class="center">
+                                                                <div class="header">@obj.Post.Name</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                                </div>
+                                            </div>
                                         </a>
                                     }
                                     if (count == 4 || soses.Last().Equals(obj))
@@ -162,11 +249,22 @@
                                 {
                                     var image = obj.Post.Pictures.FirstOrDefault();
                                     if (count == 1)
-                                    { @Html.Raw("<li>") }
+                                    { @Html.Raw("<li class='dimmer-cards'>") }
                                     if (image != null)
                                     {
                                         <a href="/Forum/Detail/@obj.Id">
-                                            <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                            <div class="card">
+                                                <div class="blurring dimmable image">
+                                                    <div class="ui dimmer">
+                                                        <div class="content">
+                                                            <div class="center">
+                                                                <div class="header">@obj.Post.Name</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                                </div>
+                                            </div>
                                         </a>
                                     }
                                     if (count == 4 || adopts.Last().Equals(obj))
@@ -183,7 +281,7 @@
                         </ul>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="followed">
+                <div role="tabpanel" class="ui bottom attached tab segment" data-tab="followed" id="followed">
                     @if (Session["User"] != null)
                     {
                         User user = (User)Session["User"];
@@ -211,7 +309,7 @@
                                             }
                                         }
                 </div>
-                <div role="tabpanel" class="tab-pane" id="adoption">
+                <div role="tabpanel" class="ui bottom attached tab segment" data-tab="adoption" id="adoption">
                     @if (Session["User"] != null)
                     {
                         User user = (User)Session["User"];
@@ -243,7 +341,7 @@
                                                 }
                                             }
                 </div>
-                <div role="tabpanel" class="tab-pane" id="lostAndFound">
+                <div role="tabpanel" class="ui bottom attached tab segment" data-tab="lostAndFound" id="lostAndFound">
                     @if (Session["User"] != null)
                     {
                         List<PostDetail> matchs = ViewBag.Matchs;
@@ -279,3 +377,11 @@
         </div>
     </div>
 </div>
+@section scripts{
+    <script>
+        $('.menu .item').tab();
+        $('.dimmer-cards .image').dimmer({
+            on: 'hover'
+        });
+    </script>
+}

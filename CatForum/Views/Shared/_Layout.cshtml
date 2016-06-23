@@ -7,6 +7,7 @@
     @*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Semantic/semantic.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -51,9 +52,9 @@
     </div>
     <div class="container body-content">
         <div class="row">
-            <div class="col-sm-3">@Html.Partial("~/Views/Shared/_Profile.cshtml");</div>
+            <div class="col-sm-3">@Html.Partial("~/Views/Shared/_Profile.cshtml")</div>
             <div class="col-sm-7">@RenderBody()</div>
-            <div class="col-sm-2">@Html.Partial("~/Views/Shared/_News.cshtml");</div>
+            <div class="col-sm-2">@Html.Partial("~/Views/Shared/_News.cshtml")</div>
         </div>
 
         <hr />
@@ -65,7 +66,6 @@
     @Scripts.Render("~/bundles/jquery")
     @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>*@
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
             var opt = {
@@ -77,5 +77,7 @@
             $('.bxslider').bxSlider(opt);
         });
     </script>
+    <script src="~/Content/Semantic/semantic.js"></script>
+    @RenderSection("scripts", required: false)  
 </body>
 </html>
