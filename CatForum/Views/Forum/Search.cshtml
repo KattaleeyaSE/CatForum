@@ -38,7 +38,7 @@
                     }
                 </select>
                 <select class="form-control" id="Amphur" name="Amphur">
-                    <option value=""></option>
+                    <option value="0"></option>
                     @{
                         List<Amphur> ampList = ViewBag.Amphurs;
                         id = 0;
@@ -209,7 +209,7 @@
                             foreach (var post in all)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
-                    <div class="row">
+                    <div class="row post">
                         <div class="col-sm-3 text-center">
                             <div>
                                 @if (image != null)
@@ -274,7 +274,7 @@
                             foreach (var post in byProvince)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
-                    <div class="row">
+                    <div class="row post">
                         <div class="col-sm-3 text-center">
                             <div>
                                 @if (image != null)
@@ -364,7 +364,7 @@
                 <div role="tabpanel" class="ui bottom attached tab" data-tab="search" id="search">
                     @{
                         List<PostDetail> search = ViewBag.SearchResult;
-                        if (search.Count <= 0)
+                        if (search == null || search.Count <= 0)
                         {
                     <h3 class="text-center">No result.</h3>
                         }
@@ -373,7 +373,7 @@
                             foreach (var post in search)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
-                    <div class="row">
+                    <div class="row post">
                         <div class="col-sm-3 text-center">
                             <div>
                                 @if (image != null)

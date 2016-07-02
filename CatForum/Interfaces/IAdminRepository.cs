@@ -15,5 +15,6 @@ namespace CatForum.Interfaces
         void Update(Admin obj);
         void Delete(int? id);
         void Save();
+        Admin Validate(Admin admin);
     }
 }

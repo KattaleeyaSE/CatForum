@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,9 +17,11 @@ namespace CatForum.Models
         public int AmphurId { get; set; }
         public string Name { get; set; }
 
+        [JsonIgnore]
         [ForeignKey("ProvinceId")]
         public virtual Province Province { get; set; }
 
+        [JsonIgnore]
         [InverseProperty("Tumbon")]
         public virtual ICollection<Address> Addresses { get; set; }
     }

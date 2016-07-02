@@ -13,7 +13,7 @@
         profile = (User)Session["User"];
 
         <div>
-            <div><a href="/Forum/Create"><button class="ui inverted green button">Add New Post</button></a></div>
+            <div><a href="/Forum/Create"><button class="ui green button">Add New Post</button></a></div>
             <div>
                 <!-- Nav tabs -->
                 @*<ul class="nav nav-tabs" role="tablist">
@@ -48,7 +48,7 @@
                             foreach (var post in all)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
-                                <div class="row" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
+                                <div class="row post" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
                                     <div class="col-xs-4">
                                         @if (image != null)
                                         {
@@ -79,7 +79,7 @@
                                     foreach (var post in posts)
                                     {
                                         var image = post.Post.Pictures.FirstOrDefault();
-                                        <div class="row" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
+                                        <div class="row post" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
                                             <div class="col-xs-4">
                                                 @if (image != null)
                                                 {

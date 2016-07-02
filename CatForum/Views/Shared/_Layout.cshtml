@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/Semantic/semantic.css" rel="stylesheet" />
 </head>
-<body>
+<body class="cat_body">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -22,7 +22,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("News", "Index", "Home")</li>
+                    <li>@Html.ActionLink("News", "Search", "Forum", new { Type = "2" }, null)</li>>
                     <li>@Html.ActionLink("Adoption", "Search", "Forum", new { Type = "5" }, null)</li>
                     <li>@Html.ActionLink("Find Owner", "Search", "Forum", new { Type = "3" }, null)</li>
                     <li>@Html.ActionLink("Lost Cat", "Search", "Forum", new { Type = "4" }, null)</li>
@@ -36,6 +36,8 @@
                     }
                     else
                     {
+                        <li>@Html.ActionLink("Setting", "Edit", "User")</li>
+                        <li>@Html.ActionLink("Forums", "Forums", "User")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
                     }
                 </ul>
@@ -50,20 +52,24 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        <div class="row">
-            <div class="col-sm-3">@Html.Partial("~/Views/Shared/_Profile.cshtml")</div>
-            <div class="col-sm-7">@RenderBody()</div>
-            <div class="col-sm-2">@Html.Partial("~/Views/Shared/_News.cshtml")</div>
+    <div class=" body-content">
+        <div class="">
+            <div class="profile_wrapper">@Html.Partial("~/Views/Shared/_Profile.cshtml")</div>
+            <div class="content_wrapper">
+                <div>@RenderBody()</div>
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Cat In The Box!</p>
+                </footer>
+            </div>
+            <div class="news_wrapper">@Html.Partial("~/Views/Shared/_News.cshtml")</div>
         </div>
 
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Cat In The Box!</p>
-        </footer>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>*@
     @Scripts.Render("~/bundles/bootstrap")
     <script>
@@ -78,6 +84,27 @@
         });
     </script>
     <script src="~/Content/Semantic/semantic.js"></script>
-    @RenderSection("scripts", required: false)  
+    @RenderSection("scripts", required: false)
+    <script>
+        $('select#Province').on('change', function () {
+            var province = $(this).val();
+            $.ajax({
+                url: '/Home/Amphurs',
+                data: {
+                    Id: province
+                },
+                dataType: 'json',
+                success: function (data) {
+                    var list = JSON.parse(data);
+                    console.log(list);
+                    $('select#Amphur').empty();
+                    for (var id in list) {
+                        var option = '<option value="'+list[id].Id+'">'+list[id].Name+'</option>';
+                        $('select#Amphur').append(option);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

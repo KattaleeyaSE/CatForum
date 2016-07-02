@@ -21,7 +21,7 @@ namespace CatForum.Repositories
         }
         public IEnumerable<Province> SelectAll()
         {
-            return db.Provinces.ToList();
+            return db.Provinces.OrderBy(p => p.Name).ToList();
         }
 
         public Province SelectById(int id)

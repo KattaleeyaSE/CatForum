@@ -6,14 +6,14 @@
 
 <div class="row" style="padding: 20px 0;">
     <div class="col-sm-12">
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="" enctype="multipart/form-data" id="Post">
             <div class="form-group">
                 <label for="Title">Title</label>
-                <input type="text" class="form-control" id="PostTitle" name="PostTitle" placeholder="Title">
+                <input type="text" class="form-control" id="PostTitle" name="PostTitle" placeholder="Title" required>
             </div>
             <div class="form-group">
                 <label for="PostType">Post Type</label>
-                <select class="form-control" id="PostType" name="PostType">
+                <select class="form-control" id="PostType" name="PostType" required>
                     @{
                         List<PostType> types = ViewBag.Types;
                         foreach (var obj in types)
@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label for="File">File input</label>
                 <img width="200" height="200" />
-                <input type="File" id="File" name="File">
+                <input type="File" id="File" name="File" required>
                 <p class="help-block">Please upload this post image.</p>
             </div>
             <div class="form-group">
@@ -61,11 +61,11 @@
             </div>
             <div class="form-group">
                 <label for="PostDetail">Post Detail</label>
-                <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail"></textarea>
+                <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail" required></textarea>
             </div>
             <div class="form-group">
                 <label>Post Status</label>
-                <select class="form-control" id="PostStatus" name="PostStatus">
+                <select class="form-control" id="PostStatus" name="PostStatus" required>
                     <option value="1">Active</option>
                     <option value="2">Delete</option>
                 </select>
@@ -207,9 +207,72 @@
                     <option value="5">Want to Adopt</option>
                 </select>
             </div>
-            <div class="alert alert-danger" role="alert">...</div>
-            <button type="submit" class="btn btn-default">Save</button><button type="submit" class="btn btn-default">Reset</button>
+            <button type="submit" class="ui green button">Save</button><button type="submit" class="ui green button">Reset</button>
         </form>
     </div>
 </div>
-
+@section scripts{
+    <script>
+        $('#Post').validate({
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+        function hideCat() {
+            $("#CatName").parent().hide();
+            $("#CatAge").parent().hide();
+            $("#LifeStage").parent().hide();
+            $("#Gender").parent().hide();
+            $("#CatEyes").parent().hide();
+            $("#CatCoat").parent().hide();
+            $("#CatPattern").parent().hide();
+            $("#CatTail").parent().hide();
+            $("#CatBreed").parent().hide();
+            $("#FoodLike").parent().hide();
+            $("#FoodDislike").parent().hide();
+            $("#Habit").parent().hide();
+            $("#Hate").parent().hide();
+            $("#Vaccine").parent().hide();
+            $("#CatDescription").parent().hide();
+            $("#CatStatus").parent().hide();
+        }
+        hideCat();
+        function hideCondition() {
+            $("#Condition").parent().hide();
+            $("#Location").parent().hide();
+            $("#Contact").parent().hide();
+            $("#Fee").parent().hide();
+        }
+        hideCondition();
+        function showCat() {
+            $("#CatName").parent().show();
+            $("#CatAge").parent().show();
+            $("#LifeStage").parent().show();
+            $("#Gender").parent().show();
+            $("#CatEyes").parent().show();
+            $("#CatCoat").parent().show();
+            $("#CatPattern").parent().show();
+            $("#CatTail").parent().show();
+            $("#CatBreed").parent().show();
+            $("#FoodLike").parent().show();
+            $("#FoodDislike").parent().show();
+            $("#Habit").parent().show();
+            $("#Hate").parent().show();
+            $("#Vaccine").parent().show();
+            $("#CatDescription").parent().show();
+            $("#CatStatus").parent().show();
+        }
+        function showCondition() {
+            $("#Condition").parent().show();
+            $("#Location").parent().show();
+            $("#Contact").parent().show();
+            $("#Fee").parent().show();
+        }
+        $("#PostType").on("change", function (e) {
+            var value = $(this).val();
+            if (value == 1 || value == 2) { hideCat(); hideCondition(); }
+            else if (value == 3 || value == 4) { showCat(); showCondition(); }
+            else if (value == 5 || value == 6 || value == 7) { hideCat(); showCondition(); }
+        });
+    </script>
+}

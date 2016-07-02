@@ -1,4 +1,5 @@
-﻿using CatForum.Models;
+﻿using CatForum.Interfaces;
+using CatForum.Models;
 using CatForum.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace CatForum.Controllers
 {
     public class AdminController : Controller
     {
-        AdminRepository admins { get; set; }
-        ReportRepository reports { get; set; }
-        UserRepository users { get; set; }
+        public IAdminRepository admins { get; set; }
+        public IReportRepository reports { get; set; }
+        public IUserRepository users { get; set; }
         public AdminController()
         {
             this.admins = new AdminRepository();
@@ -48,8 +49,7 @@ namespace CatForum.Controllers
             }
             return RedirectToAction("Index", "Admin");
         }
-        [HttpPost]
-        public ActionResult Logout(Admin admin)
+        public ActionResult Logout()
         {
             Session["Admin"] = null;
             return RedirectToAction("Login", "Home");

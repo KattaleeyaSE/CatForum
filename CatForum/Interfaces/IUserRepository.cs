@@ -14,5 +14,7 @@ namespace CatForum.Interfaces
         void Update(User obj);
         void Delete(int? id);
         void Save();
+        User Validate(User user);
+        int Register(User user);
     }
 }

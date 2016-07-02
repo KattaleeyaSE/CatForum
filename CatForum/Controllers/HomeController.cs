@@ -1,26 +1,35 @@
 ﻿using CatForum.Forms;
+using CatForum.Interfaces;
 using CatForum.Models;
 using CatForum.Repositories;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace CatForum.Controllers
 {
     public class HomeController : Controller
     {
-        public UserRepository repository { get; set; }
-        public AddressRepository addressRepository { get; set; }
-        public PostDetailRepository detailRepository { get; set; }
-        public PostAdoptRepository adopts { get; set; }
+        public IUserRepository repository { get; set; }
+        public IAddressRepository addressRepository { get; set; }
+        public IPostDetailRepository detailRepository { get; set; }
+        public IPostAdoptRepository adopts { get; set; }
+        public IProvinceRepository provinces { get; set; }
+        public IAmphurRepository amphurs { get; set; }
+        public ITumbonRepository tumbons { get; set; }
         public HomeController()
         {
             this.repository = new UserRepository();
             this.addressRepository = new AddressRepository();
             this.detailRepository = new PostDetailRepository();
             this.adopts = new PostAdoptRepository();
+            this.provinces = new ProvinceRepository();
+            this.amphurs = new AmphurRepository();
+            this.tumbons = new TumbonRepository();
         }
         // GET: Home
         public ActionResult Index()
@@ -28,7 +37,8 @@ namespace CatForum.Controllers
             ViewBag.PostRepo = detailRepository;
             ViewBag.Adopts = null;
             ViewBag.Match = null;
-            if (Session["User"] != null) {
+            if (Session["User"] != null)
+            {
                 User user = (User)Session["User"];
                 ViewBag.Adopts = adopts.SearchByUser(user.Id).Take(10).ToList();
                 ViewBag.Matchs = detailRepository.SearchMatch(user.Id).Take(10).ToList();
@@ -55,12 +65,9 @@ namespace CatForum.Controllers
         }
         public ActionResult Register()
         {
-            ProvinceRepository prov = new ProvinceRepository();
-            ViewBag.Provinces = prov.SelectAll();
-            AmphurRepository amp = new AmphurRepository();
-            ViewBag.Amphurs = amp.SelectAll();
-            TumbonRepository tmbn = new TumbonRepository();
-            ViewBag.Tumbons = tmbn.SelectAll();
+            ViewBag.Provinces = provinces.SelectAll();
+            ViewBag.Amphurs = amphurs.SelectAll();
+            ViewBag.Tumbons = tumbons.SelectAll();
             return View();
         }
         [HttpPost]
@@ -98,6 +105,33 @@ namespace CatForum.Controllers
         {
             Session["User"] = null;
             return RedirectToAction("Index", "Home");
+        }
+        public JsonResult Provinces()
+        {
+            var json = JsonConvert.SerializeObject(provinces.SelectAll().ToList(), Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Amphurs(int id)
+        {
+            var json = JsonConvert.SerializeObject(amphurs.SelectByProvince(id).ToList(), Formatting.None,
+                       new JsonSerializerSettings()
+                       {
+                           ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                       });
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Tumbons(int id)
+        {
+            var json = JsonConvert.SerializeObject(tumbons.SelectByAmphur(id).ToList(), Formatting.None,
+                       new JsonSerializerSettings()
+                       {
+                           ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                       });
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
     }
 }

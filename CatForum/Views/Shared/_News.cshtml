@@ -1,6 +1,6 @@
 ﻿@using CatForum.Repositories
 @using CatForum.Models
-<div class="row">
+<div class="">
     <div>
         <h3>News</h3>
         <ul class="bxslider">
@@ -42,7 +42,7 @@
         if (Session["User"] != null)
         {
             user = (User)Session["User"];
-            <div>
+            <div class="update_wrapper">
                 <h3>Update</h3>
                 <div>
                     @{
@@ -56,7 +56,7 @@
                                     { <strong style="color: green;">@Html.Raw("accepted")</strong> }
                                     else
                                     { <strong style="color: red;">@Html.Raw("rejected")</strong>}
-                                    <hr />
+                                    <hr style="border-color: darkgray;" />
                                 </div>
                             }
                         }

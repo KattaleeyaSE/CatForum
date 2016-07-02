@@ -1,4 +1,5 @@
 ﻿using CatForum.Forms;
+using CatForum.Interfaces;
 using CatForum.Models;
 using CatForum.Repositories;
 using System;
@@ -11,14 +12,14 @@ namespace CatForum.Controllers
 {
     public class UserController : Controller
     {
-        public UserRepository repository { get; set; }
-        public AddressRepository addressRepository { get; set; }
-        public PostTypeRepository typeRepository { get; set; }
-        public PostRepository postRepository { get; set; }
-        public PostDetailRepository detailRepository { get; set; }
-        public ProvinceRepository prov { get; set; }
-        public AmphurRepository amp { get; set; }
-        public TumbonRepository tmbn { get; set; }
+        public IUserRepository repository { get; set; }
+        public IAddressRepository addressRepository { get; set; }
+        public IPostTypeRepository typeRepository { get; set; }
+        public IPostRepository postRepository { get; set; }
+        public IPostDetailRepository detailRepository { get; set; }
+        public IProvinceRepository prov { get; set; }
+        public IAmphurRepository amp { get; set; }
+        public ITumbonRepository tmbn { get; set; }
         PictureRepository pictures { get; set; }
         public UserController()
         {

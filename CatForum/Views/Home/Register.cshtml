@@ -4,32 +4,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row" style="padding-top: 20px;">
+<div class="row" style="padding-top: 20px;padding-bottom: 20px;">
     <div class="col-sm-12">
-        <form method="post" action="/Home/Register">
+        <h1>Register</h1>
+        <form method="post" action="/Home/Register" id="Register">
             <div class="form-group">
                 <label for="Username">Username</label>
-                <input type="text" class="form-control" id="Username" name="Username" placeholder="Username">
+                <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" minlength="5" required>
             </div>
             <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password"  minlength="6" required>
             </div>
             <div class="form-group">
                 <label for="RePassword">Re-Password</label>
-                <input type="password" class="form-control" id="RePassword" name="RePassword" placeholder="Re-Password">
+                <input type="password" class="form-control" id="RePassword" name="RePassword" placeholder="Re-Password" equalto="Password" data-msg-equalto="Password is not match"  minlength="6" required>
             </div>
             <div class="form-group">
                 <label for="Email">E-Mail</label>
-                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email">
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
             </div>
             <div class="form-group">
                 <label for="ReEmail">Confirm E-Mail</label>
-                <input type="email" class="form-control" id="ReEmail" name="ReEmail" placeholder="Confirm Email">
+                <input type="email" class="form-control" id="ReEmail" name="ReEmail" placeholder="Confirm Email" data-msg-equalto="Email is not match" equalto="Email" required>
             </div>
             <div>
                 <label >Address</label>
-                <select class="form-control" id="Province" name="Province">
+                <select class="form-control" id="Province" name="Province" required>
+                    <option></option>
                     @{
                         List<Province> provList = ViewBag.Provinces;
                         foreach (var obj in provList)
@@ -38,16 +40,16 @@
                         }
                     }
                 </select>
-                <select class="form-control" id="Amphur" name="Amphur">
-                    @{
+                <select class="form-control" id="Amphur" name="Amphur" required>
+                    @*@{
                         List<Amphur> amphurList = ViewBag.Amphurs;
                         foreach (var obj in amphurList)
                         {
                             <option value="@obj.Id">@obj.Name</option>
                         }
-                    }
+                    }*@
                 </select>
-                <select class="form-control" id="Tumbon" name="Tumbon">
+                <select class="form-control" id="Tumbon" name="Tumbon" required>
                     @{
                         List<Tumbon> tumbonList = ViewBag.Tumbons;
                         foreach (var obj in tumbonList)
@@ -57,12 +59,19 @@
                     }
                 </select>
             </div>
-            <div class="alert alert-danger" role="alert">Please fill in the form!</div>
-            <div class="row">
-                <div class="col-sm-6"><a href="/Home/Login"><button type="button" class="btn btn-block btn-success">Login</button></a></div>
-                <div class="col-sm-6"><button type="submit" class="btn btn-block btn-warning">Register</button></div>
+            <div class="row" style="padding-top:20px;">
+                <div class="col-sm-12"><button type="submit" class="btn btn-block btn-warning">Register</button></div>
             </div>
         </form>
     </div>
 </div>
 
+@section scripts{
+    <script>
+        $("#Register").validate({
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    </script>
+}

@@ -9,6 +9,7 @@ namespace CatForum.Interfaces
     public interface IAmphurRepository
     {
         IEnumerable<Amphur> SelectAll();
+        IEnumerable<Amphur> SelectByProvince(int id);
         Amphur SelectById(int id);
     }
 }

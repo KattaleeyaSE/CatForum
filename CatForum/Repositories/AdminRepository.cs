@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CatForum.Repositories
 {
-    class AdminRepository : IAdminRepository
+    public class AdminRepository : IAdminRepository
     {
         private CatContext db { get; set; }
         public AdminRepository()

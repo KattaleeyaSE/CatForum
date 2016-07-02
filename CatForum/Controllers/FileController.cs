@@ -1,4 +1,5 @@
-﻿using CatForum.Repositories;
+﻿using CatForum.Interfaces;
+using CatForum.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CatForum.Controllers
 {
     public class FileController : Controller
     {
-        PictureRepository pictures { get; set; }
+        public IPictureRepository pictures { get; set; }
         public FileController() {
             this.pictures = new PictureRepository();
         }

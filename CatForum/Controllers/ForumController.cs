@@ -1,4 +1,5 @@
 ﻿using CatForum.Forms;
+using CatForum.Interfaces;
 using CatForum.Models;
 using CatForum.Repositories;
 using System;
@@ -12,25 +13,25 @@ namespace CatForum.Controllers
 {
     public class ForumController : Controller
     {
-        ProvinceRepository prov { get; set; }
-        AmphurRepository amp { get; set; }
-        TumbonRepository tmbn { get; set; }
-        CatBreedRepository breeds { get; set; }
-        CatCoatRepository coats { get; set; }
-        CatEyesRepository eyes { get; set; }
-        CatLifeStageRepository lifStages { get; set; }
-        CatPatternRepository patterns { get; set; }
-        CatTailRepository tails { get; set; }
-        PostTypeRepository types { get; set; }
-        PostRepository posts { get; set; }
-        PostDetailRepository details { get; set; }
-        PostAdoptRepository adopts { get; set; }
-        PictureRepository pictures { get; set; }
-        UserRepository users { get; set; }
-        AddressRepository addresses { get; set; }
-        CatRepository cats { get; set; }
-        FollowRepository follows { get; set; }
-        ReportRepository reports { get; set; }
+        public IProvinceRepository prov { get; set; }
+        public IAmphurRepository amp { get; set; }
+        public ITumbonRepository tmbn { get; set; }
+        public ICatBreedRepository breeds { get; set; }
+        public ICatCoatRepository coats { get; set; }
+        public ICatEyesRepository eyes { get; set; }
+        public ICatLifeStageRepository lifStages { get; set; }
+        public ICatPatternRepository patterns { get; set; }
+        public ICatTailRepository tails { get; set; }
+        public IPostTypeRepository types { get; set; }
+        public IPostRepository posts { get; set; }
+        public IPostDetailRepository details { get; set; }
+        public IPostAdoptRepository adopts { get; set; }
+        public IPictureRepository pictures { get; set; }
+        public IUserRepository users { get; set; }
+        public IAddressRepository addresses { get; set; }
+        public ICatRepository cats { get; set; }
+        public IFollowRepository follows { get; set; }
+        public IReportRepository reports { get; set; }
         public ForumController()
         {
             this.prov = new ProvinceRepository();
@@ -197,12 +198,16 @@ namespace CatForum.Controllers
             ViewBag.Types = types.SelectAll();
             ViewBag.All = details.SelectDescDate(Type, Offset);
             ViewBag.ByProvince = null;
+            ViewBag.SearchResult = null;
             if (Session["User"] != null)
             {
                 User user = (User)Session["User"];
                 ViewBag.ByProvince = details.SelectByProvince(user.Address.ProvinceId);
             }
-            ViewBag.SearchResult = details.Search(Type, Offset, Eyes, Coat, Pattern, Tail, Breed, Province, Amphur, Tumbon);
+            if (Eyes != null || Coat != null || Pattern != null || Tail != null || Breed != null || Province != null || Amphur != null || Tumbon != null)
+            {
+                ViewBag.SearchResult = details.Search(Type, Offset, Eyes, Coat, Pattern, Tail, Breed, Province, Amphur, Tumbon);
+            }
             return View();
         }
         public ActionResult Create()
@@ -314,7 +319,7 @@ namespace CatForum.Controllers
         }
         public ActionResult Edit(int Id)
         {
-            if (Session["user"] == null)
+            if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -338,7 +343,7 @@ namespace CatForum.Controllers
         [HttpPost]
         public ActionResult Edit(PostForm form, int Id)
         {
-            if (Session["user"] == null)
+            if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -418,7 +423,7 @@ namespace CatForum.Controllers
         }
         public ActionResult Delete(int Id)
         {
-            if (Session["user"] == null)
+            if (Session["User"] == null)
             {
                 return RedirectToAction("Login", "Home");
             }

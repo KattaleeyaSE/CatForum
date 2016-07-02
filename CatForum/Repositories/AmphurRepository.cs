@@ -21,9 +21,13 @@ namespace CatForum.Repositories
         }
         public IEnumerable<Amphur> SelectAll()
         {
-            return db.Amphurs.ToList();
+            return db.Amphurs.OrderBy(p => p.Name).ToList();
         }
-
+        public IEnumerable<Amphur> SelectByProvince(int id)
+        {
+            var amphurs = db.Amphurs.Where(a => a.ProvinceId == id).OrderBy(p => p.Name).ToList();
+            return amphurs;
+        }
         public Amphur SelectById(int id)
         {
             Amphur amphur = db.Amphurs.Find(id);

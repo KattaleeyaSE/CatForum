@@ -1,8 +1,16 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: grey;
 }
+.cat_body {
+    background-color: darkgrey;
 
+}
+    .cat_body .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
 /* Set padding to keep content from hitting the edges */
 .body-content {
     margin-top: 60px;
@@ -21,9 +29,40 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
+}
+h1, h2, h3, h4, h5 {
+    color: #076553;
 }
 
+label.error {
+    padding: 10px;
+    background-color: red;
+    color: white;
+}
+.bx-wrapper {
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.profile_wrapper{
+    overflow: auto;
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    left: 0;
+}
+.news_wrapper {
+    overflow: auto;
+    height: 100%;
+    width: 15%;
+    top: 20px;
+    right: 0;
+    position: fixed;
+}
+.content_wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
 .profile-image img {
     width: 100%;
     min-height: 200px;
@@ -47,14 +86,17 @@ textarea {
     color: #076553;
     font-size: 1.25rem;
 }
+
 .news-detail_description {
     margin: 10px 0;
 }
+
 .news-detail_date {
     float: left;
     font-size: 0.75rem;
     color: gray;
 }
+
 .news-detail_read {
     float: right;
     padding: 5px;
@@ -65,20 +107,40 @@ textarea {
     .news-detail_read a {
         color: white;
     }
+
+.update_wrapper {
+    border-radius: 5px;
+    background-color: white;
+    padding-left: 5px;
+}
+
 .dimmer-cards .card {
     width: 150px;
     display: inline-block;
 }
+
     .dimmer-cards .card .header {
         font-size: 1.25rem;
     }
+
 .sos-read {
     position: absolute;
     bottom: 60px;
     right: 15px;
 }
+.post {
+    padding: 10px 0;
+    background-color: white;
+}
 @media screen and (max-width: 767px) {
     .sos-read {
         bottom: 0px;
+    }
+    .profile_wrapper {
+        display: none;
+    }
+    .news_wrapper, .content_wrapper {
+        width: 100%;
+        position: relative;
     }
 }

@@ -21,9 +21,13 @@ namespace CatForum.Repositories
         }
         public IEnumerable<Tumbon> SelectAll()
         {
-            return db.Tumbons.ToList();
+            return db.Tumbons.OrderBy(p => p.Name).ToList();
         }
-
+        public IEnumerable<Tumbon> SelectByAmphur(int id)
+        {
+            var tumbons = db.Tumbons.Where(a => a.AmphurId == id).OrderBy(p => p.Name).ToList();
+            return tumbons;
+        }
         public Tumbon SelectById(int id)
         {
             Tumbon amphur = db.Tumbons.Find(id);

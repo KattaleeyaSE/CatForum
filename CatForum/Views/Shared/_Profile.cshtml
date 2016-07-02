@@ -4,7 +4,7 @@
     if (Session["User"] != null)
     {
         profile = (User)Session["User"];
-        <div class="row" style="background-color: lightsalmon;">
+        <div class="" style="background-color: white;">
             <div style="">
                 @{
                     var image = profile.Image;
@@ -59,8 +59,8 @@
                 </ul>
             </div>
             <div>
-                <div><a href="/User/Forums"><button class="btn btn-success btn-block">My Forum</button></a></div>
-                <div><a href="/User/Edit"><button class="btn btn-success btn-block">Setting</button></a></div>
+                <div><a href="/User/Forums"><button class="btn btn-success btn-block" style="border-radius: 0;">My Forum</button></a></div>
+                <div><a href="/User/Edit"><button class="btn btn-success btn-block" style="border-radius: 0;">Setting</button></a></div>
             </div>
         </div>
                     }
