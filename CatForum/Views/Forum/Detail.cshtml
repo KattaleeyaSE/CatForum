@@ -39,23 +39,34 @@
         </div>
         <div>
             <div><strong>Address:</strong>  @post.Address.Province.Name , @post.Address.Amphur.Name , @post.Address.Tumbon.Name</div>
-            <div>
+            <div style="padding: 20px;">
                 <p class="help-block">@post.Post.Content</p>
-                <p class="help-block">@post.Cat.Description</p>
-                <p class="help-block">@post.Condition</p>
-                <p><strong>@post.Location</strong></p>
+                @{
+                    if (post.TypeId != 1 && post.TypeId != 2)
+                    {
+                        <p class="help-block">@post.Cat.Description</p>
+                        <p class="help-block">@post.Condition</p>
+                        <p><strong>@post.Location</strong></p>
+                    }
+                }
             </div>
-            <div><strong>Contact: @post.Contact</strong> </div>
-            <div>
-                <strong>@statusHelper.getCatStatus(post.Cat.Status)</strong>
-                <ul>
-                    <li><strong>Breed:</strong> @post.Cat.Breed.Name</li>
-                    <li><strong>Eyes Color:</strong> @post.Cat.Eyes.Color</li>
-                    <li><strong>Coat Color:</strong> @post.Cat.Coat.Color</li>
-                    <li><strong>Coat Pattern:</strong> @post.Cat.Pattern.Appearance</li>
-                    <li><strong>Tail:</strong> @post.Cat.Tail.Appearance</li>
-                </ul>
-            </div>
+            @{
+                if (post.TypeId != 1 && post.TypeId != 2)
+                {
+                    <div><strong>Contact: @post.Contact</strong> </div>
+                    <div>
+                        <strong>@statusHelper.getCatStatus(post.Cat.Status)</strong>
+                        <ul>
+                            <li><strong>Breed:</strong> @post.Cat.Breed.Name</li>
+                            <li><strong>Eyes Color:</strong> @post.Cat.Eyes.Color</li>
+                            <li><strong>Coat Color:</strong> @post.Cat.Coat.Color</li>
+                            <li><strong>Coat Pattern:</strong> @post.Cat.Pattern.Appearance</li>
+                            <li><strong>Tail:</strong> @post.Cat.Tail.Appearance</li>
+                        </ul>
+                    </div>
+                }
+            }
+
         </div>
     </div>
     <div>

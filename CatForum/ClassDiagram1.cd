@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="CatForum.Controllers.AdminController" Collapsed="true">
+    <Position X="13.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAIAAAEAAAAAAAEUACAAAAA=</HashCode>
+      <FileName>Controllers\AdminController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Controllers.FileController" Collapsed="true">
+    <Position X="15.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\FileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Controllers.ForumController" Collapsed="true">
+    <Position X="17" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IoIAAAAEQAAEAhIAAQAAAgIAAAEAAEUCAAlAICIgDKE=</HashCode>
+      <FileName>Controllers\ForumController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Controllers.HomeController" Collapsed="true">
+    <Position X="10" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACAAAAACQAAAAAABAAMAAQABAAAAAAEQAgAAACI=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Controllers.UserController" Collapsed="true">
+    <Position X="11.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEEAAiQBAAAAAAAgEAAAAAAAACAABAAgAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Context.CatContext" Collapsed="true">
+    <Position X="10.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IARAACACABAAAEAABAACAQAAEQACCAAAAAABAgIAAAE=</HashCode>
+      <FileName>Context\CatContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Address" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACAAAAAAAAAAAACACAABAAEAAAgAAAAA=</HashCode>
+      <FileName>Models\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Admin" Collapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Amphur" Collapsed="true">
+    <Position X="13.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Amphur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Cat" Collapsed="true">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQEARAiAACAAEAACBQQgEACAAAAIAASEAIEAAA=</HashCode>
+      <FileName>Models\Cat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.CatBreed" Collapsed="true">
+    <Position X="15.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CatBreed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.CatCoat" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\CatCoat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.CatEyes" Collapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\CatEyes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.CatLifeStage" Collapsed="true">
+    <Position X="13.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\CatLifeStage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.CatPattern" Collapsed="true">
+    <Position X="15.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CatPattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.CatTail" Collapsed="true">
+    <Position X="15.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CatTail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Follow" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAEAAAAAAAgACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Follow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Picture" Collapsed="true">
+    <Position X="13.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAQAEAAAAAAAAACAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\Picture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Post" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAACAAgABAAAAAAAAAAwAAAAAAAQAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\Post.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.PostAdopt" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAEAAAAAAEACAAAAAgACAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\PostAdopt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.PostDetail" Collapsed="true">
+    <Position X="15.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAACgAAEAASAAAEgCAIAAACACAAAAAAiAQAAIAAAAAE=</HashCode>
+      <FileName>Models\PostDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.PostType" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PostType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Province" Collapsed="true">
+    <Position X="13.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Province.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Report" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAEAAAAAAAgACAAAAAQAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.Tumbon" Collapsed="true">
+    <Position X="15.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAACAAAAAAAAAQAAAAAAABAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Tumbon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Models.User" Collapsed="true">
+    <Position X="15.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAACEAAAACAAAACABQAAAAQAAAAACBECAAAAIAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Repositories.AddressRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAgCAQAAAAAAAAAAAAABFAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\AddressRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.AdminRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACCQAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\AdminRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.AmphurRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQBAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\AmphurRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.CatBreedRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\CatBreedRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.CatCoatRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="12.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\CatCoatRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.CatEyesRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\CatEyesRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.CatLifeStageRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\CatLifeStageRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.CatPatternRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\CatPatternRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.CatRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAQAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\CatRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.CatTailRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\CatTailRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.FollowRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAQAAAAAAAAAEAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\FollowRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.PictureRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAQCAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\PictureRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.PostAdoptRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAQAAAAAAAACAAAAAEAAAEAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\PostAdoptRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.PostDetailRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="11" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAICAACAQBAAAAAAAAAAAAAUAAAAgAAAAAAAiABA=</HashCode>
+      <FileName>Repositories\PostDetailRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.PostRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAQAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\PostRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.PostTypeRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\PostTypeRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.ProvinceRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\ProvinceRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.ReportRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAQAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\ReportRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.TumbonRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAAAIAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\TumbonRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Repositories.UserRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACCQAAAAAAAAAAAAAAEBAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CatForum.Forms.PostForm" Collapsed="true">
+    <Position X="10" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgABEQAEBCAAACgCAIQCAAAAigEAECQAEAQAgAFgAE=</HashCode>
+      <FileName>Forms\PostForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Forms.RegisterForm" Collapsed="true">
+    <Position X="11.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAiAAAAAAAQAAAAAAACAAAAACAEAAAiAAAAA=</HashCode>
+      <FileName>Forms\RegisterForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CatForum.Forms.UserEditForm" Collapsed="true">
+    <Position X="13.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAiAAAACAAQAAAAAAACAEAAACAEAAAgAAAAA=</HashCode>
+      <FileName>Forms\UserEditForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CatForum.Interfaces.IAddressRepository" Collapsed="true">
+    <Position X="2" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAgCAAAAAAAAAAAAAAABFAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAddressRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IAdminRepository" Collapsed="true">
+    <Position X="2" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACCAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IAdminRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IAmphurRepository" Collapsed="true">
+    <Position X="2" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IAmphurRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ICatBreedRepository" Collapsed="true">
+    <Position X="2" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ICatBreedRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ICatCoatRepository" Collapsed="true">
+    <Position X="2" Y="12.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ICatCoatRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ICatEyesRepository" Collapsed="true">
+    <Position X="2" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ICatEyesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ICatLifeStageRepository" Collapsed="true">
+    <Position X="2" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ICatLifeStageRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ICatPatternRepository" Collapsed="true">
+    <Position X="2" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ICatPatternRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ICatRepository" Collapsed="true">
+    <Position X="2" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ICatRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ICatTailRepository" Collapsed="true">
+    <Position X="2" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ICatTailRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IFollowRepository" Collapsed="true">
+    <Position X="2" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAAAAAAAAAAAEAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IFollowRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IPictureRepository" Collapsed="true">
+    <Position X="2" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAACAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IPictureRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IPostAdoptRepository" Collapsed="true">
+    <Position X="2" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAAAAAAAAAACAAAAAEAAAEAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IPostAdoptRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IPostDetailRepository" Collapsed="true">
+    <Position X="2" Y="11" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAICAACAABAAAAAAAAAAAAAUAAAAgAAAAAAAiABA=</HashCode>
+      <FileName>Interfaces\IPostDetailRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IPostRepository" Collapsed="true">
+    <Position X="2" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IPostRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IPostTypeRepository" Collapsed="true">
+    <Position X="2" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IPostTypeRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IProvinceRepository" Collapsed="true">
+    <Position X="2" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IProvinceRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IReportRepository" Collapsed="true">
+    <Position X="2" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACAAAAAAAAAAAAAAAAEAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IReportRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.ITumbonRepository" Collapsed="true">
+    <Position X="2" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\ITumbonRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CatForum.Interfaces.IUserRepository" Collapsed="true">
+    <Position X="2" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAACCAAAAAAAAAAAAAAAEBAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Interfaces\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

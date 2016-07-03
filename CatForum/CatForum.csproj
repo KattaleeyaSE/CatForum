@@ -448,6 +448,7 @@
     <Content Include="Content\Semantic\themes\default\assets\fonts\icons.ttf" />
     <Content Include="Content\Semantic\themes\default\assets\fonts\icons.woff" />
     <Content Include="Content\Semantic\themes\default\assets\fonts\icons.woff2" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
