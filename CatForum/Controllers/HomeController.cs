@@ -40,7 +40,7 @@ namespace CatForum.Controllers
             if (Session["User"] != null)
             {
                 User user = (User)Session["User"];
-                ViewBag.Adopts = adopts.SearchByUser(user.Id).Take(10).ToList();
+                ViewBag.Adopts = adopts.SearchByOwner(user.Id).Take(10).ToList();
                 ViewBag.Matchs = detailRepository.SearchMatch(user.Id).Take(10).ToList();
             }
             return View();
@@ -99,7 +99,7 @@ namespace CatForum.Controllers
                     }
                 }
             }
-            return View();
+            return RedirectToAction("Register", "Home");
         }
         public ActionResult Logout()
         {

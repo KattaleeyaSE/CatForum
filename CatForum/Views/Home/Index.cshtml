@@ -14,10 +14,11 @@
             SOS in your area!
             <div class="ui labeled button" tabindex="0" style="float: right;">
                 <div class="ui button">
-                    Total SOS 
+                    Total SOS
                 </div>
                 <a class="ui basic label">
-                    @if (soses != null) {
+                    @if (soses != null)
+                    {
                         @soses.Count();
                     }
                 </a>
@@ -318,28 +319,31 @@
                         {
                             foreach (var obj in adoptsReq)
                             {
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        @{
-                                            var image = obj.Post.Post.Pictures.FirstOrDefault();
-                                            if (image != null)
-                                            {
-                                                <a href="/Forum/Detail/@obj.PostId">
-                                                    <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
-                                                </a>
-                                            }
-                                        }
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div>Cat Name: @obj.Post.Cat.Name</div>
-                                        <div>Message: @obj.Detail</div>
-                                        <div>Contact: @obj.Contact</div>
-                                        <div><a href="/Forum/Accept/@obj.Id">Accecpt</a> | <a href="/Forum/Reject/@obj.Id">Reject</a></div>
-                                    </div>
-                                </div>
-                                                    }
+                                if (obj.Status == 1)
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            @{
+                                                var image = obj.Post.Post.Pictures.FirstOrDefault();
+                                                if (image != null)
+                                                {
+                                                    <a href="/Forum/Detail/@obj.PostId">
+                                                        <img height="150" width="150" src="/File?Id=@image.Id" style="display: inline-block" />
+                                                    </a>
                                                 }
                                             }
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div>Cat Name: @obj.Post.Cat.Name</div>
+                                            <div>Message: @obj.Detail</div>
+                                            <div>Contact: @obj.Contact</div>
+                                            <div><a href="/Forum/Accept/@obj.Id">Accecpt</a> | <a href="/Forum/Reject/@obj.Id">Reject</a></div>
+                                        </div>
+                                    </div>
+                                                            }
+                                                        }
+                                                    }
+                                                }
                 </div>
                 <div role="tabpanel" class="ui bottom attached tab segment" data-tab="lostAndFound" id="lostAndFound">
                     @if (Session["User"] != null)
@@ -378,10 +382,12 @@
     </div>
 </div>
 @section scripts{
+    <script src="~/Content/Semantic/semantic.js"></script>
     <script>
         $('.menu .item').tab();
         $('.dimmer-cards .image').dimmer({
             on: 'hover'
         });
     </script>
+
 }

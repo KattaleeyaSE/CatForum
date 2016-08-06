@@ -33,7 +33,7 @@
                         }
                         foreach (var obj in provList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")         }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -48,7 +48,7 @@
                         }
                         foreach (var obj in ampList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -63,7 +63,7 @@
                         }
                         foreach (var obj in tmbnList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -85,7 +85,7 @@
                         }
                         foreach (var obj in eyes)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")         }>@obj.Color</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -105,7 +105,7 @@
                         }
                         foreach (var obj in coats)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")         }>@obj.Color</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -125,7 +125,7 @@
                         }
                         foreach (var obj in patterns)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")         }>@obj.Appearance</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Appearance</option>
                         }
                     }
                 </select>
@@ -146,7 +146,7 @@
                         }
                         foreach (var obj in tails)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")         }>@obj.Appearance</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Appearance</option>
                         }
                     }
                 </select>
@@ -167,7 +167,7 @@
                         }
                         foreach (var obj in breeds)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")         }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -186,10 +186,10 @@
 
             <!-- Nav tabs -->
             @*<ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
-                <li role="presentation"><a href="#province" aria-controls="province" role="tab" data-toggle="tab">Your Province</a></li>
-                <li role="presentation"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Search Result</a></li>
-            </ul>*@
+                    <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+                    <li role="presentation"><a href="#province" aria-controls="province" role="tab" data-toggle="tab">Your Province</a></li>
+                    <li role="presentation"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Search Result</a></li>
+                </ul>*@
             <div class="ui top attached tabular menu" style="margin-bottom: 10px;">
                 <a class="item active" data-tab="all">All</a>
                 <a class="item" data-tab="province">Your Province</a>
@@ -202,31 +202,31 @@
                         List<PostDetail> all = ViewBag.all;
                         if (all == null || all.Count <= 0)
                         {
-                    <h3 class="text-center">No result.</h3>
+                            <h3 class="text-center">No result.</h3>
                         }
                         else
                         {
                             foreach (var post in all)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
-                    <div class="row post">
-                        <div class="col-sm-3 text-center">
-                            <div>
-                                @if (image != null)
+                                <div class="row post">
+                                    <div class="col-sm-3 text-center">
+                                        <div>
+                                            @if (image != null)
                                             {
-                                            <img src="/File?Id=@image.Id" width="150" />
+                                                <img src="/File?Id=@image.Id" width="150" />
                                             }
-                            </div>
-                            <div>@statusHelper.getCatStatus(post.Cat.Status)</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="header"><h4><strong> @post.Cat.Name </strong></h4> </div>
-                            <div>@post.Cat.Description</div>
-                            <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
-                            <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
+                                        </div>
+                                        <div>@statusHelper.getCatStatus(post.Cat.Status)</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="header"><h4><strong> @post.Cat.Name </strong></h4> </div>
+                                        <div>@post.Cat.Description</div>
+                                        <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
+                                        <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                    </div>
+                                    <hr />
+                                </div>
                             }
                         }
                     }
@@ -261,37 +261,37 @@
                 <div role="tabpanel" class="ui bottom attached tab" data-tab="province" id="province">
                     @if (Session["User"] == null)
                     {
-                    <h3 class="text-center">Please Login to see this section.</h3>
+                        <h3 class="text-center">Please Login to see this section.</h3>
                     }
                     @{
                         List<PostDetail> byProvince = ViewBag.ByProvince;
                         if (byProvince == null || byProvince.Count <= 0)
                         {
-                    <h3 class="text-center">No result.</h3>
+                            <h3 class="text-center">No result.</h3>
                         }
                         else
                         {
                             foreach (var post in byProvince)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
-                    <div class="row post">
-                        <div class="col-sm-3 text-center">
-                            <div>
-                                @if (image != null)
+                                <div class="row post">
+                                    <div class="col-sm-3 text-center">
+                                        <div>
+                                            @if (image != null)
                                             {
-                                            <img src="/File?Id=@image.Id" width="150" />
+                                                <img src="/File?Id=@image.Id" width="150" />
                                             }
-                            </div>
-                            <div>Status: @statusHelper.getCatStatus(post.Cat.Status)</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="header"><h4><strong> @post.Cat.Name </strong></h4> </div>
-                            <div>@post.Cat.Description</div>
-                            <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
-                            <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
+                                        </div>
+                                        <div>Status: @statusHelper.getCatStatus(post.Cat.Status)</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="header"><h4><strong> @post.Cat.Name </strong></h4> </div>
+                                        <div>@post.Cat.Description</div>
+                                        <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
+                                        <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                    </div>
+                                    <hr />
+                                </div>
                             }
                         }
                     }
@@ -366,31 +366,31 @@
                         List<PostDetail> search = ViewBag.SearchResult;
                         if (search == null || search.Count <= 0)
                         {
-                    <h3 class="text-center">No result.</h3>
+                            <h3 class="text-center">No result.</h3>
                         }
                         else
                         {
                             foreach (var post in search)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
-                    <div class="row post">
-                        <div class="col-sm-3 text-center">
-                            <div>
-                                @if (image != null)
+                                <div class="row post">
+                                    <div class="col-sm-3 text-center">
+                                        <div>
+                                            @if (image != null)
                                             {
-                                            <img src="/File?Id=@image.Id" width="150" />
+                                                <img src="/File?Id=@image.Id" width="150" />
                                             }
-                            </div>
-                            <div>Status: @statusHelper.getCatStatus(post.Cat.Status)</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="header"><h4><strong> @post.Cat.Name </strong></h4> </div>
-                            <div>@post.Cat.Description</div>
-                            <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
-                            <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
-                        </div>
-                        <hr />
-                    </div>
+                                        </div>
+                                        <div>Status: @statusHelper.getCatStatus(post.Cat.Status)</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="header"><h4><strong> @post.Cat.Name </strong></h4> </div>
+                                        <div>@post.Cat.Description</div>
+                                        <div><strong>Posted By</strong> @post.Post.Owner.DisplayName | @post.Post.Updated.ToShortDateString()</div>
+                                        <div><a href="/Forum/Detail/@post.Id">Read More</a></div>
+                                    </div>
+                                    <hr />
+                                </div>
                             }
                         }
                     }
@@ -426,6 +426,7 @@
     </div>
 </div>
 @section scripts{
+    <script src="~/Content/Semantic/semantic.js"></script>
     <script>
         $('.menu .item').tab();
     </script>

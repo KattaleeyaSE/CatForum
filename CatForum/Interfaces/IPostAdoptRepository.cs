@@ -11,6 +11,7 @@ namespace CatForum.Interfaces
     {
         IEnumerable<PostAdopt> SelectAll();
         IEnumerable<PostAdopt> SearchByUser(int userId);
+        IEnumerable<PostAdopt> SearchByOwner(int userId);
         PostAdopt IsExist(int userId, int postId);
         PostAdopt SelectById(int id);
         void Add(PostAdopt obj);

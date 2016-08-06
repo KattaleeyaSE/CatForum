@@ -22,7 +22,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("News", "Search", "Forum", new { Type = "2" }, null)</li>>
+                    <li>@Html.ActionLink("News", "Search", "Forum", new { Type = "2" }, null)</li>
                     <li>@Html.ActionLink("Adoption", "Search", "Forum", new { Type = "5" }, null)</li>
                     <li>@Html.ActionLink("Find Owner", "Search", "Forum", new { Type = "3" }, null)</li>
                     <li>@Html.ActionLink("Lost Cat", "Search", "Forum", new { Type = "4" }, null)</li>
@@ -83,7 +83,6 @@
             $('.bxslider').bxSlider(opt);
         });
     </script>
-    <script src="~/Content/Semantic/semantic.js"></script>
     @RenderSection("scripts", required: false)
     <script>
         $('select#Province').on('change', function () {

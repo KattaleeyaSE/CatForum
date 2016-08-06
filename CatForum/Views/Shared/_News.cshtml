@@ -51,13 +51,25 @@
                         {
                             foreach (var adopt in adopts)
                             {
-                                <div>
-                                    @adopt.Post.Post.Name : Your adoption proposal has been @if (adopt.Status == 2)
-                                    { <strong style="color: green;">@Html.Raw("accepted")</strong> }
-                                    else
-                                    { <strong style="color: red;">@Html.Raw("rejected")</strong>}
-                                    <hr style="border-color: darkgray;" />
-                                </div>
+                                if (adopt.Post.Post.Owner.Id == user.Id)
+                                {
+                                    <div>
+                                        @adopt.Post.Post.Name : Proposal from @adopt.User.DisplayName has been @if (adopt.Status == 2)
+                                        { <strong style="color: green;">@Html.Raw("accepted")</strong> }
+                                        else
+                                        { <strong style="color: red;">@Html.Raw("rejected")</strong>}
+                                        <hr style="border-color: darkgray;" />
+                                    </div>
+                                }
+                                else {
+                                    <div>
+                                        @adopt.Post.Post.Name : Your adoption proposal has been @if (adopt.Status == 2)
+                                        { <strong style="color: green;">@Html.Raw("accepted")</strong> }
+                                        else
+                                        { <strong style="color: red;">@Html.Raw("rejected")</strong>}
+                                        <hr style="border-color: darkgray;" />
+                                    </div>
+                                }
                             }
                         }
                     }

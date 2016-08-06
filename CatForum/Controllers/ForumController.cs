@@ -133,7 +133,8 @@ namespace CatForum.Controllers
                 }
             }
 
-            return RedirectToAction("Detail", "Forum", new { id = id });
+            //return RedirectToAction("Detail", "Forum", new { id = id });
+            return RedirectToAction("Index", "Home");
         }
         [Route("/Forum/Reject/{id?}")]
         public ActionResult Reject(int id)
@@ -149,7 +150,8 @@ namespace CatForum.Controllers
                 }
             }
 
-            return RedirectToAction("Detail", "Forum", new { id = id });
+            //return RedirectToAction("Detail", "Forum", new { id = id });
+            return RedirectToAction("Index", "Home");
         }
         [Route("/Forum/Report/{id?}"), HttpPost]
         public ActionResult Report(Report form, int id)

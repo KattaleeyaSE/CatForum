@@ -50,6 +50,7 @@ label.error {
     width: 15%;
     position: fixed;
     left: 0;
+    background-color: white;
 }
 .news_wrapper {
     overflow: auto;
