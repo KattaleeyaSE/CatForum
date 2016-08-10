@@ -33,10 +33,11 @@
                         }
                         foreach (var obj in provList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Name</option>
                         }
                     }
                 </select>
+                <label>Amphur</label>
                 <select class="form-control" id="Amphur" name="Amphur">
                     <option value="0"></option>
                     @{
@@ -48,10 +49,11 @@
                         }
                         foreach (var obj in ampList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")            }>@obj.Name</option>
                         }
                     }
                 </select>
+                <label>Tumbon</label>
                 <select class="form-control" id="Tumbon" name="Tumbon">
                     <option value=""></option>
                     @{
@@ -63,14 +65,36 @@
                         }
                         foreach (var obj in tmbnList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")            }>@obj.Name</option>
                         }
                     }
                 </select>
             </div>
         </div>
     </div>
-    <div class="row" @if (ViewBag.Type != 3 || ViewBag.Type != 4) { @Html.Raw("style=\" display: none; \"") }>
+    <div class="row" @if (ViewBag.Type != 3 && ViewBag.Type != 4 && ViewBag.Type != 5 && ViewBag.Type != 7) { @Html.Raw("style=\" display: none; \"")  }>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Cat Breed</label>
+                <select class="form-control" id="Breed" name="Breed">
+                    <option value=""></option>
+                    @{
+                        List<CatBreed> breeds = ViewBag.Breeds;
+                        id = 0;
+                        if (ViewBag.Breed != null)
+                        {
+                            id = ViewBag.Breed;
+                        }
+                        foreach (var obj in breeds)
+                        {
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")             }>@obj.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row" @if (ViewBag.Type != 3 && ViewBag.Type != 4) { @Html.Raw("style=\" display: none; \"")  }>
         <div class="col-sm-4">
             <div class="form-group">
                 <label>Cat Eyes Color</label>
@@ -85,7 +109,7 @@
                         }
                         foreach (var obj in eyes)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Color</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -105,7 +129,7 @@
                         }
                         foreach (var obj in coats)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Color</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -125,7 +149,7 @@
                         }
                         foreach (var obj in patterns)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Appearance</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Appearance</option>
                         }
                     }
                 </select>
@@ -146,36 +170,16 @@
                         }
                         foreach (var obj in tails)
                         {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Appearance</option>
+                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")           }>@obj.Appearance</option>
                         }
                     }
                 </select>
 
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label>Cat Breed</label>
-                <select class="form-control" id="Breed" name="Breed">
-                    <option value=""></option>
-                    @{
-                        List<CatBreed> breeds = ViewBag.Breeds;
-                        id = 0;
-                        if (ViewBag.Breed != null)
-                        {
-                            id = ViewBag.Breed;
-                        }
-                        foreach (var obj in breeds)
-                        {
-                            <option value="@obj.Id" @if (obj.Id == id) { @Html.Raw("selected")          }>@obj.Name</option>
-                        }
-                    }
-                </select>
-            </div>
-        </div>
-        <div>
-            <button class="btn btn-success btn-block">Search</button>
-        </div>
+    </div>
+    <div>
+        <button class="btn btn-success btn-block">Search</button>
     </div>
     <input type="hidden" name="Type" value="@ViewBag.Type" />
     <input type="hidden" name="Offset" value="@ViewBag.Offset" />

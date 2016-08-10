@@ -202,10 +202,6 @@ namespace CatForum.Controllers
             ViewBag.ByProvince = null;
             ViewBag.SearchResult = null;
 
-            ViewBag.Type = 0;
-            if (Type != null) {
-                ViewBag.Type = Type;
-            }
             if (Session["User"] != null)
             {
                 User user = (User)Session["User"];

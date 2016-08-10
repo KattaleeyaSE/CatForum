@@ -62,7 +62,7 @@
                     <td class="detail-content">@post.Post.Content</td>
                 </tr>
                 @{
-                    if (post.TypeId == 3 || post.TypeId == 4 || post.TypeId == 5)
+                    if (post.TypeId == 3 || post.TypeId == 4 || post.TypeId == 5 || post.TypeId == 7)
                     {
                         <tr>
                             <td class="detail-header">Cat Detail</td>
@@ -92,10 +92,13 @@
                         </tr>
                     }
                 }
-                <tr>
-                    <td class="detail-header">Condition</td>
-                    <td class="detail-content">@post.Condition</td>
-                </tr>
+                @if (post.TypeId != 2)
+                {
+                    <tr>
+                        <td class="detail-header">Condition</td>
+                        <td class="detail-content">@post.Condition</td>
+                    </tr>
+                }
                 <tr>
                     <td class="detail-header">Location</td>
                     <td class="detail-content">@post.Location</td>
@@ -104,10 +107,13 @@
                     <td class="detail-header">Contact</td>
                     <td class="detail-content">@post.Contact</td>
                 </tr>
-                <tr>
-                    <td class="detail-header">Fee</td>
-                    <td class="detail-content">@post.Fee</td>
-                </tr>
+                @if (post.TypeId != 2)
+                {
+                    <tr>
+                        <td class="detail-header">Fee</td>
+                        <td class="detail-content">@post.Fee</td>
+                    </tr>
+                }
             </table>
 
         </div>
