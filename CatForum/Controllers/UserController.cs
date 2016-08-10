@@ -94,7 +94,7 @@ namespace CatForum.Controllers
             {
                 User user = (User)Session["User"];
                 ViewBag.PostTypes = typeRepository.SelectAll();
-                ViewBag.All = postRepository.SelectAll().Where(p => p.UserId == user.Id).ToList();
+                ViewBag.All = postRepository.SelectAll().Where(p => p.UserId == user.Id).OrderByDescending(p => p.Id).ToList();
                 ViewBag.Details = detailRepository;
                 return View();
             }

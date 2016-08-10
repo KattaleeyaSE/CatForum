@@ -40,6 +40,7 @@ namespace CatForum.Controllers
             if (Session["User"] != null)
             {
                 User user = (User)Session["User"];
+                ViewBag.Soses = detailRepository.Search(6,null, null, null, null, null, null,user.Address.ProvinceId,null,null).ToList();
                 ViewBag.Adopts = adopts.SearchByOwner(user.Id).Take(10).ToList();
                 ViewBag.Matchs = detailRepository.SearchMatch(user.Id).Take(10).ToList();
             }

@@ -27,7 +27,6 @@
             </div>
             <div class="form-group">
                 <label for="File">File input</label>
-                <img width="200" height="200" />
                 <input type="File" id="File" name="File">
                 <p class="help-block">Please upload this post image.</p>
             </div>
@@ -175,25 +174,27 @@
                     }
                 </select>
             </div>
-            <div class="form-group">
-                <label for="Username">Cat Food| Like</label>
-                <input type="text" class="form-control" id="FoodLike" name="FoodLike" placeholder="Favorite food" value="@cat.FoodLike">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Food| Dislike</label>
-                <input type="text" class="form-control" id="FoodDislike" name="FoodDislike" placeholder="Hated food" value="@cat.FoodDislike">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Habit</label>
-                <input type="text" class="form-control" id="Habit" name="Habit" placeholder="What it usually do?" value="@cat.Habit">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Hate</label>
-                <input type="text" class="form-control" id="Hate" name="Hate" placeholder="What is hate most?" value="@cat.Hate">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Vaccine</label>
-                <input type="text" class="form-control" id="Vaccine" name="Vaccine" placeholder="List of Vaccines" value="@cat.Habit">
+            <div class="cat-adoption" stylre="display: none;">
+                <div class="form-group">
+                    <label for="Username">Cat Food| Like</label>
+                    <input type="text" class="form-control" id="FoodLike" name="FoodLike" placeholder="Favorite food" value="@cat.FoodLike">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Food| Dislike</label>
+                    <input type="text" class="form-control" id="FoodDislike" name="FoodDislike" placeholder="Hated food" value="@cat.FoodDislike">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Habit</label>
+                    <input type="text" class="form-control" id="Habit" name="Habit" placeholder="What it usually do?" value="@cat.Habit">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Hate</label>
+                    <input type="text" class="form-control" id="Hate" name="Hate" placeholder="What is hate most?" value="@cat.Hate">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Vaccine</label>
+                    <input type="text" class="form-control" id="Vaccine" name="Vaccine" placeholder="List of Vaccines" value="@cat.Habit">
+                </div>
             </div>
             <div class="form-group">
                 <label for="Username">Cat Description</label>
@@ -202,11 +203,12 @@
             <div class="form-group">
                 <label>Cat Status</label>
                 <select class="form-control" id="CatStatus" name="CatStatus">
-                    <option value="1" @if(cat.Status == 1){ @Html.Raw("selected") }>Finding</option>
-                    <option value="2" @if(cat.Status == 2){ @Html.Raw("selected") }>Found</option>
-                    <option value="3" @if(cat.Status == 3){ @Html.Raw("selected") }>Search for Adoption</option>
-                    <option value="4" @if(cat.Status == 4){ @Html.Raw("selected") }>Adopted</option>
-                    <option value="5" @if(cat.Status == 5){ @Html.Raw("selected") }>Want to Adopt</option>
+                    <option></option>
+                    <option value="1" @if(cat.Status == 1){ @Html.Raw("selected") } data-status="1" style="display: none;">Finding</option>
+                    <option value="2" @if(cat.Status == 2){ @Html.Raw("selected") } data-status="2" style="display: none;">Found</option>
+                    <option value="3" @if(cat.Status == 3){ @Html.Raw("selected") } data-status="3" style="display: none;">Search for Adoption</option>
+                    <option value="4" @if(cat.Status == 4){ @Html.Raw("selected") } data-status="4" style="display: none;">Adopted</option>
+                    <option value="5" @if(cat.Status == 5){ @Html.Raw("selected") } data-status="5" style="display: none;">Want to Adopt</option>
                 </select>
             </div>
             <div class="alert alert-danger" role="alert">...</div>
@@ -214,4 +216,108 @@
         </form>
     </div>
 </div>
+@section scripts{
+    <script>
+        $('#Post').validate({
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+        function hideCat() {
+            $("#CatName").parent().hide();
+            $("#CatAge").parent().hide();
+            $("#LifeStage").parent().hide();
+            $("#Gender").parent().hide();
+            $("#CatEyes").parent().hide();
+            $("#CatCoat").parent().hide();
+            $("#CatPattern").parent().hide();
+            $("#CatTail").parent().hide();
+            $("#CatBreed").parent().hide();
+            $("#FoodLike").parent().hide();
+            $("#FoodDislike").parent().hide();
+            $("#Habit").parent().hide();
+            $("#Hate").parent().hide();
+            $("#Vaccine").parent().hide();
+            $("#CatDescription").parent().hide();
+            $("#CatStatus").parent().hide();
+        }
+        hideCat();
+        function hideCondition() {
+            $("#Condition").parent().hide();
+            $("#Location").parent().hide();
+            $("#Contact").parent().hide();
+            $("#Fee").parent().hide();
+        }
+        hideCondition();
+        function showCat() {
+            $("#CatName").parent().show();
+            $("#CatAge").parent().show();
+            $("#LifeStage").parent().show();
+            $("#Gender").parent().show();
+            $("#CatEyes").parent().show();
+            $("#CatCoat").parent().show();
+            $("#CatPattern").parent().show();
+            $("#CatTail").parent().show();
+            $("#CatBreed").parent().show();
+            $("#FoodLike").parent().show();
+            $("#FoodDislike").parent().show();
+            $("#Habit").parent().show();
+            $("#Hate").parent().show();
+            $("#Vaccine").parent().show();
+            $("#CatDescription").parent().show();
+            $("#CatStatus").parent().show();
+        }
+        function showCondition() {
+            $("#Condition").parent().show();
+            $("#Location").parent().show();
+            $("#Contact").parent().show();
+            $("#Fee").parent().show();
+        }
+        function showStatus(id) {
+            $("[data-status=" + id + "]").show();
+        }
+        function hideStatus() {
+            $("[data-status=1]").hide();
+            $("[data-status=2]").hide();
+        }
+        function showAdoption() {
+            $(".cat-adoption").show();
+        }
+        function hideAdoption() {
+            $(".cat-adoption").hide();
+        }
+        hideStatus();
+        $("#PostType").on("change", function (e) {
+            var value = $(this).val();
+            hideAdoption();
+            if (value == 1 || value == 2) { hideCat(); hideCondition(); }
+            else if (value == 3 || value == 4 || value == 5) { showCat(); showCondition(); }
+            else if (value == 6 || value == 7) { hideCat(); showCondition(); }
 
+            if (value == 3) { hideStatus(); showStatus(2); }
+            else if (value == 4) { hideStatus(); showStatus(1); }
+            else if (value == 5) { hideStatus(); showStatus(3); }
+
+            if (value == 5) {
+                showAdoption();
+            }
+
+        });
+        function check() {
+            var value = $(this).val();
+            hideAdoption();
+            if (value == 1 || value == 2) { hideCat(); hideCondition(); }
+            else if (value == 3 || value == 4 || value == 5) { showCat(); showCondition(); }
+            else if (value == 6 || value == 7) { hideCat(); showCondition(); }
+
+            if (value == 3) { hideStatus(); showStatus(2); }
+            else if (value == 4) { hideStatus(); showStatus(1); }
+            else if (value == 5) { hideStatus(); showStatus(3); }
+
+            if (value == 5) {
+                showAdoption();
+            }
+        }
+        check();
+    </script>
+}

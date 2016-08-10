@@ -34,7 +34,10 @@
                         List<PostType> types = ViewBag.PostTypes;
                         foreach (var type in types)
                         {
-                            <a class="item" data-tab="type@{ @Html.Raw(type.Id) }">@type.Name</a>
+                            if (type.Id != 1)
+                            {
+                                <a class="item" data-tab="type@{ @Html.Raw(type.Id) }">@type.Name</a>
+        }
     }
                     }
                 </div>
@@ -44,7 +47,7 @@
                     <div role="tabpanel" class="ui bottom attached tab active" data-tab="home" id="home">
                         @{
                             PostDetailRepository details = (PostDetailRepository)ViewBag.Details;
-                            var all = details.SelectAll().Where(p => p.Post.UserId == profile.Id).Take(10);
+                            var all = details.SelectAll().Where(p => p.Post.UserId == profile.Id).OrderByDescending(p => p.Id);
                             foreach (var post in all)
                             {
                                 var image = post.Post.Pictures.FirstOrDefault();
@@ -73,41 +76,45 @@
                     @{
                         foreach (var type in types)
                         {
-                            <div role="tabpanel" class="ui bottom attached tab" data-tab="type@{ @Html.Raw(type.Id) }" id="type@{ @Html.Raw(type.Id) }">
-                                @{
-                                    var posts = details.SelectByOwnerOnType(profile.Id, type.Id);
-                                    foreach (var post in posts)
-                                    {
-                                        var image = post.Post.Pictures.FirstOrDefault();
-                                        <div class="row post" style="@if(post.Status == 2){ @Html.Raw("color: white; background-color: darkred;") }">
-                                            <div class="col-xs-4">
-                                                @if (image != null)
-                                                {
-                                                    <img src="/File?Id=@image.Id" width="150" />
-                                                }
+                            if (type.Id != 1)
+                            {
+                                <div role="tabpanel" class="ui bottom attached tab" data-tab="type@{ @Html.Raw(type.Id) }" id="type@{ @Html.Raw(type.Id) }">
+                                    @{
+                                        var posts = details.SelectByOwnerOnType(profile.Id, type.Id).OrderByDescending(p => p.Id);
+                                        foreach (var post in posts)
+                                        {
+                                            var image = post.Post.Pictures.FirstOrDefault();
+                                            <div class="row post" style="@if (post.Status == 2)
+                                        { @Html.Raw("color: white; background-color: darkred;") }">
+                                                <div class="col-xs-4">
+                                                    @if (image != null)
+                                                    {
+                                                        <img src="/File?Id=@image.Id" width="150" />
+                                                    }
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    @post.Post.Name
+                                                </div>
+                                                <div class="col-xs-4 text-right">
+                                                    <a href="/Forum/Edit?Id=@post.Id">
+                                                        <buttun class="btn btn-info">Edit</buttun>
+                                                    </a>
+                                                    <a href="/Forum/Delete?Id=@post.Id" onclick="return confirm('Are you sure to delete \' @post.Post.Name \' ');">
+                                                        <buttun class="btn btn-info">Delete</buttun>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="col-xs-4">
-                                                @post.Post.Name
-                                            </div>
-                                            <div class="col-xs-4 text-right">
-                                                <a href="/Forum/Edit?Id=@post.Id">
-                                                    <buttun class="btn btn-info">Edit</buttun>
-                                                </a>
-                                                <a href="/Forum/Delete?Id=@post.Id" onclick="return confirm('Are you sure to delete \' @post.Post.Name \' ');">
-                                                    <buttun class="btn btn-info">Delete</buttun>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        }
                                     }
-                                }
-                            </div>
-                                    }
+                                </div>
+                                            }
+                                        }
                     }
                 </div>
 
             </div>
         </div>
-                                    }
+                                        }
 }
 @section scripts{
     <script src="~/Content/Semantic/semantic.js"></script>

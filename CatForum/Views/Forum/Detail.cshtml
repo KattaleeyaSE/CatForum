@@ -13,6 +13,7 @@
         color: white;
         padding: 5px;
     }
+
     .detail-content {
         border-bottom: solid 1px black;
         padding-left: 20px;
@@ -58,17 +59,17 @@
                 </tr>
                 <tr>
                     <td class="detail-header">Detail</td>
-                    <td class="detail-content">
-                        <p class="help-block">@post.Post.Content</p>
-                        @{
-                            if (post.TypeId != 1 && post.TypeId != 2)
-                            {
+                    <td class="detail-content">@post.Post.Content</td>
+                </tr>
+                @{
+                    if (post.TypeId == 3 || post.TypeId == 4 || post.TypeId == 5)
+                    {
+                        <tr>
+                            <td class="detail-header">Cat Detail</td>
+                            <td class="detail-content">
+
                                 <p class="help-block">@post.Cat.Description</p>
-                            }
-                        }
-                        @{
-                            if (post.TypeId != 1 && post.TypeId != 2)
-                            {
+
                                 <div>
                                     <strong>@statusHelper.getCatStatus(post.Cat.Status)</strong>
                                     <ul>
@@ -77,12 +78,20 @@
                                         <li><strong>Coat Color:</strong> @post.Cat.Coat.Color</li>
                                         <li><strong>Coat Pattern:</strong> @post.Cat.Pattern.Appearance</li>
                                         <li><strong>Tail:</strong> @post.Cat.Tail.Appearance</li>
+                                        @if (post.TypeId == 5)
+                                        {
+                                            <li><strong>Food Like:</strong> @post.Cat.FoodLike</li>
+                                            <li><strong>Food Dislike:</strong> @post.Cat.FoodDislike</li>
+                                            <li><strong>Habit:</strong> @post.Cat.Habit</li>
+                                            <li><strong>Hate:</strong> @post.Cat.Hate</li>
+                                            <li><strong>Vaccine:</strong> @post.Cat.Vaccine</li>
+                                        }
                                     </ul>
                                 </div>
-                            }
-                        }
-                    </td>
-                </tr>
+                            </td>
+                        </tr>
+                    }
+                }
                 <tr>
                     <td class="detail-header">Condition</td>
                     <td class="detail-content">@post.Condition</td>
@@ -100,34 +109,6 @@
                     <td class="detail-content">@post.Fee</td>
                 </tr>
             </table>
-            @*<div><strong>Address:</strong>  @post.Address.Province.Name , @post.Address.Amphur.Name , @post.Address.Tumbon.Name</div>
-                <div style="padding: 20px;">
-                    <p class="help-block">@post.Post.Content</p>
-                    @{
-                        if (post.TypeId != 1 && post.TypeId != 2)
-                        {
-                            <p class="help-block">@post.Cat.Description</p>
-                            <p class="help-block">@post.Condition</p>
-                            <p><strong>@post.Location</strong></p>
-                        }
-                    }
-                </div>
-                @{
-                    if (post.TypeId != 1 && post.TypeId != 2)
-                    {
-                        <div><strong>Contact: @post.Contact</strong> </div>
-                        <div>
-                            <strong>@statusHelper.getCatStatus(post.Cat.Status)</strong>
-                            <ul>
-                                <li><strong>Breed:</strong> @post.Cat.Breed.Name</li>
-                                <li><strong>Eyes Color:</strong> @post.Cat.Eyes.Color</li>
-                                <li><strong>Coat Color:</strong> @post.Cat.Coat.Color</li>
-                                <li><strong>Coat Pattern:</strong> @post.Cat.Pattern.Appearance</li>
-                                <li><strong>Tail:</strong> @post.Cat.Tail.Appearance</li>
-                            </ul>
-                        </div>
-                    }
-                }*@
 
         </div>
     </div>
@@ -138,7 +119,7 @@
         {
             <div>
                 @if (post.TypeId == 5)
-                {
+                    {
                     <button class="btn btn-block btn-success" data-toggle="modal" data-target="#toggleAdoption">Request for Adoption</button>
                 }
             </div>

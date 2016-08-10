@@ -1,6 +1,6 @@
 ﻿@using CatForum.Models;
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Create new Post";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -25,7 +25,6 @@
             </div>
             <div class="form-group">
                 <label for="File">File input</label>
-                <img width="200" height="200" />
                 <input type="File" id="File" name="File" required>
                 <p class="help-block">Please upload this post image.</p>
             </div>
@@ -173,38 +172,42 @@
                     }
                 </select>
             </div>
-            <div class="form-group">
-                <label for="Username">Cat Food| Like</label>
-                <input type="text" class="form-control" id="FoodLike" name="FoodLike" placeholder="Favorite food">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Food| Dislike</label>
-                <input type="text" class="form-control" id="FoodDislike" name="FoodDislike" placeholder="Hated food">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Habit</label>
-                <input type="text" class="form-control" id="Habit" name="Habit" placeholder="What it usually do?">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Hate</label>
-                <input type="text" class="form-control" id="Hate" name="Hate" placeholder="What is hate most?">
-            </div>
-            <div class="form-group">
-                <label for="Username">Cat Vaccine</label>
-                <input type="text" class="form-control" id="Vaccine" name="Vaccine" placeholder="List of Vaccines">
+            <div class="cat-adoption" stylre="display: none;">
+                <div class="form-group">
+                    <label for="Username">Cat Food| Like</label>
+                    <input type="text" class="form-control" id="FoodLike" name="FoodLike" placeholder="Favorite food">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Food| Dislike</label>
+                    <input type="text" class="form-control" id="FoodDislike" name="FoodDislike" placeholder="Hated food">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Habit</label>
+                    <input type="text" class="form-control" id="Habit" name="Habit" placeholder="What it usually do?">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Hate</label>
+                    <input type="text" class="form-control" id="Hate" name="Hate" placeholder="What is hate most?">
+                </div>
+                <div class="form-group">
+                    <label for="Username">Cat Vaccine</label>
+                    <input type="text" class="form-control" id="Vaccine" name="Vaccine" placeholder="List of Vaccines">
+                </div>
             </div>
             <div class="form-group">
                 <label for="Username">Cat Description</label>
                 <input type="text" class="form-control" id="CatDescription" name="CatDescription" placeholder="Description">
             </div>
+
             <div class="form-group">
                 <label>Cat Status</label>
                 <select class="form-control" id="CatStatus" name="CatStatus">
-                    <option value="1">Finding</option>
-                    <option value="2">Found</option>
-                    <option value="3">Search for Adoption</option>
-                    <option value="4">Adopted</option>
-                    <option value="5">Want to Adopt</option>
+                    <option></option>
+                    <option value="1" data-status="1" style="display: none;">Finding</option>
+                    <option value="2" data-status="2" style="display: none;">Found</option>
+                    <option value="3" data-status="3" style="display: none;">Search for Adoption</option>
+                    <option value="4" data-status="4" style="display: none;">Adopted</option>
+                    <option value="5" data-status="4" style="display: none;">Want to Adopt</option>
                 </select>
             </div>
             <button type="submit" class="ui green button">Save</button><button type="submit" class="ui green button">Reset</button>
@@ -244,6 +247,11 @@
             $("#Fee").parent().hide();
         }
         hideCondition();
+        function hideStatus() {
+            $("[data-status=1]").hide();
+            $("[data-status=2]").hide();
+        }
+        hideStatus();
         function showCat() {
             $("#CatName").parent().show();
             $("#CatAge").parent().show();
@@ -268,11 +276,29 @@
             $("#Contact").parent().show();
             $("#Fee").parent().show();
         }
+        function showStatus(id) {
+            $("[data-status=" + id + "]").show();
+        }
+        function showAdoption() {
+            $(".cat-adoption").show();
+        }
+        function hideAdoption() {
+            $(".cat-adoption").hide();
+        }
         $("#PostType").on("change", function (e) {
             var value = $(this).val();
+            hideAdoption();
             if (value == 1 || value == 2) { hideCat(); hideCondition(); }
-            else if (value == 3 || value == 4) { showCat(); showCondition(); }
-            else if (value == 5 || value == 6 || value == 7) { hideCat(); showCondition(); }
+            else if (value == 3 || value == 4 || value == 5) { showCat(); showCondition(); }
+            else if (value == 6 || value == 7) { hideCat(); showCondition(); }
+
+            if (value == 3) { hideStatus(); showStatus(2); }
+            else if (value == 4) { hideStatus(); showStatus(1); }
+            else if (value == 5) { hideStatus(); showStatus(3); }
+
+            if (value == 5) {
+                showAdoption();
+            }
         });
     </script>
 }

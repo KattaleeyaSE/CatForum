@@ -154,8 +154,8 @@ namespace CatTest.Controllers
             var result = controller.Accept(1) as RedirectToRouteResult;
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(RedirectToRouteResult));
-            Assert.AreEqual(result.RouteValues.Values.ElementAt(0), 1);
-            Assert.AreEqual(result.RouteValues.Values.ElementAt(1), "Detail");
+            //Assert.AreEqual(result.RouteValues.Values.ElementAt(0), 1);
+            Assert.AreEqual(result.RouteValues.Values.ElementAt(0), "Index");
 
         }
         [TestMethod]
@@ -185,8 +185,8 @@ namespace CatTest.Controllers
             var result = controller.Reject(1) as RedirectToRouteResult;
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(RedirectToRouteResult));
-            Assert.AreEqual(result.RouteValues.Values.ElementAt(0), 1);
-            Assert.AreEqual(result.RouteValues.Values.ElementAt(1), "Detail");
+            //Assert.AreEqual(result.RouteValues.Values.ElementAt(0), 1);
+            Assert.AreEqual(result.RouteValues.Values.ElementAt(0), "Index");
 
         }
         [TestMethod]
