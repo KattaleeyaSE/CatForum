@@ -433,6 +433,7 @@ namespace CatForum.Controllers
             PostDetail post = this.details.SelectById(Id);
             post.Status = 2;
             details.Update(post);
+            details.Delete(post.Id);
             details.Save();
             return RedirectToAction("Forums", "User");
         }

@@ -43,7 +43,7 @@
         {
             user = (User)Session["User"];
             <div class="update_wrapper">
-                <h3>Update</h3>
+                <h3>Adoption Feed</h3>
                 <div>
                     @{
                         var adopts = user.Adopts.Where(a => a.Status != 1).OrderBy(a => a.Id).Take(10);
