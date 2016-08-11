@@ -79,6 +79,7 @@ namespace CatForum.Controllers
                     follow.PostId = id;
                     follows.Add(follow);
                     follows.Save();
+                    Session["User"] = users.SelectById(user.Id);
                 }
             }
             return RedirectToAction("Detail", "Forum", new { id = id });
@@ -93,6 +94,7 @@ namespace CatForum.Controllers
                 {
                     follows.Delete(isExist.Id);
                     follows.Save();
+                    Session["User"] = users.SelectById(user.Id);
                 }
             }
 
@@ -115,6 +117,7 @@ namespace CatForum.Controllers
                     isExist.Status = 1;
                     adopts.Add(isExist);
                     adopts.Save();
+                    Session["User"] = users.SelectById(user.Id);
                 }
             }
             return RedirectToAction("Detail", "Forum", new { id = adopt.Id });
@@ -130,6 +133,7 @@ namespace CatForum.Controllers
                 {
                     isExist.Status = 2;
                     adopts.Update(isExist);
+                    Session["User"] = users.SelectById(user.Id);
                 }
             }
 
@@ -147,6 +151,7 @@ namespace CatForum.Controllers
                 {
                     isExist.Status = 3;
                     adopts.Update(isExist);
+                    Session["User"] = users.SelectById(user.Id);
                 }
             }
 
