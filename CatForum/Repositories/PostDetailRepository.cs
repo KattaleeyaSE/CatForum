@@ -128,6 +128,12 @@ namespace CatForum.Repositories
         public void Delete(int? id)
         {
             PostDetail post = db.PostDetails.Find(id);
+            foreach(var follow in post.Follow.ToList()) {
+                db.Follows.Remove(follow);
+            }
+            foreach (var adopt in post.Adopts.ToList()) {
+                db.PostAdopts.Remove(adopt);
+            }
             db.PostDetails.Remove(post);
         }
 
