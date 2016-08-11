@@ -15,7 +15,10 @@
                 <label for="Password">Password</label>
                 <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
             </div>
-            <div class="alert alert-danger" role="alert">Please fill in the form!</div>
+            @if (Session["errors"] != null)
+            {
+                <div class="alert alert-danger" role="alert">@Session["errors"]</div>
+            }
             <div class="row">
                 <div class="col-sm-6"><button type="submit" class="btn btn-block btn-success">Login</button></div>
                 <div class="col-sm-6"><button type="submit" class="btn btn-block btn-warning">Register</button></div>

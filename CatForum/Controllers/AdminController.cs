@@ -27,12 +27,12 @@ namespace CatForum.Controllers
         }
         public ActionResult Members()
         {
-            ViewBag.Members = users.SelectAll();
+            ViewBag.Members = users.SelectAll().OrderByDescending(p => p.Id).ToList();
             return View();
         }
         public ActionResult Reports()
         {
-            ViewBag.Reports = reports.SelectAll();
+            ViewBag.Reports = reports.SelectAll().OrderByDescending(p => p.Id).ToList();
             return View();
         }
         [HttpPost]
@@ -47,6 +47,7 @@ namespace CatForum.Controllers
                     return RedirectToAction("Reports", "Admin");
                 }
             }
+            Session["errors"] = "Login information is not valid.";
             return RedirectToAction("Index", "Admin");
         }
         public ActionResult Logout()

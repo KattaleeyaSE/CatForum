@@ -10,13 +10,17 @@
         List<Report> all = ViewBag.Reports;
         foreach (var post in all)
         {
-           <div>
-               <div><strong>Post: </strong> @post.Post.Post.Name</div>
-               <div><strong>Detail: </strong> @post.Text</div>
-               <div><strong>Reported Date: </strong> @post.Created.ToShortDateString()</div>
-               <div><a href="/Forum/Edit?Id=@post.Id">Edit</a> | <a href="/Forum/Delete?Id=@post.Id">Delete</a></div>
-           </div>
+            <div style="border-bottom: white solid 1px;padding: 20px 0;">
+                <div><strong>Post: </strong> @post.Post.Post.Name</div>
+                <div><strong>Detail: </strong> @post.Text</div>
+                <div>
+                    <strong>Status</strong>@if (post.Post.Status == 1)
+                    { <span class="label label-success">Active</span> }
+                    else { <span class="label label-danger">Disabled</span> }
+                </div>
+                <div><strong>Reported Date: </strong> @post.Created.ToShortDateString()</div>
+                <div><a href="/Forum/Edit?Id=@post.PostId">Edit</a> | <a href="/Forum/Disable?Id=@post.PostId">Delete</a></div>
+            </div>
         }
     }
 </div>
-

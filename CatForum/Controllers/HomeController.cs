@@ -62,6 +62,7 @@ namespace CatForum.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
+            Session["errors"] = "Login information is not valid.";
             return View();
         }
         public ActionResult Register()

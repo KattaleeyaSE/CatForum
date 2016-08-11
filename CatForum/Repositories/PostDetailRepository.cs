@@ -50,6 +50,10 @@ namespace CatForum.Repositories
         public IEnumerable<PostDetail> Search(Nullable<int> Type, Nullable<int> Offset, Nullable<int> Eyes, Nullable<int> Coat, Nullable<int> Pattern, Nullable<int> Tail, Nullable<int> Breed, Nullable<int> Province, Nullable<int> Amphur, Nullable<int> Tumbon)
         {
             var posts = db.PostDetails.Where(p => p.TypeId == Type && p.Status != 2);
+            if (Breed != null)
+            {
+                posts = posts.Where(p => p.Cat.BreedId == Breed);
+            }
             if (Eyes != null)
             {
                 posts = posts.Where(p => p.Cat.EyesId == Eyes);

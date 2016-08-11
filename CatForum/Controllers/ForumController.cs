@@ -322,7 +322,7 @@ namespace CatForum.Controllers
         }
         public ActionResult Edit(int Id)
         {
-            if (Session["User"] == null)
+            if (Session["User"] != null && Session["Admin"] != null)
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -346,13 +346,13 @@ namespace CatForum.Controllers
         [HttpPost]
         public ActionResult Edit(PostForm form, int Id)
         {
-            if (Session["User"] == null)
+            if (Session["User"] != null && Session["Admin"] != null)
             {
                 return RedirectToAction("Login", "Home");
             }
             try
             {
-                if (/*ModelState.IsValid && */Session["User"] != null)
+                if (/*ModelState.IsValid && */Session["User"] != null || Session["Admin"] != null)
                 {
                     PostDetail detail = details.SelectById(Id);
                     Post post = detail.Post;
@@ -414,6 +414,9 @@ namespace CatForum.Controllers
                     }
                     details.Update(detail);
                     details.Save();
+                    if (Session["Admin"] != null) {
+                        return RedirectToAction("Reports", "Admin");
+                    }
                     return RedirectToAction("Forums", "User");
                 }
             }
@@ -421,6 +424,10 @@ namespace CatForum.Controllers
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            if (Session["Admin"] != null)
+            {
+                return RedirectToAction("Reports", "Admin");
             }
             return RedirectToAction("Forums", "User");
         }
@@ -436,6 +443,18 @@ namespace CatForum.Controllers
             details.Delete(post.Id);
             details.Save();
             return RedirectToAction("Forums", "User");
+        }
+        public ActionResult Disable(int Id)
+        {
+            if (Session["Admin"] == null)
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            PostDetail post = this.details.SelectById(Id);
+            post.Status = 2;
+            details.Update(post);
+            details.Save();
+            return RedirectToAction("Reports", "Admin");
         }
     }
 }
