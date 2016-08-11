@@ -69,15 +69,15 @@
                     <option value="2">Delete</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label for="Condition">Condition</label>
                 <textarea class="form-control" id="Condition" name="Condition" placeholder="Condition"></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label for="Location">Location</label>
                 <input type="text" class="form-control" id="Location" name="Location" placeholder="Location">
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label for="Contact">Contact</label>
                 <input type="text" class="form-control" id="Contact" name="Contact" placeholder="Contact">
             </div>
@@ -93,7 +93,7 @@
                 <label for="CatAge">Cat Age</label>
                 <input type="text" class="form-control" id="CatAge" name="CatAge" placeholder="Cat's Age'">
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label>Cat Life Stage</label>
                 <select class="form-control" id="LifeStage" name="LifeStage">
                     @{
@@ -160,7 +160,7 @@
                     }
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label>Cat Breed</label>
                 <select class="form-control" id="CatBreed" name="CatBreed">
                     @{
@@ -199,7 +199,7 @@
                 <input type="text" class="form-control" id="CatDescription" name="CatDescription" placeholder="Description">
             </div>
 
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label>Cat Status</label>
                 <select class="form-control" id="CatStatus" name="CatStatus">
                     <option></option>
@@ -286,18 +286,22 @@
             $(".cat-adoption").hide();
         }
         $("#PostType").on("change", function (e) {
-            var value = $(this).val();
+            var value = $("#PostType").val();
             hideAdoption();
+            hideCat(); hideCondition();
             if (value == 1 || value == 2) { hideCat(); hideCondition(); }
-            else if (value == 3 || value == 4 || value == 5 || value == 7) { showCat(); showCondition(); }
+            else if (value == 3 || value == 4 || value == 5) { showCat(); showCondition(); }
             else if (value == 6) { hideCat(); showCondition(); }
+            else if (value == 7) {
+                $(".searchForAdopt").show();
+            }
 
             if (value == 3) { hideStatus(); showStatus(2); }
             else if (value == 4) { hideStatus(); showStatus(1); }
             else if (value == 5) { hideStatus(); showStatus(3); }
             else if (value == 7) { hideStatus(); showStatus(4); }
 
-            if (value == 5) {
+            if (value == 5 || value == 7) {
                 showAdoption();
             }
         });

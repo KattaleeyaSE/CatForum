@@ -20,7 +20,7 @@
                         List<PostType> types = ViewBag.Types;
                         foreach (var obj in types)
                         {
-                            <option value="@obj.Id" @if(obj.Id == post.TypeId){ @Html.Raw("selected") }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == post.TypeId) { @Html.Raw("selected")  }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -37,7 +37,7 @@
                         List<Province> provList = ViewBag.Provinces;
                         foreach (var obj in provList)
                         {
-                            <option value="@obj.Id" @if(obj.Id == post.Address.ProvinceId){ @Html.Raw("selected") }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == post.Address.ProvinceId) { @Html.Raw("selected")  }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -46,7 +46,7 @@
                         List<Amphur> ampList = ViewBag.Amphurs;
                         foreach (var obj in ampList)
                         {
-                            <option value="@obj.Id" @if(obj.Id == post.Address.AmphurId){ @Html.Raw("selected") }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == post.Address.AmphurId) { @Html.Raw("selected")  }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -55,7 +55,7 @@
                         List<Tumbon> tmbnList = ViewBag.Tumbons;
                         foreach (var obj in tmbnList)
                         {
-                            <option value="@obj.Id" @if(obj.Id == post.Address.TumbonId){ @Html.Raw("selected") }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == post.Address.TumbonId) { @Html.Raw("selected")  }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -67,19 +67,19 @@
             <div class="form-group">
                 <label>Post Status</label>
                 <select class="form-control" id="PostStatus" name="PostStatus">
-                    <option value="1" @if(post.Status == 1){ @Html.Raw("selected") }>Active</option>
-                    <option value="2" @if(post.Status == 2){ @Html.Raw("selected") }>Delete</option>
+                    <option value="1" @if (post.Status == 1) { @Html.Raw("selected")  }>Active</option>
+                    <option value="2" @if (post.Status == 2) { @Html.Raw("selected")  }>Delete</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label for="Condition">Condition</label>
                 <textarea class="form-control" id="Condition" name="Condition" placeholder="Condition">@post.Condition</textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label for="Location">Location</label>
                 <input type="text" class="form-control" id="Location" name="Location" placeholder="Location" value="@post.Location">
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label for="Contact">Contact</label>
                 <input type="text" class="form-control" id="Contact" name="Contact" placeholder="Contact" value="@post.Contact">
             </div>
@@ -95,14 +95,14 @@
                 <label for="CatAge">Cat Age</label>
                 <input type="text" class="form-control" id="CatAge" name="CatAge" placeholder="Cat's Age'" value="@cat.Age">
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label>Cat Life Stage</label>
                 <select class="form-control" id="LifeStage" name="LifeStage">
                     @{
                         List<CatLifeStage> catlife = ViewBag.LifeStages;
                         foreach (var obj in catlife)
                         {
-                            <option value="@obj.Id" @if(obj.Id == cat.LifeStageId){ @Html.Raw("selected") }>@obj.Stage</option>
+                            <option value="@obj.Id" @if (obj.Id == cat.LifeStageId) { @Html.Raw("selected")  }>@obj.Stage</option>
                         }
                     }
                 </select>
@@ -110,8 +110,8 @@
             <div class="form-group">
                 <label>Cat Gender</label>
                 <select class="form-control" id="Gender" name="Gender">
-                    <option value="1" @if(cat.Gender == 1){ @Html.Raw("selected") }>Male</option>
-                    <option value="2" @if(cat.Gender == 2){ @Html.Raw("selected") }>Female</option>
+                    <option value="1" @if (cat.Gender == 1) { @Html.Raw("selected")  }>Male</option>
+                    <option value="2" @if (cat.Gender == 2) { @Html.Raw("selected")  }>Female</option>
                 </select>
             </div>
             <div class="form-group">
@@ -121,7 +121,7 @@
                         List<CatEyes> eyes = ViewBag.Eyes;
                         foreach (var obj in eyes)
                         {
-                            <option value="@obj.Id" @if(obj.Id == cat.EyesId){ @Html.Raw("selected") }>@obj.Color</option>
+                            <option value="@obj.Id" @if (obj.Id == cat.EyesId) { @Html.Raw("selected")  }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -133,7 +133,7 @@
                         List<CatCoat> coats = ViewBag.Coats;
                         foreach (var obj in coats)
                         {
-                            <option value="@obj.Id" @if(obj.Id == cat.CoatId){ @Html.Raw("selected") }>@obj.Color</option>
+                            <option value="@obj.Id" @if (obj.Id == cat.CoatId) { @Html.Raw("selected")  }>@obj.Color</option>
                         }
                     }
                 </select>
@@ -145,7 +145,7 @@
                         List<CatPattern> patterns = ViewBag.Patterns;
                         foreach (var obj in patterns)
                         {
-                            <option value="@obj.Id" @if(obj.Id == cat.PatternId){ @Html.Raw("selected") }>@obj.Appearance</option>
+                            <option value="@obj.Id" @if (obj.Id == cat.PatternId) { @Html.Raw("selected")  }>@obj.Appearance</option>
                         }
                     }
                 </select>
@@ -157,19 +157,19 @@
                         List<CatTail> tails = ViewBag.Tails;
                         foreach (var obj in tails)
                         {
-                            <option value="@obj.Id" @if(obj.Id == cat.TailId){ @Html.Raw("selected") }>@obj.Appearance</option>
+                            <option value="@obj.Id" @if (obj.Id == cat.TailId) { @Html.Raw("selected")  }>@obj.Appearance</option>
                         }
                     }
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label>Cat Breed</label>
                 <select class="form-control" id="CatBreed" name="CatBreed">
                     @{
                         List<CatBreed> breeds = ViewBag.Breeds;
                         foreach (var obj in breeds)
                         {
-                            <option value="@obj.Id" @if(obj.Id == cat.BreedId){ @Html.Raw("selected") }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == cat.BreedId) { @Html.Raw("selected")  }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -200,15 +200,15 @@
                 <label for="Username">Cat Description</label>
                 <textarea type="text" class="form-control" id="CatDescription" name="CatDescription" placeholder="Description">@cat.Description</textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group searchForAdopt">
                 <label>Cat Status</label>
                 <select class="form-control" id="CatStatus" name="CatStatus">
                     <option></option>
-                    <option value="1" @if(cat.Status == 1){ @Html.Raw("selected") } data-status="1" style="display: none;">Finding</option>
-                    <option value="2" @if(cat.Status == 2){ @Html.Raw("selected") } data-status="2" style="display: none;">Found</option>
-                    <option value="3" @if(cat.Status == 3){ @Html.Raw("selected") } data-status="3" style="display: none;">Search for Adoption</option>
-                    <option value="4" @if(cat.Status == 4){ @Html.Raw("selected") } data-status="4" style="display: none;">Adopted</option>
-                    <option value="5" @if(cat.Status == 5){ @Html.Raw("selected") } data-status="5" style="display: none;">Want to Adopt</option>
+                    <option value="1" @if (cat.Status == 1) { @Html.Raw("selected")  } data-status="1" style="display: none;">Finding</option>
+                    <option value="2" @if (cat.Status == 2) { @Html.Raw("selected")  } data-status="2" style="display: none;">Found</option>
+                    <option value="3" @if (cat.Status == 3) { @Html.Raw("selected")  } data-status="3" style="display: none;">Search for Adoption</option>
+                    <option value="4" @if (cat.Status == 4) { @Html.Raw("selected")  } data-status="4" style="display: none;">Adopted</option>
+                    <option value="5" @if (cat.Status == 5) { @Html.Raw("selected")  } data-status="5" style="display: none;">Want to Adopt</option>
                 </select>
             </div>
             @*<div class="alert alert-danger" role="alert">...</div>*@
@@ -288,11 +288,36 @@
         }
         hideStatus();
         $("#PostType").on("change", function (e) {
-            var value = $(this).val();
+            //var value = $(this).val();
+            //hideAdoption();
+            //hideCat(); hideCondition();
+            //if (value == 1 || value == 2) { hideCat(); hideCondition(); }
+            //else if (value == 3 || value == 4 || value == 5) { showCat(); showCondition(); }
+            //else if (value == 6) { hideCat(); showCondition(); }
+            //else if (value == 7) {
+            //    $(".searchForAdopt").show();
+            //}
+
+            //if (value == 3) { hideStatus(); showStatus(2); }
+            //else if (value == 4) { hideStatus(); showStatus(1); }
+            //else if (value == 5) { hideStatus(); showStatus(3); }
+            //else if (value == 7) { hideStatus(); showStatus(4); }
+
+            //if (value == 5 || value == 7) {
+            //    showAdoption();
+            //}
+            check();
+        });
+        function check() {
+            var value = $("#PostType").val();
             hideAdoption();
+            hideCat(); hideCondition();
             if (value == 1 || value == 2) { hideCat(); hideCondition(); }
-            else if (value == 3 || value == 4 || value == 5 || value == 7) { showCat(); showCondition(); }
+            else if (value == 3 || value == 4 || value == 5) { showCat(); showCondition(); }
             else if (value == 6) { hideCat(); showCondition(); }
+            else if (value == 7) {
+                $(".searchForAdopt").show();
+            }
 
             if (value == 3) { hideStatus(); showStatus(2); }
             else if (value == 4) { hideStatus(); showStatus(1); }
@@ -300,23 +325,6 @@
             else if (value == 7) { hideStatus(); showStatus(4); }
 
             if (value == 5 || value == 7) {
-                showAdoption();
-            }
-
-        });
-        function check() {
-            var value = $(this).val();
-            hideAdoption();
-            if (value == 1 || value == 2) { hideCat(); hideCondition(); }
-            else if (value == 3 || value == 4 || value == 5 || value == 7) { showCat(); showCondition(); }
-            else if (value == 6) { hideCat(); showCondition(); }
-
-            if (value == 3) { hideStatus(); showStatus(2); }
-            else if (value == 4) { hideStatus(); showStatus(1); }
-            else if (value == 5) { hideStatus(); showStatus(3); }
-            else if (value == 7) { hideStatus(); showStatus(4); }
-
-            if (value == 5) {
                 showAdoption();
             }
         }
