@@ -134,6 +134,10 @@ namespace CatForum.Repositories
             foreach (var adopt in post.Adopts.ToList()) {
                 db.PostAdopts.Remove(adopt);
             }
+            foreach (var report in post.Reports.ToList())
+            {
+                db.Reports.Remove(report);
+            }
             db.PostDetails.Remove(post);
         }
 
