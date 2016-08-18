@@ -7,6 +7,13 @@
 <div class="row" style="padding-top: 20px;padding-bottom: 20px;">
     <div class="col-sm-12">
         <h1>Register</h1>
+        <div>
+            @if (Session["Error"] != null)
+            {
+                <div class="alert alert-danger" role="alert">@Session["Error"]</div>
+                Session["Error"] = null;
+            }
+        </div>
         <form method="post" action="/Home/Register" id="Register">
             <div class="form-group">
                 <label for="Username">Username</label>

@@ -132,6 +132,7 @@ namespace CatForum.Controllers
                 if (isExist != null)
                 {
                     isExist.Status = 2;
+                    isExist.Post.Cat.Status = 4;
                     adopts.Update(isExist);
                     Session["User"] = users.SelectById(user.Id);
                 }
@@ -214,7 +215,11 @@ namespace CatForum.Controllers
             }
             if (Eyes != null || Coat != null || Pattern != null || Tail != null || Breed != null || Province != null || Amphur != null || Tumbon != null)
             {
+                Session["IsSearch"] = true;
                 ViewBag.SearchResult = details.Search(Type, Offset, Eyes, Coat, Pattern, Tail, Breed, Province, Amphur, Tumbon);
+            }
+            else {
+                Session["IsSearch"] = false;
             }
             return View();
         }

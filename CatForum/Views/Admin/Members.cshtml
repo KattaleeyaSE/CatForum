@@ -11,8 +11,7 @@
         foreach (var user in all)
         {
             <div>
-                <div><strong>User: </strong> @user.Username - @user.Email</div>
-                <div><a href="/User/Delete?Id=@user.Id">Delete</a></div>
+                <div><strong>User: </strong> @user.Username - @user.Email | <a href="/User/Delete?Id=@user.Id">Delete</a></div>
             </div>
         }
     }

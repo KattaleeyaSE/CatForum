@@ -50,6 +50,14 @@ namespace CatForum.Controllers
                 {
                     User temp = (User)Session["User"];
                     User old = repository.SelectById(temp.Id);
+                    if (old.Username != form.Username) {
+                        var exist = repository.SelectAll().Where(u => u.Username == form.Username && u.Id != old.Id).FirstOrDefault();
+                        if (exist != null)
+                        {
+                            Session["Error"] = "User name is already exist.";
+                            return RedirectToAction("Edit", "User");
+                        }
+                    }
                     old.Username = form.Username;
                     if (form.Password != null && form.RePassword != null && form.Password.Equals(form.RePassword))
                     {

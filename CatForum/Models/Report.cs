@@ -19,7 +19,7 @@ namespace CatForum.Models
         [ForeignKey("PostId")]
         public virtual PostDetail Post { get; set; }
 
-        [ForeignKey("PostId")]
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }
 
     }

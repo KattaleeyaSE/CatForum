@@ -30,12 +30,12 @@
                     <li>@Html.ActionLink("Search for Adopt", "Search", "Forum", new { Type = "7" }, null)</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (Session["User"] == null)
+                    @if (Session["User"] == null && Session["Admin"] == null)
                     {
                         <li>@Html.ActionLink("Login", "Login", "Home")</li>
                         <li>@Html.ActionLink("Register", "Register", "Home")</li>
                     }
-                    else
+                    else if(Session["User"] != null && Session["Admin"] == null)
                     {
                         <li>@Html.ActionLink("Setting", "Edit", "User")</li>
                         <li>@Html.ActionLink("Forums", "Forums", "User")</li>
@@ -43,7 +43,7 @@
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (Session["Admin"] != null)
+                    @if (Session["Admin"] != null && Session["User"] == null)
                     {
                         <li>@Html.ActionLink("Members", "Members", "Admin")</li>
                         <li>@Html.ActionLink("Reports", "Reports", "Admin")</li>

@@ -195,13 +195,13 @@
                     <li role="presentation"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Search Result</a></li>
                 </ul>*@
             <div class="ui top attached tabular menu" style="margin-bottom: 10px;">
-                <a class="item active" data-tab="all">All</a>
+                <a class="item  @if (!(bool)Session["IsSearch"]) { @Html.Raw("active") }" data-tab="all">All</a>
                 <a class="item" data-tab="province">Your Province</a>
-                <a class="item" data-tab="search">Search Result</a>
+                <a class="item @if ((bool)Session["IsSearch"]) { @Html.Raw("active") }" data-tab="search">Search Result</a>
             </div>
             <!-- Tab panes -->
             <div class="tab-content">
-                <div role="tabpanel" class="ui bottom attached tab active" data-tab="all" id="all">
+                <div role="tabpanel" class="ui bottom attached tab  @if (!(bool)Session["IsSearch"]) { @Html.Raw("active") }" data-tab="all" id="all">
                     @{
                         List<PostDetail> all = ViewBag.all;
                         if (all == null || all.Count <= 0)
@@ -365,9 +365,9 @@
                             <hr />
                         </div>*@
                 </div>
-                <div role="tabpanel" class="ui bottom attached tab" data-tab="search" id="search">
+                <div role="tabpanel" class="ui bottom attached tab @if ((bool)Session["IsSearch"]) { @Html.Raw("active") } " data-tab="search" id="search">
                     @{
-                        List<PostDetail> search = ViewBag.SearchResult;
+                    List<PostDetail> search = ViewBag.SearchResult;
                         if (search == null || search.Count <= 0)
                         {
                             <h3 class="text-center">No result.</h3>

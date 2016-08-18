@@ -77,6 +77,11 @@ namespace CatForum.Controllers
         {
             if (ModelState.IsValid)
             {
+                var exist = repository.SelectAll().Where(u => u.Username == form.Username).FirstOrDefault();
+                if (exist != null) {
+                    Session["Error"] = "User name is already exist.";
+                    return RedirectToAction("Register", "Home");
+                }
                 if (form.Password.Equals(form.RePassword) && form.Email.Equals(form.ReEmail))
                 {
                     Address address = addressRepository.IsAddressExist(form.Province, form.Amphur, form.Tumbon);
@@ -94,6 +99,7 @@ namespace CatForum.Controllers
                     user.Username = form.Username;
                     user.Password = form.Password;
                     user.AddressId = address.Id;
+                    user.Email = form.Email;
                     var isValid = repository.Register(user);
                     if (isValid != 0)
                     {

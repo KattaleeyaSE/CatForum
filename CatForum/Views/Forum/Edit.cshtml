@@ -11,11 +11,11 @@
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="Title">Title</label>
-                <input type="text" class="form-control" id="PostTitle" name="PostTitle" placeholder="Title" value="@post.Post.Name">
+                <input type="text" class="form-control" id="PostTitle" name="PostTitle" placeholder="Title" value="@post.Post.Name" required>
             </div>
             <div class="form-group">
                 <label for="PostType">Post Type</label>
-                <select class="form-control" id="PostType" name="PostType">
+                <select class="form-control" id="PostType" name="PostType" required>
                     @{
                         List<PostType> types = ViewBag.Types;
                         foreach (var obj in types)
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label>Province</label>
-                <select class="form-control" id="Province" name="Province">
+                <select class="form-control" id="Province" name="Province" required>
                     @{
                         List<Province> provList = ViewBag.Provinces;
                         foreach (var obj in provList)
@@ -41,7 +41,7 @@
                         }
                     }
                 </select>
-                <select class="form-control" id="Amphur" name="Amphur">
+                <select class="form-control" id="Amphur" name="Amphur" required>
                     @{
                         List<Amphur> ampList = ViewBag.Amphurs;
                         foreach (var obj in ampList)
@@ -50,7 +50,7 @@
                         }
                     }
                 </select>
-                <select class="form-control" id="Tumbon" name="Tumbon">
+                <select class="form-control" id="Tumbon" name="Tumbon" required>
                     @{
                         List<Tumbon> tmbnList = ViewBag.Tumbons;
                         foreach (var obj in tmbnList)
@@ -62,13 +62,13 @@
             </div>
             <div class="form-group">
                 <label for="Condition">Post Detail</label>
-                <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail">@post.Post.Content</textarea>
+                <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail" required>@post.Post.Content</textarea>
             </div>
             <div class="form-group">
                 <label>Post Status</label>
-                <select class="form-control" id="PostStatus" name="PostStatus">
+                <select class="form-control" id="PostStatus" name="PostStatus" required>
                     <option value="1" @if (post.Status == 1) { @Html.Raw("selected")  }>Active</option>
-                    <option value="2" @if (post.Status == 2) { @Html.Raw("selected")  }>Delete</option>
+                    @*<option value="2" @if (post.Status == 2) { @Html.Raw("selected")  }>Delete</option>*@
                 </select>
             </div>
             <div class="form-group searchForAdopt">
@@ -212,7 +212,7 @@
                 </select>
             </div>
             @*<div class="alert alert-danger" role="alert">...</div>*@
-            <button type="submit" class="btn btn-default">Save</button><button type="submit" class="btn btn-default">Reset</button>
+            <button type="submit" class="btn btn-default">Save</button><a href="/User/Forums"><button class="btn btn-block btn-warning">Cancle</button></a>
         </form>
     </div>
 </div>

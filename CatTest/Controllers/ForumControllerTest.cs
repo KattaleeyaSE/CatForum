@@ -57,9 +57,13 @@ namespace CatTest.Controllers
             //repo.Setup(x => x.Add(new Follow())).Returns<Follow>(null);
             repo.Setup(x => x.SearchByUserAndPost(1, 1)).Returns<Follow>(null);
 
+            var userRepo = new Mock<IUserRepository>();
+            userRepo.Setup(x => x.SelectById(1)).Returns(new User());
+
             var controller = new ForumController();
             controller.ControllerContext = new ControllerContext(requestContext, controller);
             controller.follows = repo.Object;
+            controller.users = userRepo.Object;
 
             var result = controller.Follow(1) as RedirectToRouteResult;
             Assert.IsNotNull(result);
@@ -85,9 +89,13 @@ namespace CatTest.Controllers
             //repo.Setup(x => x.Add(new Follow())).Returns<Follow>(null);
             repo.Setup(x => x.SearchByUserAndPost(1, 1)).Returns(new Follow());
 
+            var userRepo = new Mock<IUserRepository>();
+            userRepo.Setup(x => x.SelectById(1)).Returns(new User());
+
             var controller = new ForumController();
             controller.ControllerContext = new ControllerContext(requestContext, controller);
             controller.follows = repo.Object;
+            controller.users = userRepo.Object;
 
             var result = controller.UnFollow(1) as RedirectToRouteResult;
             Assert.IsNotNull(result);
@@ -113,9 +121,14 @@ namespace CatTest.Controllers
             //repo.Setup(x => x.Add(new Follow())).Returns<Follow>(null);
             repo.Setup(x => x.IsExist(1, 1)).Returns<PostAdopt>(null);
 
+            var userRepo = new Mock<IUserRepository>();
+            userRepo.Setup(x => x.SelectById(1)).Returns(new User());
+
             var controller = new ForumController();
             controller.ControllerContext = new ControllerContext(requestContext, controller);
             controller.adopts = repo.Object;
+            controller.users = userRepo.Object;
+
 
             var adopt = new PostAdopt();
             adopt.Id = 1;
@@ -140,16 +153,23 @@ namespace CatTest.Controllers
 
             var requestContext = new RequestContext(context.Object, new RouteData());
 
+            var adopt = new PostAdopt();
+            var post = new PostDetail();
+            post.Cat = new Cat();
+            adopt.Id = 1;
+            adopt.Post = post;
+
             var repo = new Mock<IPostAdoptRepository>();
             //repo.Setup(x => x.Add(new Follow())).Returns<Follow>(null);
-            repo.Setup(x => x.SelectById(1)).Returns(new PostAdopt());
+            repo.Setup(x => x.SelectById(1)).Returns(adopt);
+
+            var userRepo = new Mock<IUserRepository>();
+            userRepo.Setup(x => x.SelectById(1)).Returns(new User());
 
             var controller = new ForumController();
             controller.ControllerContext = new ControllerContext(requestContext, controller);
             controller.adopts = repo.Object;
-
-            var adopt = new PostAdopt();
-            adopt.Id = 1;
+            controller.users = userRepo.Object;
 
             var result = controller.Accept(1) as RedirectToRouteResult;
             Assert.IsNotNull(result);
@@ -175,9 +195,13 @@ namespace CatTest.Controllers
             //repo.Setup(x => x.Add(new Follow())).Returns<Follow>(null);
             repo.Setup(x => x.SelectById(1)).Returns(new PostAdopt());
 
+            var userRepo = new Mock<IUserRepository>();
+            userRepo.Setup(x => x.SelectById(1)).Returns(new User());
+
             var controller = new ForumController();
             controller.ControllerContext = new ControllerContext(requestContext, controller);
             controller.adopts = repo.Object;
+            controller.users = userRepo.Object;
 
             var adopt = new PostAdopt();
             adopt.Id = 1;

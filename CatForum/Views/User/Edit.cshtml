@@ -12,7 +12,14 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <form method="post" action="" class="form-horizontal" style="padding: 20px;" enctype="multipart/form-data">
+        <div>
+            @if (Session["Error"] != null)
+            {
+                <div class="alert alert-danger" role="alert">@Session["Error"]</div>
+                Session["Error"] = null;
+            }
+        </div>
+        <form method="post" action="" class="form-horizontal" style="padding: 20px;" enctype="multipart/form-data" id="Register">
             <div class="form-group text-center">
                 @{
                     var image = user.Image;
@@ -29,60 +36,60 @@
             <p class="help-block">Upload your profile image here!</p>
             <div class="form-group">
                 <label for="Username">Username</label>
-                <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" value="@user.Username">
+                <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" value="@user.Username" minlength="5" required>
             </div>
             <div class="form-group">
                 <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" minlength="6">
             </div>
             <div class="form-group">
                 <label for="RePassword">Re-Password</label>
-                <input type="password" class="form-control" id="RePassword" name="RePassword" placeholder="Re-Password">
+                <input type="password" class="form-control" id="RePassword" name="RePassword" placeholder="Re-Password" minlength="6">
             </div>
             <div class="form-group">
                 <label for="Email">E-Mail</label>
-                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="@user.Email">
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="@user.Email" required>
             </div>
             <div class="form-group">
                 <label for="DisplayName">Display Name:</label>
-                <input type="text" class="form-control" id="DisplayName" name="DisplayName" placeholder="Display Name" value="@user.DisplayName">
+                <input type="text" class="form-control" id="DisplayName" name="DisplayName" placeholder="Display Name" value="@user.DisplayName" required>
             </div>
             <div class="form-group">
                 <label>Gender</label>
-                <select class="form-control" id="Gender" name="Gender">
+                <select class="form-control" id="Gender" name="Gender" required>
                     <option></option>
-                    <option value="1" @if (1 == user.Gender) { @Html.Raw("selected")     }>Male</option>
-                    <option value="2" @if (2 == user.Gender) { @Html.Raw("selected")     }>Female</option>
+                    <option value="1" @if (1 == user.Gender) { @Html.Raw("selected")      }>Male</option>
+                    <option value="2" @if (2 == user.Gender) { @Html.Raw("selected")      }>Female</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Province</label>
-                <select class="form-control" id="Province" name="Province">
+                <select class="form-control" id="Province" name="Province" required>
                     @{
                         List<Province> provList = ViewBag.Provinces;
                         foreach (var obj in provList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == user.Address.ProvinceId) { @Html.Raw("selected")     }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == user.Address.ProvinceId) { @Html.Raw("selected")      }>@obj.Name</option>
                         }
                     }
                 </select>
                 <label>Amphur</label>
-                <select class="form-control" id="Amphur" name="Amphur">
+                <select class="form-control" id="Amphur" name="Amphur" required>
                     @{
                         List<Amphur> ampList = ViewBag.Amphurs;
                         foreach (var obj in ampList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == user.Address.AmphurId) { @Html.Raw("selected")     }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == user.Address.AmphurId) { @Html.Raw("selected")      }>@obj.Name</option>
                         }
                     }
                 </select>
                 <label>Tumbon</label>
-                <select class="form-control" id="Tumbon" name="Tumbon">
+                <select class="form-control" id="Tumbon" name="Tumbon" required>
                     @{
                         List<Tumbon> tmbnList = ViewBag.Tumbons;
                         foreach (var obj in tmbnList)
                         {
-                            <option value="@obj.Id" @if (obj.Id == user.Address.TumbonId) { @Html.Raw("selected")     }>@obj.Name</option>
+                            <option value="@obj.Id" @if (obj.Id == user.Address.TumbonId) { @Html.Raw("selected")      }>@obj.Name</option>
                         }
                     }
                 </select>
@@ -90,9 +97,18 @@
             @*<div class="alert alert-danger" role="alert">Please fill in your information!.</div>*@
             <div class="row">
                 <div class="col-sm-6"><button type="submit" class="btn btn-block btn-success">Save</button></div>
-                <div class="col-sm-6"><button type="submit" class="btn btn-block btn-warning">Reset</button></div>
+                <div class="col-sm-6"><a href="/"><button class="btn btn-block btn-warning">Cancle</button></a></div>
             </div>
         </form>
     </div>
 </div>
+@section scripts{
+    <script>
+        $("#Register").validate({
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    </script>
+}
 
