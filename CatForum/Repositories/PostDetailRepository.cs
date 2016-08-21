@@ -94,17 +94,21 @@ namespace CatForum.Repositories
             List<PostDetail> result = new List<PostDetail>();
             foreach (var lost in losts) {
                 if (lost.Cat.Status == 1) {
-                    var match = db.PostDetails.Where(p => (p.Post.UserId != userId 
+                    var match = db.PostDetails.Where(p => (p.Post.UserId != userId
                     && p.Cat.Status == 2
                     && p.TypeId == 3
+                    && p.Cat.BreedId == lost.Cat.BreedId
                     && p.Address.ProvinceId == lost.Address.ProvinceId
                     && p.Address.AmphurId == lost.Address.AmphurId));
 
-                    result.AddRange(match.Where(p => p.Cat.EyesId == lost.Cat.EyesId
+                    result.AddRange(match.Where(p =>
+                    p.Cat.EyesId == lost.Cat.EyesId
                     || p.Cat.CoatId == lost.Cat.CoatId
                     || p.Cat.PatternId == lost.Cat.PatternId
                     || p.Cat.TailId == lost.Cat.PatternId
-                    || p.Cat.BreedId == lost.Cat.BreedId).ToList());
+                    //|| p.Cat.BreedId == lost.Cat.BreedId
+                    ).ToList());
+                    
                 }
             }
             return result;

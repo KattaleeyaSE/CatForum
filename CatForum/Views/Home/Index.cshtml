@@ -80,9 +80,9 @@
                 }
 
             </ul>
-            <div class="text-right sos-read">
+            @*<div class="text-right sos-read">
                 <a href="/Forum/Search?Type=6"><button class="ui inverted orange button">More</button></a>
-            </div>
+            </div>*@
         </div>
     </div>
     <div class="col-sm-12">
@@ -183,7 +183,7 @@
                                             </div>
                                         </a>
                                     }
-                                    if (count == 4 || finds.Last().Equals(obj))
+                                    if (count == 7 || finds.Last().Equals(obj))
                                     {
                                         @Html.Raw("</li>")
                                         count = 1;
@@ -227,7 +227,7 @@
                                             </div>
                                         </a>
                                     }
-                                    if (count == 4 || soses.Last().Equals(obj))
+                                    if (count == 7 || soses.Last().Equals(obj))
                                     {
                                         @Html.Raw("</li>")
                                         count = 1;
@@ -271,7 +271,7 @@
                                             </div>
                                         </a>
                                     }
-                                    if (count == 4 || adopts.Last().Equals(obj))
+                                    if (count == 7 || adopts.Last().Equals(obj))
                                     {
                                         @Html.Raw("</li>")
                                         count = 1;
@@ -315,7 +315,7 @@
                                             </div>
                                         </a>
                                     }
-                                    if (count == 4 || searchForAdop.Last().Equals(obj))
+                                    if (count == 7 || searchForAdop.Last().Equals(obj))
                                     {
                                         @Html.Raw("</li>")
                                         count = 1;
@@ -351,7 +351,7 @@
                                 <div class="col-sm-9">
                                     <div>Post: @obj.Post.Post.Name</div>
                                     <div>Have been updated on: @obj.Post.Post.Updated</div>
-                                    <div><a href="/Forum/Detail/@obj.PostId">Check</a></div>
+                                    <div><a href="/Forum/Detail/@obj.PostId">Read more</a></div>
                                 </div>
                             </div>
                                             }
@@ -416,7 +416,7 @@
                                         <div>Description: @obj.Post.Name</div>
                                         <div>Address: @obj.Address.Province.Name , @obj.Address.Amphur.Name , @obj.Address.Tumbon.Name</div>
                                         <div>Contact: @obj.Contact</div>
-                                        <div><a href="/Forum/Detail/@obj.Id">Check</a></div>
+                                        <div><a href="/Forum/Detail/@obj.Id">Read More</a></div>
                                     </div>
                                 </div>
                                                     }

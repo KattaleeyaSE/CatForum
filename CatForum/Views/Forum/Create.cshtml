@@ -62,12 +62,12 @@
                 <label for="PostDetail">Post Detail</label>
                 <textarea class="form-control" id="PostDetail" name="PostDetail" placeholder="Post Detail" required></textarea>
             </div>
-            <div class="form-group">
-                <label>Post Status</label>
-                <select class="form-control" id="PostStatus" name="PostStatus" required>
+            @*<div class="form-group">
+    <label>Post Status</label>
+           <select class="form-control" id="PostStatus" name="PostStatus" required>
                     <option value="1">Active</option>
                     <option value="2">Delete</option>
-                </select>
+                </select>*@
             </div>
             <div class="form-group searchForAdopt">
                 <label for="Condition">Condition</label>
@@ -159,6 +159,7 @@
                         }
                     }
                 </select>
+             
             </div>
             <div class="form-group searchForAdopt">
                 <label>Cat Breed</label>
@@ -167,10 +168,12 @@
                         List<CatBreed> breeds = ViewBag.Breeds;
                         foreach (var obj in breeds)
                         {
+
                             <option value="@obj.Id">@obj.Name</option>
                         }
                     }
-                </select>
+                </select> 
+
             </div>
             <div class="cat-adoption" stylre="display: none;">
                 <div class="form-group">
@@ -210,7 +213,8 @@
                     <option value="5" data-status="4" style="display: none;">Want to Adopt</option>
                 </select>
             </div>
-            <button type="submit" class="ui green button">Save</button><a href="/User/Forums"><button class="btn btn-block btn-warning">Cancle</button></a>
+            <button type="submit" class="ui green button">Save</button><a href="/User/Forums"></a>
+            <a href="/User/Forums"><button type="button" class="ui button">Cancel</button></a>
         </form>
     </div>
 </div>

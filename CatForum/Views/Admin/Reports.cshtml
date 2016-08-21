@@ -11,8 +11,8 @@
         foreach (var post in all)
         {
             <div style="border-bottom: white solid 1px;padding: 20px 0;">
-                <div><strong>Post: </strong> @post.Post.Post.Name</div>
-                <div><strong>Detail: </strong> @post.Text</div>
+                <div><strong>Post title: </strong> @post.Post.Post.Name</div>
+                <div><strong>Report Detail: </strong> @post.Text</div>
                 <div><strong>Owner: </strong> @post.User.Username</div>
                 <div>
                     <strong>Status</strong>@if (post.Post.Status == 1)
@@ -20,7 +20,7 @@
                     else { <span class="label label-danger">Disabled</span> }
                 </div>
                 <div><strong>Reported Date: </strong> @post.Created.ToShortDateString()</div>
-                <div><a href="/Forum/Detail?Id=@post.PostId">Check</a> | <a href="/Forum/Edit?Id=@post.PostId">Edit</a> | <a href="/Forum/Disable?Id=@post.PostId">Delete</a></div>
+                <div><a href="/Forum/Detail?Id=@post.PostId">Read More</a> |@* <a href="/Forum/Edit?Id=@post.PostId">Edit</a>*@ | <a href="/Forum/Disable?Id=@post.PostId">Delete</a></div>
             </div>
         }
     }

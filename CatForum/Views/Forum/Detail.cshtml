@@ -68,36 +68,36 @@
                             <td class="detail-header">Cat Detail</td>
                             <td class="detail-content">
 
-                                <p class="help-block">@post.Cat.Description</p>
-
-                                <div>
-                                    @if (post.Cat.Name != "" && post.Cat.Name != null)
-                                    {
-                                        <h3>Name: @post.Cat.Name</h3>
-                                    }
-                                    <strong>@statusHelper.getCatStatus(post.Cat.Status)</strong>
-                                    <ul>
-                                        <li><strong>Breed:</strong> @post.Cat.Breed.Name</li>
-                                        <li><strong>Age:</strong> @post.Cat.Age</li>
-                                        <li><strong>Life Stage:</strong> @post.Cat.LifeStage.Stage</li>
-                                        @if (post.TypeId != 7)
-                                        {
-                                            <li><strong>Eyes Color:</strong> @post.Cat.Eyes.Color</li>
+                               <p class="help-block">Description : @post.Cat.Description</p>
+                  
+                        <div>
+                            @if (post.Cat.Name != "" && post.Cat.Name != null)
+                            {
+                                <h3>Cat Name: @post.Cat.Name</h3>
+                            }
+                            <h4><strong>Cat Status : @statusHelper.getCatStatus(post.Cat.Status)</strong></h4>
+                            <ul>
+                                <li><strong>Breed:</strong> @post.Cat.Breed.Name</li>
+                                <li><strong>Age:</strong> @post.Cat.Age</li>
+                                <li><strong>Life Stage:</strong> @post.Cat.LifeStage.Stage</li>
+                                @if (post.TypeId != 7)
+                                {
+                                    <li><strong>Eyes Color:</strong> @post.Cat.Eyes.Color</li>
                                             <li><strong>Coat Color:</strong> @post.Cat.Coat.Color</li>
                                             <li><strong>Coat Pattern:</strong> @post.Cat.Pattern.Appearance</li>
                                             <li><strong>Tail:</strong> @post.Cat.Tail.Appearance</li>
-                                        }
-                                        @if (post.TypeId == 5)
-                                        {
-                                            <li><strong>Food Like:</strong> @post.Cat.FoodLike</li>
+                                }
+                                @if (post.TypeId == 5)
+                                {
+                                    <li><strong>Food Like:</strong> @post.Cat.FoodLike</li>
                                             <li><strong>Food Dislike:</strong> @post.Cat.FoodDislike</li>
                                             <li><strong>Habit:</strong> @post.Cat.Habit</li>
                                             <li><strong>Hate:</strong> @post.Cat.Hate</li>
                                             <li><strong>Vaccine:</strong> @post.Cat.Vaccine</li>
-                                        }
-                                    </ul>
-                                </div>
-                            </td>
+                                }
+                            </ul>
+                        </div>
+                        </td>
                         </tr>
                     }
                 }
@@ -124,6 +124,8 @@
                     </tr>
                 }
             </table>
+
+
 
         </div>
     </div>
